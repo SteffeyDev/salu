@@ -1,4 +1,4 @@
-# salu
+# Salu Contact Manager
 
 ## Project setup
 ```
