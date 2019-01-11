@@ -36,3 +36,13 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
  * Install [yarn](https://yarnpkg.com/lang/en/docs/install/)
  * Navigate to `back-end` folder: `$ cd front-end`
  * Install packages: `$ yarn install`
+
+### Starting the Server
+
+ ```
+ node server.js
+ ```
+
+### Testing API Endpoint
+
+Use [Postman](https://www.getpostman.com/) or [cURL](https://curl.haxx.se/docs/manpage.html)
