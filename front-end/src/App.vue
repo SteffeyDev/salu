@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/Salu-Pro-Logo.gif">
+    <img alt="Vue logo" src="./assets/Salu-Pro-Logo.gif" width="150px">
     <HelloWorld msg="Welcome to Salu.pro"/>
   </div>
 </template>
