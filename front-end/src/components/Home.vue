@@ -1,22 +1,15 @@
 <template>
-  <div id="app">
-    <Home v-if="authenticated" />
-    <Login v-else />
+  <div id="home">
+    <nav class="navbar">
+      <a class="navbar-brand" href="#"><img alt="Vue logo" src="../assets/Salu-Pro-Logo.gif" width="30px"> Salu.pro</a>
+    </nav>
   </div>
 </template>
 
 <script>
-import Login from './components/Login.vue'
-import Home from './components/Home.vue'
-
 export default {
-  name: 'app',
-  data: () => ({
-    authenticated: true
-  }),
+  name: 'home',
   components: {
-    Login,
-    Home
   }
 }
 </script>
