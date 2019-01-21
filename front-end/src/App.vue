@@ -12,7 +12,7 @@ import Home from './components/Home.vue'
 export default {
   name: 'app',
   data: () => ({
-    authenticated: true
+    authenticated: false
   }),
   components: {
     Login,

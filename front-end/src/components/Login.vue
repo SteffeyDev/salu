@@ -1,28 +1,29 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="../assets/Salu-Pro-Logo.gif" width="150px">
+    <img alt="Vue logo" src="../assets/Salu-Pro-Logo.gif" width="170px" style="padding-bottom:40px">
     <div class="container">
       <form>
-        <div class="form-group">
-          <div class="row">
-            <div class="col-0 vcenter"><label for="username">Username</label></div>
-            <div class="col"><input type="text" class="form-control" id="username1" aria-describedby="usernameHelp" placeholder="Enter your username"></div>
+        <div class="form-group row justify-content-center">
+          <label for="inputUsername" class="col-1 col-form-label">Username</label>
+          <div class="col-4">
+            <input type="text" class="form-control" id="inputUsername" placeholder="Please enter your username">
           </div>
-          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-0"><label for="exampleInputPassword1">Password</label></div>
-              <div class="col"><input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"></div>
-            </div>
+        <div class="form-group row justify-content-center">
+          <label for="inputPassword" class="col-1 col-form-label">Password</label>
+          <div class="col-4">
+            <input type="password" class="form-control" id="inputPassword" placeholder="Please enter your password">
           </div>
-        <div class="form-group form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="confirmationCheckbox">Check me out</label>
         </div>
-        <div class="form-group ">
-          <button type="submit" class="btn btn-primary">Login</button>
-          <button type="submit" class="btn btn-primary">Sign Up</button>
+        <div class="form-group form-check row justify-content-end">
+          <div class="col-2">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="confirmationCheckbox">Confirm Sign Up</label>
+          </div>
+        </div>
+        <div class="form-group row justify-content-center">
+          <button type="submit" class="col-2 mr-4 btn btn-primary">Sign Up</button>
+          <button type="submit" class="col-1 ml-4 btn btn-dark">Login</button>
         </div>
       </form>
     </div>
@@ -46,11 +47,5 @@
     text-align: center;
     color: #2c3e50;
     margin-top: 60px;
-  }
-
-  .vcenter {
-    display: inline-block;
-    vertical-align: middle;
-    float: none;
   }
 </style>
