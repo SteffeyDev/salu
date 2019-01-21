@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="login">
     <img alt="Vue logo" src="../assets/Salu-Pro-Logo.gif" width="150px">
     <form>
       <div class="form-group">
@@ -23,19 +23,13 @@
 <script>
 
   export default {
-    name: 'app',
+    name: 'login',
     components: {
     }
   }
 </script>
 
 <style>
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
+  #login {
   }
 </style>
