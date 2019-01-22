@@ -15,14 +15,19 @@
             <input type="password" class="form-control" id="inputPassword" placeholder="Please enter your password">
           </div>
         </div>
-        <div class="form-group form-check row justify-content-end">
+        <div class="form-group row justify-content-center">
+          <div class="col-3"><!--Empty column for right alignment--></div>
           <div class="col-2">
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label" for="confirmationCheckbox">Confirm Sign Up</label>
           </div>
         </div>
         <div class="form-group row justify-content-center">
-          <button type="submit" class="col-2 mr-4 btn btn-primary">Sign Up</button>
+          <div class="col-1"><!--Empty column for right alignment--></div>
+          <button type="submit" class="col-2 mr-4 btn btn-primary">
+            Sign Up
+            <span class="fas fa-pencil-alt"><!--Reference icon from FontAwesome--></span>
+          </button>
           <button type="submit" class="col-1 ml-4 btn btn-dark">Login</button>
         </div>
       </form>
