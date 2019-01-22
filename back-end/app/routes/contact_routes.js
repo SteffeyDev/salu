@@ -1,6 +1,6 @@
 var ObjectID = require('mongodb').ObjectID;
 
-module.exports = function(app, db) {
+module.exports = function(app, dbase) {
 	
 	//Searches by ID
 	app.get('/contacts/:id', (req,res) => {
