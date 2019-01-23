@@ -62,7 +62,7 @@ db.createCollection("Contacts", {
 							"pattern": "/^\d{5}(\-?\d{4})?$/m",
 							description: "Must be an valid zipcode"
 							},
-						"label" : {
+						"tags" : {
 							bsonType: ["string"],
 							description: "Must be a string"
 							},
