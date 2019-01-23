@@ -1,16 +1,15 @@
-var ObjectID = require('mongodb').ObjectID;
+const ObjectID = require('mongodb').ObjectID;
+const User = require('../../models/User.js');
 
 module.exports = function(app, dbase) {
   
   //Searches by ID
   app.get('/contacts/:id', (req,res) => {
-    const id = req.params.id;
-    const details = { '_id': new ObjectID(id) };
-    dbase.collection('Contacts').findOne(details, (err, item) => {
+    User.findOne({ email: req.user.email, 'contacts._id': new ObjectID(req.params.id) }, (err, contact) => {
       if (err) {
         res.send({'error': 'An error has occurred'});
       } else {
-        res.send(item);
+        res.send(contact);
       }
     });
   });
