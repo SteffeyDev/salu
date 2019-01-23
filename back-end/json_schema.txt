@@ -1,0 +1,70 @@
+db.createCollection("Contacts", {
+	validator: {
+		$jsonSchema: {
+			bsonType: "object", 
+			required:["username", "contacts"],
+			properties:{
+				username:{
+					bsonType: "string",
+					description: "Must be a string and is required"
+					},
+				contacts: {
+					required: ["first", "phone"],
+					bsonType: "object",
+					additionalProperties: false,
+					properties: {
+						"first" : {
+							bsonType: "string",
+							description: "Must be a string and is required"
+							},
+						"last" : {
+							bsonType: "string",
+							description: "Must be a string"
+							},
+						"phone" : {
+							"type": "string",
+							"pattern": "/(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})/",
+							description: "Must be a valid phone number"
+							},
+						"email" : {
+							bsonType: "string",
+							"pattern": "/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/i",
+							description: "Must be a valid email"
+							},
+						"street" : {
+							bsonType: "string",
+							"pattern": "/\d+\w+\s\w+\s\w+/",
+							description: "Must be a valid street address"
+							},
+						"city" : {
+							bsonType: "string",
+							description: "Must be a string"
+							},
+						"state" : { 
+							enum: ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL",
+								"GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME",
+								"MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH",
+								"NJ", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "PR", "RI",
+								"SC", "SD", "TN", "TX", "UT", "VT", "VI", "VA", "WA", "WV",
+								"WI", "WY", null],
+							description: "Must be a member of the enum object"
+							},
+						"zipcode" : {
+							bsonType: "string",
+							"pattern": "/^\d{5}(\-?\d{4})?$/m",
+							description: "Must be an valid zipcode"
+							},
+						"label" : {
+							bsonType: ["string"],
+							description: "Must be a string"
+							},
+						"notes" : {
+							bsonType: "string",
+							description: "Must be a string"
+							}
+					}
+				}
+			}
+		}
+	}
+})
