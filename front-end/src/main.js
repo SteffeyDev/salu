@@ -14,18 +14,21 @@ const store = new Vuex.Store({
   state: {
     contacts: [
     {
+      _id: '12345',
       name: 'Peter Steffey',
       labels: ['UCF', 'CCO', 'Hack@UCF']
     }, {
+      _id: '54345',
       name: 'Michael Ibeh',
       labels: ['UCF', 'Hack@UCF']
     }
-    ]
+    ],
+    searchText: null,
+    authenticated: true
   },
   mutations: {
-    addContact(state, contact) {
-      state.contacts.push(contact);
-    }
+    addContact: (state, contact) => state.contacts.push(contact),
+    search: (state, text) => { state.searchText = text }
   }
 })
 

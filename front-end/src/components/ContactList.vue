@@ -1,33 +1,35 @@
 <template>
   <div>
-    <div class="flex flex-row justify-between contact-row" @click="selectContact" v-for="contact in contacts">
+    <div class="d-flex flex-row flex-wrap justify-content-between hover-row px-3 py-1" @click="selectContact(contact.name)" :key="contact._id" v-for="contact in contacts">
       <span>{{ contact.name }}</span>
       <div>
-        <span class="badge badge-pill badge-light mx-1" v-for"label in contact.labels">{{ label }}</span>
+        <span class="badge badge-pill badge-light mx-1" :key="label" v-for="label in contact.labels">{{ label }}</span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   props: {
   },
-  computed: {
-    contacts() {
-      return this.$store.state.contacts || []
-    }
-  },
+  computed: mapState({
+    contacts: state => state.contacts || []
+  }),
   methods: {
-    selectContact() {
+    selectContact(name) {
+      this.$store.commit('search', name)
     }
   }
 }
 </script>
 
 <style>
-.contact-row:hover {
+.hover-row:hover {
   background-color: lightgray;
+  cursor: pointer;
 }
 
 </style>
