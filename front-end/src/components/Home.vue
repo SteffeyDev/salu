@@ -1,13 +1,13 @@
 <template>
   <div id="home">
-    <nav class="navbar navbar-light bg-light">
+    <b-navbar type="light">
       <a class="navbar-brand" href="#"><img alt="Vue logo" src="../assets/Salu-Pro-Logo.gif" width="30px"> Salu.pro</a>
-      <button @click="logOut" class="btn btn-secondary btn-sm">Log out</button>
-    </nav>
+      <b-button @click="logOut" variant="secondary" size="sm">Log out</b-button>
+    </b-navbar>
     <div class="px-2">
       <div class="search w-100 my-4">
         <span class="fas fa-search fa-2x"></span>
-        <input class="form-control form-control-lg" type="search" placeholder="Search your contacts" :value="searchText" @input="search" />
+        <b-form-input size="lg" type="search" placeholder="Search your contacts" :value="searchText" @input="search" />
       </div>
       <div v-if="layout !== 'compact'" id="list-container" style="max-width: 300px; position: absolute;">
         <ContactList />
@@ -28,7 +28,7 @@ import { mapState } from 'vuex'
 export default {
   name: 'home',
   data: () => ({
-    windowWidth: 0
+    windowWidth: window.innerWidth 
   }),
   computed: mapState({
     searchText: 'searchText',
@@ -42,8 +42,8 @@ export default {
     logOut: () => {
       alert("Log out button pressed");
     },
-    search(e) {
-      this.$store.commit('search', e.target.value)
+    search(value) {
+      this.$store.commit('search', value)
     }
   },
   mounted() {

@@ -16,11 +16,13 @@ const store = new Vuex.Store({
     {
       _id: '12345',
       name: 'Peter Steffey',
-      labels: ['UCF', 'CCO', 'Hack@UCF']
+      email: 'peter.steffey@knights.ucf.edu',
+      phone: '123-456-7890',
+      tags: ['UCF', 'CCO', 'Hack@UCF']
     }, {
       _id: '54345',
       name: 'Michael Ibeh',
-      labels: ['UCF', 'Hack@UCF']
+      tags: ['UCF', 'Hack@UCF']
     }
     ],
     searchText: null,

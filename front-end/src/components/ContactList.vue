@@ -3,7 +3,7 @@
     <div class="d-flex flex-row flex-wrap justify-content-between hover-row px-3 py-1" @click="selectContact(contact.name)" :key="contact._id" v-for="contact in contacts">
       <span>{{ contact.name }}</span>
       <div>
-        <span class="badge badge-pill badge-light mx-1" :key="label" v-for="label in contact.labels">{{ label }}</span>
+        <b-badge pill variant="light" class="mx-1" :key="tag" v-for="tag in contact.tags">{{ tag }}</b-badge>
       </div>
     </div>
   </div>
