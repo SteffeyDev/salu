@@ -6,6 +6,7 @@ const config = require('./config');
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 MongoClient.connect(config.MONGO_URI,  { useNewUrlParser: true }, (err, database) => {
   if (err) return console.log(err)
