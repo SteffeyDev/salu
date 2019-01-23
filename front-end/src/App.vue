@@ -12,11 +12,14 @@
 <script>  
 import Login from './components/Login.vue'
 import Home from './components/Home.vue'
+import { mapState } from 'vuex'
 
 export default {
   name: 'app',
   data: () => ({
-    authenticated: false
+  }),
+  computed: mapState({
+    authenticated: state => state.authenticated
   }),
   components: {
     Login,

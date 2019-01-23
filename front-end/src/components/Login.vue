@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="login">
     <img alt="Vue logo" src="../assets/Salu-Pro-Logo.gif" width="170px" style="padding-bottom:50px">
 
     <!--Login Screen-->
@@ -103,7 +103,7 @@
 <script>
 
   export default {
-    name: 'app',
+    name: 'login',
     data: () => ({
       loginScreen: false
     }),
