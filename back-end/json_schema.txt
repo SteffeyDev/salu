@@ -2,12 +2,20 @@ db.createCollection("Contacts", {
 	validator: {
 		$jsonSchema: {
 			bsonType: "object", 
-			required:["username", "contacts"],
+			required: ["email", "first", "last"],
 			properties:{
 				username:{
 					bsonType: "string",
 					description: "Must be a string and is required"
-					},
+				},
+				first:{
+					bsonType: "string",
+					description: "Must be a string and is required"
+				},
+				last:{
+					bsonType: "string",
+					description: "Must be a string and is required"
+				},
 				contacts: {
 					required: ["first", "phone"],
 					bsonType: "object",
