@@ -33,7 +33,9 @@ const store = new Vuex.Store({
   },
   mutations: {
     addContact: (state, contact) => state.contacts.push(contact),
-    search: (state, text) => { state.searchText = text }
+    search: (state, text) => { state.searchText = text },
+    logout: (state) => { state.authenticated = false },
+    loginSuccessful: (state) => { state.authenticated = true }
   }
 })
 

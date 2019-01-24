@@ -14,7 +14,7 @@
       </div>
       <div :style="layout === 'compact' ? '' : 'margin-left: 300px'">
         <div class="d-flex justify-content-center align-items-center" v-if="noContacts">
-          <h2 class="mt-4">
+          <h2 class="my-4">
             <button @click="selectTag(tag)" v-for="tag in tags" :key="tag">
               <Tag :tag="tag" />
             </button>
@@ -22,7 +22,7 @@
         </div>
         <ContactCardCollection v-else />
       </div>
-      <ContactList v-if="layout === 'compact' && !noContacts" />
+      <ContactList v-if="layout === 'compact'" />
     </div>
   </div>
 </template>
@@ -32,6 +32,7 @@ import ContactList from './ContactList.vue'
 import ContactCardCollection from './ContactCardCollection.vue'
 import Tag from './Tag.vue'
 import { mapState } from 'vuex'
+import axios from 'axios'
 
 export default {
   name: 'home',
@@ -56,8 +57,10 @@ export default {
     }
   }),
   methods: {
-    logOut: () => {
+    logOut() {
       alert("Log out button pressed");
+      // call logout endpoint, which should remove JWT cookie
+      axios.get('http://httpstat.us/200').then(() => this.$store.commit('logout'))
     },
     search(value) {
       this.$store.commit('search', value)
