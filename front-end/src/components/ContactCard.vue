@@ -9,13 +9,14 @@
     <p class="mb-1" v-show="address"><i class="fas fa-map-marker-alt mr-2"></i>{{ address }}</p>
     <p class="mb-1" v-show="contact.tags && contact.tags.length">
       <i class="fas fa-tags"></i>
-      <b-badge pill variant="light" class="mx-1" :key="tag" v-for="tag in contact.tags">{{ tag }}</b-badge>
+      <Tag :tag="tag" :key="tag" v-for="tag in contact.tags" />
     </p>
   </b-card>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import Tag from './Tag.vue'
 
 export default {
   props: {
@@ -37,7 +38,10 @@ export default {
         address += ' ' + this.contact.zipcode
       return address.length ? address : null
     }
-  })
+  }),
+  components: {
+    Tag
+  }
 }
 </script>
 

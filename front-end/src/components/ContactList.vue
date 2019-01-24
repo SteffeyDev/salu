@@ -3,7 +3,7 @@
     <div class="d-flex flex-row flex-wrap justify-content-between hover-row px-3 py-1" @click="selectContact(contact.name)" :key="contact._id" v-for="contact in contacts">
       <span>{{ contact.name }}</span>
       <div>
-        <b-badge pill variant="light" class="mx-1" :key="tag" v-for="tag in contact.tags">{{ tag }}</b-badge>
+        <Tag :tag="tag" :key="tag" v-for="tag in contact.tags" />
       </div>
     </div>
   </div>
@@ -11,6 +11,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import Tag from './Tag.vue'
 
 export default {
   props: {
@@ -22,6 +23,9 @@ export default {
     selectContact(name) {
       this.$store.commit('search', name)
     }
+  },
+  components: {
+    Tag
   }
 }
 </script>
