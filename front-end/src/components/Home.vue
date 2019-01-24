@@ -13,9 +13,16 @@
         <ContactList />
       </div>
       <div :style="layout === 'compact' ? '' : 'margin-left: 300px'">
-        <ContactCardCollection />
+        <div class="d-flex justify-content-center align-items-center" v-if="noContacts">
+          <h2 class="mt-4">
+            <button @click="selectTag(tag)" v-for="tag in tags" :key="tag">
+              <Tag :tag="tag" />
+            </button>
+          </h2>
+        </div>
+        <ContactCardCollection v-else />
       </div>
-      <ContactList v-if="layout === 'compact'" />
+      <ContactList v-if="layout === 'compact' && !noContacts" />
     </div>
   </div>
 </template>
@@ -23,6 +30,7 @@
 <script>
 import ContactList from './ContactList.vue'
 import ContactCardCollection from './ContactCardCollection.vue'
+import Tag from './Tag.vue'
 import { mapState } from 'vuex'
 
 export default {
@@ -36,6 +44,15 @@ export default {
       if (this.windowWidth < 600)
         return 'compact'
       return 'wide'
+    },
+    tags(state) {
+      return Array.from(state.contacts.reduce((allTags, contact) => {
+        contact.tags.forEach(tag => allTags.add(tag))
+        return allTags
+      }, new Set()))
+    },
+    noContacts() {
+      return this.$store.getters.searchContacts.length === 0
     }
   }),
   methods: {
@@ -44,6 +61,9 @@ export default {
     },
     search(value) {
       this.$store.commit('search', value)
+    },
+    selectTag(tag) {
+      this.$store.commit('search', tag)
     }
   },
   mounted() {
@@ -51,7 +71,8 @@ export default {
   },
   components: {
     ContactList,
-    ContactCardCollection
+    ContactCardCollection,
+    Tag
   }
 }
 </script>
@@ -70,5 +91,15 @@ export default {
 }
 
 #home {
+}
+
+button {
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
 }
 </style>

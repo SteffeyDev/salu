@@ -22,11 +22,14 @@ const store = new Vuex.Store({
     }, {
       _id: '54345',
       name: 'Michael Ibeh',
-      tags: ['UCF', 'Hack@UCF']
+      tags: ['Human', 'UCF', 'Hack@UCF']
     }
     ],
     searchText: null,
     authenticated: true
+  },
+  getters: {
+    searchContacts: state => state.contacts.filter(contact => contact.name === state.searchText || contact.tags.indexOf(state.searchText) > -1)
   },
   mutations: {
     addContact: (state, contact) => state.contacts.push(contact),
