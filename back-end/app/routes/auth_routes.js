@@ -21,14 +21,12 @@ module.exports = function(app) {
 
   //Login User
   app.post('/auth/login', (req,res) => {
-    console.log(JSON.stringify(req.body))
-    User.findOne({ email: req.body.email }, 'email +password', (err, user) => {
+    // Need to select +password specifically, because by default a select will not return the password ({ select: false } in schema)
+    User.findOne({ email: req.body.email }, 'email username +password', (err, user) => {
       if (err || !user) {
         res.status(401).send({error: 'Username or password incorrect'});
       } else {
-        console.log(user);
         user.comparePassword(req.body.password, (err, success) => {
-          console.log(err);
           if (success) {
             // Set cookie with JWT token
 
