@@ -5,7 +5,7 @@ module.exports = function(app) {
 
   //Creates User
   app.post('/auth/create', (req,res) => {
-    let user = new User({ email: req.body.email, password: req.body.password });
+    let user = new User(req.body);
     user.save(function (err, user) {
       if (err) {
         res.status(400).send(err);
