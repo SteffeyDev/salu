@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const personSchema = require('../schemas/ContactSchema.js');
+const personSchema = require('../schemas/UserSchema.js');
 
 personSchema.pre('save', function(next) {
   var person = this;
