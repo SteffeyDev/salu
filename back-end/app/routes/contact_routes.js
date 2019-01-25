@@ -9,25 +9,31 @@ module.exports = function(app, dbase) {
   app.get('/contacts/:id', (req,res) => {
     User.findOne({ email: email }, (err, user) => {
       const contact = user.contacts.id(req.params.id);
-	    if (err) {
-				res.send({'error': 'An error has occurred'});
-			} else {
-				res.send(contact);
-			}
-	  });
-  });
-
-/*   //Deletes contacts by ID
-  app.delete('/contacts/:id', (req,res) => {
-    const id = req.params.id;
-    const details = { '_id': new ObjectID(id) };
-    User.findOneAndDelete({ email: req.user.email, 'contacts._id': details }, (err) => {
       if (err) {
         res.send({'error': 'An error has occurred'});
       } else {
-        res.send('Contact ' + id + ' has been removed.');
+        res.send(contact);
       }
     });
+  });
+
+  //Get all contacts
+  app.get('/contacts', (req,res) => {
+    User.findOne({ email: email }, (err, user) => {
+      if (err) {
+        res.send({'error': 'An error has occurred'});
+      } else {
+        res.send(user.contacts);
+      }
+    });
+  });
+
+  //Deletes contacts by ID
+  app.delete('/contacts/:id', (req,res) => {
+    const id = req.params.id;
+    const details = { '_id': new ObjectID(id) };
+
+    // Need implementation
   });
 
   //Searches by ID and updates contact with the new info
@@ -35,35 +41,19 @@ module.exports = function(app, dbase) {
     const id = req.params.id;
     const details = { '_id': new ObjectID(id) };
 
-    User.update([{ contacts: {
-		  first:   req.body.first,
-		  last:    req.body.last,
-		  email:   req.body.email
-		  phone:   req.body.phone,
-		  street:  req.body.street,
-		  city:    req.body.city,
-		  zipcode: req.body.zipcode,
-		  tags:    req.body.tags,
-		  notes:   req.body.notes,
-		} }], details, (err, result) => {
-      if (err) {
-        res.send({'error': 'An error has occurred'});
+    // Need implementation
+  });
+
+  //Inserts new document into collection
+  app.post('/contacts', (req, res) => {
+    User.findOne({ email: email }, (err, user) => {
+      if (err || !user) {
+        res.send({'error' : 'An error has occurred'});
       } else {
-        res.send(result.ops[0]);
+        const contact = user.contacts.create(req.body);
+        res.send(contact);
       }
     });
-  });
-*/
-  //Inserts new document into collection
-  app.post('/Contacts', (req, res) => {
-    User.findOne({ email: email }, (err, user) => {
-		  if (err || !user) {
-			  res.send({'error' : 'An error has occurred'});
-		  } else {
-				const contact = user.contacts.create(req.body);
-			  res.send(contact);
-		  }
-	  });
   }); 
   
 };
