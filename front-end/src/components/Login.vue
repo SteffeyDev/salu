@@ -137,7 +137,7 @@
           email: this.email,
           username: this.username,
           password: this.password
-        }).then(() => this.$store.commit('login'))
+        }).then(userDetails => this.$store.commit('login', userDetails))
           .catch(() => alert("Error creating account"))
       },
       login() {

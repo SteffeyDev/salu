@@ -30,7 +30,8 @@ const store = new Vuex.Store({
     ],
     searchText: null,
     editContactId: null,
-    authenticated: true
+    authenticated: true,
+    user: null
   },
   getters: {
     searchContacts: state => state.contacts.filter(contact => contact.name === state.searchText || contact.tags.indexOf(state.searchText) > -1)
@@ -44,7 +45,10 @@ const store = new Vuex.Store({
     },
     search: (state, text) => { state.searchText = text },
     logout: (state) => { state.authenticated = false },
-    login: (state) => { state.authenticated = true },
+    login: (state, user) => {
+      state.authenticated = true
+      state.user = (({ username, email }) => ({ username, email }))(user) // Only store the username and email
+    },
     editContact: (state, id) => { state.editContactId = id },
     endEditing: (state) => { state.editContactId = null }
   },
