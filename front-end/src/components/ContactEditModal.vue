@@ -1,15 +1,15 @@
 <template>
   <b-modal v-if="contact" v-model="showModal" ok-title="Save"
-           hide-header-close :title="contact.name" @ok="saveContact" @hidden="afterHidden">
+           hide-header-close :title="name" @ok="saveContact" @hidden="afterHidden">
     <!--Name-->
     <div class="form-row">
       <div class="form-group col">
         <label for="inputName">Name</label>
-        <input type="text" class="form-control" id="inputFirstName" placeholder="First Name" :value="contact.name">
+        <input type="text" class="form-control" id="inputFirstName" placeholder="First Name" :value="name">
       </div>
       <div class="form-group col">
         <label for="inputName" class="invisible">Name</label> <!--Invisible label for alignment purposes-->
-        <input type="text" class="form-control" id="inputLastName" placeholder="Last Name" :value="contact.name">
+        <input type="text" class="form-control" id="inputLastName" placeholder="Last Name" :value="name">
       </div>
     </div>
     <!--Email-->
@@ -48,7 +48,10 @@ export default {
     }
   },
   computed: mapState({
-    contactId: 'editContactId'
+    contactId: 'editContactId',
+    name() {
+      return this.contact.firstName + ' ' + this.contact.lastName;
+    }
   }),
   watch: {
     contactId(id) {
