@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex flex-wrap">
-    <ContactCard :key="contact._id" :contact-id="contact._id" v-for="contact in contacts" />
+    <ContactCard :key="contact._id" :contact-id="contact._id" class="m-1" v-for="contact in contacts" />
   </div>
 </template>
 
@@ -10,7 +10,9 @@ import { mapState } from 'vuex'
 
 export default {
   computed: mapState({
-    contacts: state => state.contacts.filter(contact => contact.name === state.searchText)
+    contacts() {
+      return this.$store.getters.searchContacts
+    }
   }),
   components: {
     ContactCard

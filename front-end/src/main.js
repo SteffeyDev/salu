@@ -16,19 +16,30 @@ const store = new Vuex.Store({
     {
       _id: '12345',
       name: 'Peter Steffey',
-      labels: ['UCF', 'CCO', 'Hack@UCF']
+      email: 'peter.steffey@knights.ucf.edu',
+      phone: '123-456-7890',
+      tags: ['UCF', 'CCO', 'Hack@UCF']
     }, {
       _id: '54345',
       name: 'Michael Ibeh',
-      labels: ['UCF', 'Hack@UCF']
+      tags: ['Human', 'UCF', 'Hack@UCF']
     }
     ],
     searchText: null,
     authenticated: false
+    editContactId: null,
+    authenticated: true
+  },
+  getters: {
+    searchContacts: state => state.contacts.filter(contact => contact.name === state.searchText || contact.tags.indexOf(state.searchText) > -1)
   },
   mutations: {
     addContact: (state, contact) => state.contacts.push(contact),
-    search: (state, text) => { state.searchText = text }
+    search: (state, text) => { state.searchText = text },
+    logout: (state) => { state.authenticated = false },
+    loginSuccessful: (state) => { state.authenticated = true },
+    editContact: (state, id) => { state.editContactId = id },
+    endEditing: (state) => { state.editContactId = null }
   }
 })
 
