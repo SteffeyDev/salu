@@ -57,7 +57,7 @@ module.exports = function(app, dbase) {
   //Inserts new document into collection
   app.post('/Contacts', (req, res) => {
     User.findOne({ email: email }, (err, user) => {
-		  if (err) {
+		  if (err || !user) {
 			  res.send({'error' : 'An error has occurred'});
 		  } else {
 				const contact = user.contacts.create(req.body);
