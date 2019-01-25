@@ -94,7 +94,7 @@
                 <!--Email-->
                 <div class="form-group">
                   <label for="inputEmail">Email</label>
-                  <input type="email" class="form-control" id="inputEmail" placeholder="email@example.com">
+                  <input type="email" class="form-control" id="inputEmail" placeholder="email@example.com" v-model="email" />
                   <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
                 <!--Checkbox-->
@@ -121,17 +121,29 @@
 </template>
 
 <script>
+  import axios from 'axios'
 
   export default {
     name: 'login',
     data: () => ({
-      loginScreen: true
+      loginScreen: true,
+      email: '',
+      // Add the rest of the fields, and hook them up to the inputs using v-model (see https://vuejs.org/v2/guide/forms.html#Text)
+      // Don't forget to change first/last name to just username
     }),
     methods: {
       signup() {
-        //axios.post("https://salu.pro/auth/create", )
+        axios.post("https://salu.pro/auth/create", {
+          email: this.email,
+          username: this.username,
+          password: this.password
+        }).then(() => this.$store.commit('login'))
+          .catch(() => alert("Error creating account"))
+      },
+      login() {
+        // Make this just like signup, but send to salu.pro/auth/login, only send username & password, and hook it up to the appropriate button
       }
-    }
+    },
     components: {
     }
   }
