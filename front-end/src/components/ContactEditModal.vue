@@ -1,5 +1,6 @@
 <template>
   <b-modal v-if="contact" v-model="showModal" ok-title="Save" hide-header-close :title="contact.name" @ok="saveContact" @hidden="afterHidden">
+    <!-- Need form to edit this.contact here -->
   </b-modal>
 </template>
 
