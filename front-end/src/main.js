@@ -14,8 +14,11 @@ const store = new Vuex.Store({
   state: {
     contacts: [
     {
-      _id: '12345',
-      name: 'Peter Steffey',
+            _id: '12345',
+            name: 'Variable Deprecated',
+            firstName: 'Peter',
+            midName: 'StacksRLyfe',
+            lastName: 'Steffey',
       email: 'peter.steffey@knights.ucf.edu',
       phone: '123-456-7890',
       tags: ['UCF', 'CCO', 'Hack@UCF']
@@ -26,7 +29,7 @@ const store = new Vuex.Store({
     }
     ],
     searchText: null,
-    authenticated: false
+    authenticated: false,
     editContactId: null,
     authenticated: true
   },

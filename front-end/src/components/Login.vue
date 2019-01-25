@@ -67,11 +67,11 @@
               <form>
                 <!--Name-->
                 <div class="form-row">
-                  <div class="form-group col-6">
+                  <div class="form-group col">
                     <label for="inputName">Name</label>
                     <input type="text" class="form-control" id="inputFirstName" placeholder="First Name">
                   </div>
-                  <div class="form-group col-6">
+                  <div class="form-group col">
                     <label for="inputName" class="invisible">Name</label> <!--Invisible label for alignment purposes-->
                     <input type="text" class="form-control" id="inputLastName" placeholder="Last Name">
                   </div>
