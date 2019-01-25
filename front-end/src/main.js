@@ -26,6 +26,7 @@ const store = new Vuex.Store({
     }
     ],
     searchText: null,
+    authenticated: false,
     editContactId: null,
     authenticated: true
   },
