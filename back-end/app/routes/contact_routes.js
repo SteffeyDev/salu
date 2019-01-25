@@ -54,7 +54,7 @@ module.exports = function(app, dbase) {
         var contact = user.contacts[0];
 
         user.save(err => {
-          if (err) res.status(500).send();
+          if (err) res.status(400).send({error: err});
           else res.send(contact)
         });
       }
