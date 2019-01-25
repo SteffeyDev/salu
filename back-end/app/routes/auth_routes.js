@@ -22,7 +22,7 @@ module.exports = function(app) {
   //Login User
   app.post('/auth/login', (req,res) => {
     console.log(JSON.stringify(req.body))
-    User.findOne({ email: req.body.email }, (err, user) => {
+    User.findOne({ email: req.body.email }, 'email +password', (err, user) => {
       if (err || !user) {
         res.status(401).send({error: 'Username or password incorrect'});
       } else {
