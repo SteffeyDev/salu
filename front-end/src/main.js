@@ -17,7 +17,7 @@ const store = new Vuex.Store({
     {
       _id: '12345',
       first: 'Peter',
-      name: 'Steffey',
+      last: 'Steffey',
       email: 'peter.steffey@knights.ucf.edu',
       phone: '123-456-7890',
       tags: ['UCF', 'CCO', 'Hack@UCF']
@@ -34,7 +34,7 @@ const store = new Vuex.Store({
     user: null
   },
   getters: {
-    searchContacts: state => state.contacts.filter(contact => contact.name === state.searchText || contact.tags.indexOf(state.searchText) > -1)
+    searchContacts: state => state.contacts.filter(contact => state.searchText ? state.searchText.indexOf(contact.first) > -1 || state.searchText.indexOf(contact.last) > -1 || contact.tags.indexOf(state.searchText) > -1 : true)
   },
   mutations: {
     setContacts: (state, contacts) => { state.contacts = contacts },

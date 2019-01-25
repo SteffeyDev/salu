@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="d-flex flex-row flex-wrap justify-content-between hover-row px-3 py-1" @click="selectContact(contact.name)" :key="contact._id" v-for="contact in contacts">
-      <span>{{ contact.name }}</span>
+    <div class="d-flex flex-row flex-wrap justify-content-between hover-row border-top px-3 py-1" @click="selectContact(contact)" :key="contact._id" v-for="contact in contacts">
+      <span>{{ contact.first }} {{ contact.last }}</span>
       <div>
         <Tag :tag="tag" :key="tag" v-for="tag in contact.tags" />
       </div>
@@ -20,8 +20,8 @@ export default {
     contacts: state => state.contacts || []
   }),
   methods: {
-    selectContact(name) {
-      this.$store.commit('search', name)
+    selectContact(contact) {
+      this.$store.commit('search', contact.first + ' ' + contact.last)
     }
   },
   components: {

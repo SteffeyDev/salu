@@ -12,7 +12,7 @@
       <div v-if="layout !== 'compact'" id="list-container" style="max-width: 300px; position: absolute;">
         <ContactList />
       </div>
-      <div :style="layout === 'compact' ? '' : 'margin-left: 300px'">
+      <div :style="layout === 'compact' ? '' : 'margin-left: 320px'">
         <div class="d-flex justify-content-center align-items-center" v-if="noContacts">
           <h2 class="my-4">
             <button @click="selectTag(tag)" v-for="tag in tags" :key="tag">
