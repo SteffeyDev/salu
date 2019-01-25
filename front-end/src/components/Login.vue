@@ -106,7 +106,7 @@
                 <div class="form-group row justify-content-center">
                   <div class="col-1"><!--Empty column for right alignment--></div>
                   <!--Clicking signup button changes "loginScreen" variable-->
-                  <button type="submit" class="col- btn btn-primary border-secondary" v-on:click="loginScreen = false">
+                  <button type="submit" class="col- btn btn-primary border-secondary" v-on:click="signup">
                     Sign Up
                     <span class="fas fa-pencil-alt"><!--Reference to icon from FontAwesome--></span>
                   </button>
@@ -127,6 +127,11 @@
     data: () => ({
       loginScreen: true
     }),
+    methods: {
+      signup() {
+        //axios.post("https://salu.pro/auth/create", )
+      }
+    }
     components: {
     }
   }
