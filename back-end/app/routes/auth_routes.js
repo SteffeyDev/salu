@@ -11,7 +11,7 @@ module.exports = function(app) {
       } else {
         // Set cookie with JWT token
 
-        res.status(200).send(user);
+        res.status(200).send({ email: user.email, username: user.username });
       }
     });
   });
@@ -21,10 +21,11 @@ module.exports = function(app) {
     console.log(JSON.stringify(req.body))
     User.findOne({ email: req.body.email }, (err, user) => {
       if (err || !user) {
-        console.log(JSON.stringify(err))
         res.status(401).send({error: 'Username or password incorrect'});
       } else {
+        console.log(user);
         user.comparePassword(req.body.password, (err, success) => {
+          console.log(err);
           if (success) {
             // Set cookie with JWT token
 
