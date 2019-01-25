@@ -2,7 +2,7 @@
   <b-card class="text-left">
     <div class="d-flex justify-content-between align-items-center mb-2">
       <h5 class="card-title mb-0">{{ contact.name }}</h5>
-      <button class="btn btn-light btn-sm ml-3"><i class="fas fa-edit"></i></button>
+      <button @click="editContact(contact._id)" class="btn btn-light btn-sm ml-3"><i class="fas fa-edit"></i></button>
     </div>
     <p class="mb-1" v-show="contact.email"><i class="fas fa-envelope mr-2"></i><a :href="'mailto:' + contact.email">{{ contact.email }}</a></p>
     <p class="mb-1" v-show="contact.phone"><i class="fas fa-phone mr-2"></i><a :href="'tel:' + contact.phone">{{ contact.phone }}</a></p>
@@ -21,6 +21,11 @@ import Tag from './Tag.vue'
 export default {
   props: {
     contactId: String
+  },
+  methods: {
+    editContact(id) {
+      this.$store.commit('editContact', id)
+    }
   },
   computed: mapState({
     contact(state) {

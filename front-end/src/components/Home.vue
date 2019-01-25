@@ -24,12 +24,14 @@
       </div>
       <ContactList v-if="layout === 'compact'" />
     </div>
+    <ContactEditModal />
   </div>
 </template>
 
 <script>
 import ContactList from './ContactList.vue'
 import ContactCardCollection from './ContactCardCollection.vue'
+import ContactEditModal from './ContactEditModal.vue'
 import Tag from './Tag.vue'
 import { mapState } from 'vuex'
 import axios from 'axios'
@@ -75,7 +77,8 @@ export default {
   components: {
     ContactList,
     ContactCardCollection,
-    Tag
+    Tag,
+    ContactEditModal
   }
 }
 </script>

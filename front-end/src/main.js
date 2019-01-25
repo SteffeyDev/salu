@@ -26,6 +26,7 @@ const store = new Vuex.Store({
     }
     ],
     searchText: null,
+    editContactId: null,
     authenticated: true
   },
   getters: {
@@ -35,7 +36,9 @@ const store = new Vuex.Store({
     addContact: (state, contact) => state.contacts.push(contact),
     search: (state, text) => { state.searchText = text },
     logout: (state) => { state.authenticated = false },
-    loginSuccessful: (state) => { state.authenticated = true }
+    loginSuccessful: (state) => { state.authenticated = true },
+    editContact: (state, id) => { state.editContactId = id },
+    endEditing: (state) => { state.editContactId = null }
   }
 })
 
