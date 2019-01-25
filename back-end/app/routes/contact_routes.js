@@ -17,7 +17,7 @@ module.exports = function(app, dbase) {
     });
   });
 
-  //Deletes contacts by ID
+/*   //Deletes contacts by ID
   app.delete('/contacts/:id', (req,res) => {
     const id = req.params.id;
     const details = { '_id': new ObjectID(id) };
@@ -75,6 +75,6 @@ module.exports = function(app, dbase) {
 			  res.send(result.ops[0]);
 		  }
 	  });
-  });
+  }); */
   
 };
