@@ -7,14 +7,13 @@ module.exports = function(app, dbase) {
   //Searches by ID
   app.get('/contacts/:id', (req,res) => {
     User.findOne({ email: req.user.email }, (err, user) => {
-      user.contacts.findOne({'_id' : new ObjectID(req.params.id) }, (err, contact) => {
+      const contact = user.contacts.id(req.params.id);
 	    if (err) {
-          res.send({'error': 'An error has occurred'});
-        } else {
-          res.send(contact);
-        }
+				res.send({'error': 'An error has occurred'});
+			} else {
+				res.send(contact);
+			}
 	  });
-    });
   });
 
 /*   //Deletes contacts by ID
