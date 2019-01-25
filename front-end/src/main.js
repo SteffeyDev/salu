@@ -4,6 +4,7 @@ import App from './App.vue'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import axios from 'axios'
 
 Vue.use(BootstrapVue);
 Vue.use(Vuex);
@@ -28,7 +29,6 @@ const store = new Vuex.Store({
     }
     ],
     searchText: null,
-    authenticated: false,
     editContactId: null,
     authenticated: true
   },
@@ -36,12 +36,45 @@ const store = new Vuex.Store({
     searchContacts: state => state.contacts.filter(contact => contact.name === state.searchText || contact.tags.indexOf(state.searchText) > -1)
   },
   mutations: {
+    setContacts: (state, contacts) => { state.contacts = contacts },
     addContact: (state, contact) => state.contacts.push(contact),
+    updateContact: (state, contact) => {
+      let index = state.contacts.findIndex(c => c._id === contact._id)
+      Vue.set(state.contacts, index, contact)
+    },
     search: (state, text) => { state.searchText = text },
     logout: (state) => { state.authenticated = false },
     loginSuccessful: (state) => { state.authenticated = true },
     editContact: (state, id) => { state.editContactId = id },
     endEditing: (state) => { state.editContactId = null }
+  },
+  actions: {
+    fetchContacts({ commit }) {
+      return new Promise((resolve, reject) => {
+        axios.get("https://salu.pro/contacts")
+        .then((response) => {
+          commit("setContacts", response.body)
+          resolve()
+        })
+        .catch((error => {
+          reject(error)
+        }));
+      });
+    },
+    updateContact({ commit }, contact) {
+      if (contact._id)
+        axios.put("https://salu.pro/contacts/" + contact._id, contact).then(() => {
+          commit('updateContact', contact)
+        }).catch(err => {
+          alert('Error saving contact: ' + JSON.stringify(err))
+        })
+      else
+        axios.post("https://salu.pro/contacts", contact).then(() => {
+          commit('addContact', contact)
+        }).catch(err => {
+          alert('Error saving contact: ' + JSON.stringify(err))
+        })
+    }
   }
 })
 
