@@ -2,6 +2,14 @@
   <b-modal v-if="contact" v-model="showModal" ok-title="Save"
            hide-header-close :title="name" @ok="saveContact" @hidden="afterHidden">
     <!--Name-->
+    <div>
+      <label for="inlineFormInputName2">Name</label>
+      <b-form inline>
+        <b-input class="mr-sm-2" id="inlineFormInputName" placeholder="John Doe" />
+        <b-input class="mr-sm-2" id="inlineFormInputName" placeholder="John Doe" />
+      </b-form>
+    </div>
+    <!--Name-->
     <div class="form-row">
       <div class="form-group col">
         <label for="inputName">Name</label>
@@ -21,6 +29,11 @@
     <div class="form-group">
       <label for="inputPhone">Phone</label>
       <input type="tel" class="form-control" id="inputPhone" :value="contact.phone">
+    </div>
+    <!--Address-->
+    <div class="form-group">
+      <label for="inputAddress">Address</label>
+      <input type="email" class="form-control" id="inputEmail" placeholder="email@example.com" :value="contact.email">
     </div>
     <!--Memo-->
     <div class="form-group">
