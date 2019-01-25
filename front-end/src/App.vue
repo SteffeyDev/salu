@@ -29,6 +29,7 @@ export default {
 </script>
 
 <style>
+
   .bg-gradient-light {
     background: linear-gradient(white, #e9ecff)
   }

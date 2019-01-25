@@ -42,9 +42,6 @@ export default {
       if (this.contact.zipcode)
         address += ' ' + this.contact.zipcode
       return address.length ? address : null
-    },
-    name() {
-      return this.contact.firstName + ' ' + this.contact.lastName;
     }
   }),
   components: {

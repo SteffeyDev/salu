@@ -11,8 +11,8 @@
 
       <!--Align all content in the center - take up half of screen-->
       <div class="row justify-content-center">
-        <div class="col-6 shadow p-3 mb-5 rounded">
-          <div class="text-dark row justify-content-center pb-2 h1 font-weight-normal">Salu.pro</div>
+        <div class="col-6 bg-light shadow-sm p-3 mb-5 rounded">
+          <div class="row justify-content-center pb-2 h1 font-weight-normal">Salu.pro</div>
           <form>
             <!--Username-->
             <div class="form-group row">
@@ -45,24 +45,24 @@
     <!--Signup Screen-->
     <div class="container-fluid" v-if="!loginScreen">
       <div class="row">
-        <div class="col-5 vertical-center">
+        <div class="col-6 vertical-center p-5">
           <img alt="Salu.pro logo" src="../assets/Salu-Pro-Logo.gif" class="img-fluid">
         </div>
 
-        <div class="col">
+        <div class="col pl-4">
           <!--Align all content in the center - take up 10/12ths of column-->
           <div class="row justify-content-center">
-            <div class="col-10 shadow bg-gradient-light p-3 mb-5 rounded">
+            <div class="col shadow-sm bg-light rounded">
 
               <!--Return Button-->
-              <div class="form-group row justify-content-end pr-2">
+              <div class="form-group row justify-content-end pr-2 pt-2">
                 <!--Clicking return button changes "loginScreen" variable-->
                 <button type="button" class="col- btn btn-light" v-on:click="loginScreen = true">
                   <span class="far fa-arrow-alt-circle-left"><!--Reference to icon from FontAwesome--></span>
                   Return To Login
                 </button>
               </div>
-              <div class="row justify-content-center h1 font-weight-normal">Sign Up For Salu.pro</div>
+              <div class="row justify-content-center h1">Sign Up For Salu.pro</div>
 
               <form>
                 <!--Name-->
@@ -106,7 +106,7 @@
                 <div class="form-group row justify-content-center">
                   <div class="col-1"><!--Empty column for right alignment--></div>
                   <!--Clicking signup button changes "loginScreen" variable-->
-                  <button type="submit" class="col- btn btn-primary border-secondary" v-on:click="loginScreen = false">
+                  <button type="submit" class="col- btn btn-primary border-secondary" v-on:click="signup">
                     Sign Up
                     <span class="fas fa-pencil-alt"><!--Reference to icon from FontAwesome--></span>
                   </button>
@@ -127,6 +127,11 @@
     data: () => ({
       loginScreen: true
     }),
+    methods: {
+      signup() {
+        //axios.post("https://salu.pro/auth/create", )
+      }
+    }
     components: {
     }
   }

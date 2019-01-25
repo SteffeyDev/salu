@@ -16,15 +16,15 @@ const store = new Vuex.Store({
     contacts: [
     {
       _id: '12345',
-      firstName: 'Peter',
-      lastName: 'Steffey',
+      first: 'Peter',
+      name: 'Steffey',
       email: 'peter.steffey@knights.ucf.edu',
       phone: '123-456-7890',
       tags: ['UCF', 'CCO', 'Hack@UCF']
     }, {
       _id: '54345',
-      firstName: 'Michael',
-      lastName: 'Ibeh',
+      first: 'Michael',
+      last: 'Ibeh',
       tags: ['Human', 'UCF', 'Hack@UCF']
     }
     ],
