@@ -1,5 +1,4 @@
 const User = require('../../models/User.js');
-const contactSchema = require('../../schemas/ContactSchema.js');
 
 module.exports = function(app) {
 
@@ -19,8 +18,10 @@ module.exports = function(app) {
 
   //Login User
   app.post('/auth/login', (req,res) => {
+    console.log(JSON.stringify(req.body))
     User.findOne({ email: req.body.email }, (err, user) => {
       if (err || !user) {
+        console.log(JSON.stringify(err))
         res.status(401).send({error: 'Username or password incorrect'});
       } else {
         user.comparePassword(req.body.password, (err, success) => {
