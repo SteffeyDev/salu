@@ -1,16 +1,19 @@
 const ObjectID = require('mongodb').ObjectID;
 const User = require('../../models/User.js');
+const contactSchema = require('../../schemas/ContactSchema.js');
 
 module.exports = function(app, dbase) {
 
   //Searches by ID
   app.get('/contacts/:id', (req,res) => {
-    User.findOne({ email: req.user.email, 'contacts._id': new ObjectID(req.params.id) }, (err, contact) => {
-      if (err) {
-        res.send({'error': 'An error has occurred'});
-      } else {
-        res.send(contact);
-      }
+    User.findOne({ email: req.user.email }, (err, user) => {
+      user.contacts.findOne({'_id' : new ObjectID(req.params.id) }, (err, contact) => {
+	    if (err) {
+          res.send({'error': 'An error has occurred'});
+        } else {
+          res.send(contact);
+        }
+	  });
     });
   });
 
@@ -18,7 +21,7 @@ module.exports = function(app, dbase) {
   app.delete('/contacts/:id', (req,res) => {
     const id = req.params.id;
     const details = { '_id': new ObjectID(id) };
-    User.findOne({ email: req.user.email, 'contacts._id': details }, (err) => {
+    User.findOneAndDelete({ email: req.user.email, 'contacts._id': details }, (err) => {
       if (err) {
         res.send({'error': 'An error has occurred'});
       } else {
@@ -32,7 +35,17 @@ module.exports = function(app, dbase) {
     const id = req.params.id;
     const details = { '_id': new ObjectID(id) };
 
-    User.update({ contacts: req.body }, (err, result) => {
+    User.update([{ contacts: {
+		  first:   req.body.first,
+		  last:    req.body.last,
+		  email:   req.body.email
+		  phone:   req.body.phone,
+		  street:  req.body.street,
+		  city:    req.body.city,
+		  zipcode: req.body.zipcode,
+		  tags:    req.body.tags,
+		  notes:   req.body.notes,
+		} }], details, (err, result) => {
       if (err) {
         res.send({'error': 'An error has occurred'});
       } else {
@@ -43,12 +56,25 @@ module.exports = function(app, dbase) {
 
   //Inserts new document into collection
   app.post('/Contacts', (req, res) => {
-    User.insert({ contacts: req.body }, (err, result) => {
-      if (err) {
-        res.send({ 'error' : 'An error has occurred' });
-      } else {
-        res.send(result.ops[0]);
-      }
-    });
+    User.insert([ 
+	  {contacts: {
+		  first:   req.body.first,
+		  last:    req.body.last,
+		  email:   req.body.email
+		  phone:   req.body.phone,
+		  street:  req.body.street,
+		  city:    req.body.city,
+		  zipcode: req.body.zipcode,
+		  tags:    req.body.tags,
+		  notes:   req.body.notes,
+	    }
+	  }], (err, result) => {
+		  if (err) {
+			  res.send({'error' : 'An error has occurred'});
+		  } else {
+			  res.send(result.ops[0]);
+		  }
+	  });
   });
+  
 };
