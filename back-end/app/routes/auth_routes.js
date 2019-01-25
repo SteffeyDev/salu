@@ -8,11 +8,11 @@ module.exports = function(app) {
     let user = new User({ email: req.body.email, password: req.body.password });
     user.save(function (err, user) {
       if (err) {
-        res.send(err);
+        res.status(400).send(err);
       } else {
         // Set cookie with JWT token
 
-        res.send(user);
+        res.status(200).send(user);
       }
     });
   });
@@ -21,7 +21,7 @@ module.exports = function(app) {
   app.post('/auth/login', (req,res) => {
     User.findOne({ email: req.body.email }, (err, user) => {
       if (err || !user) {
-        res.send({error: 'Username or password incorrect'});
+        res.status(401).send({error: 'Username or password incorrect'});
       } else {
         user.comparePassword(req.body.password, (err, success) => {
           if (success) {

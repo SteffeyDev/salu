@@ -3,9 +3,8 @@ const Schema = mongoose.Schema
 const contactSchema = require('./ContactSchema.js')
 
 module.exports = new Schema({
-  first       :   {type: String, required: 'FirstNameInvalid'},
-  last        :   {type: String, required: 'LastNameInvalid'},
-  email       :   {type: String, unique: true, lowercase: true, required: 'EmailInvalid'},
-  password    :   {type: String, select: false, required: 'PasswordInvalid'},
+  username    :   {type: String, required: 'Username is Required'},
+  email       :   {type: String, unique: true, lowercase: true, required: 'Email is Required'},
+  password    :   {type: String, select: false, required: 'Password is Required'},
   contacts    :   [contactSchema]
 });
