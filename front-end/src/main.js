@@ -44,7 +44,7 @@ const store = new Vuex.Store({
     },
     search: (state, text) => { state.searchText = text },
     logout: (state) => { state.authenticated = false },
-    loginSuccessful: (state) => { state.authenticated = true },
+    login: (state) => { state.authenticated = true },
     editContact: (state, id) => { state.editContactId = id },
     endEditing: (state) => { state.editContactId = null }
   },
