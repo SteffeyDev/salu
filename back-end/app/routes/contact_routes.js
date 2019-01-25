@@ -1,12 +1,13 @@
 const ObjectID = require('mongodb').ObjectID;
 const User = require('../../models/User.js');
 const contactSchema = require('../../schemas/ContactSchema.js');
+const email = 'raheim@raheim.com'
 
 module.exports = function(app, dbase) {
 
   //Searches by ID
   app.get('/contacts/:id', (req,res) => {
-    User.findOne({ email: req.user.email }, (err, user) => {
+    User.findOne({ email: email }, (err, user) => {
       const contact = user.contacts.id(req.params.id);
 	    if (err) {
 				res.send({'error': 'An error has occurred'});
@@ -52,28 +53,17 @@ module.exports = function(app, dbase) {
       }
     });
   });
-
+*/
   //Inserts new document into collection
   app.post('/Contacts', (req, res) => {
-    User.insert([ 
-	  {contacts: {
-		  first:   req.body.first,
-		  last:    req.body.last,
-		  email:   req.body.email
-		  phone:   req.body.phone,
-		  street:  req.body.street,
-		  city:    req.body.city,
-		  zipcode: req.body.zipcode,
-		  tags:    req.body.tags,
-		  notes:   req.body.notes,
-	    }
-	  }], (err, result) => {
+    User.findOne({ email: email }, (err, user) => {
 		  if (err) {
 			  res.send({'error' : 'An error has occurred'});
 		  } else {
-			  res.send(result.ops[0]);
+				const contact = user.contacts.create(req.body);
+			  res.send(contact);
 		  }
 	  });
-  }); */
+  }); 
   
 };
