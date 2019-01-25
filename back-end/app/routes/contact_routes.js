@@ -1,7 +1,7 @@
 const ObjectID = require('mongodb').ObjectID;
 const User = require('../../models/User.js');
 const contactSchema = require('../../schemas/ContactSchema.js');
-const email = 'raheim@raheim.com'
+const email = 'peter.steffey@knights.ucf.edu'
 
 module.exports = function(app, dbase) {
 
@@ -53,7 +53,7 @@ module.exports = function(app, dbase) {
         user.contacts.push(req.body);
         var contact = user.contacts[0];
 
-        parent.save(err => {
+        user.save(err => {
           if (err) res.status(500).send();
           else res.send(contact)
         });
