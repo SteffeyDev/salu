@@ -18,7 +18,7 @@ module.exports = function(app, dbase) {
   app.delete('/contacts/:id', (req,res) => {
     const id = req.params.id;
     const details = { '_id': new ObjectID(id) };
-    User.findOne({ email: req.user.email, 'contacts._id' : details, (err, item) => {
+    User.findOne({ email: req.user.email, 'contacts._id': details }, (err) => {
       if (err) {
         res.send({'error': 'An error has occurred'});
       } else {
@@ -32,7 +32,7 @@ module.exports = function(app, dbase) {
     const id = req.params.id;
     const details = { '_id': new ObjectID(id) };
 
-  User.update({ contacts: req.body }, (err, result) => {
+    User.update({ contacts: req.body }, (err, result) => {
       if (err) {
         res.send({'error': 'An error has occurred'});
       } else {
@@ -43,13 +43,12 @@ module.exports = function(app, dbase) {
 
   //Inserts new document into collection
   app.post('/Contacts', (req, res) => {
-    User.insert({ contacts: req.body }, (err, result) =>{
+    User.insert({ contacts: req.body }, (err, result) => {
       if (err) {
         res.send({ 'error' : 'An error has occurred' });
       } else {
         res.send(result.ops[0]);
       }
-      }
-  });
+    });
   });
 };
