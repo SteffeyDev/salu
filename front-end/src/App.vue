@@ -29,4 +29,14 @@ export default {
 </script>
 
 <style>
+  .bg-gradient-light {
+    background: linear-gradient(white, #e9ecff)
+  }
+
+  .vertical-center {
+    min-height: 100%; /* Fallback for browsers do NOT support vh unit */
+    min-height: 100vh; /* These two lines are counted as one :-)       */
+    display: flex;
+    align-items: center;
+  }
 </style>

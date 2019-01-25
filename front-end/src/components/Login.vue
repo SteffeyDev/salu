@@ -11,7 +11,7 @@
 
       <!--Align all content in the center - take up half of screen-->
       <div class="row justify-content-center">
-        <div class="col-6 shadow bg-gradient-light p-3 mb-5 rounded">
+        <div class="col-6 shadow p-3 mb-5 rounded">
           <div class="text-dark row justify-content-center pb-2 h1 font-weight-normal">Salu.pro</div>
           <form>
             <!--Username-->
@@ -133,14 +133,5 @@
 </script>
 
 <style>
-  .bg-gradient-light {
-    background: linear-gradient(white, #e9ecff)
-  }
-
-  .vertical-center {
-    min-height: 100%; /* Fallback for browsers do NOT support vh unit */
-    min-height: 100vh; /* These two lines are counted as one :-)       */
-    display: flex;
-    align-items: center;
-  }
+  
 </style>

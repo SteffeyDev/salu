@@ -1,14 +1,11 @@
 <template>
-  <b-modal v-if="contact" v-model="showModal" ok-title="Save" hide-header-close :title="contact.name" @ok="saveContact" @hidden="afterHidden">
+  <b-modal v-if="contact" v-model="showModal" ok-title="Save"
+           hide-header-close :title="contact.name" @ok="saveContact" @hidden="afterHidden">
     <!--Name-->
     <div class="form-row">
       <div class="form-group col">
         <label for="inputName">Name</label>
         <input type="text" class="form-control" id="inputFirstName" placeholder="First Name" :value="contact.name">
-      </div>
-      <div class="form-group col">
-        <label for="inputName" class="invisible">Name</label> <!--Invisible label for alignment purposes-->
-        <input type="text" class="form-control" id="inputMiddleName" placeholder="Middle Name" :value="contact.name">
       </div>
       <div class="form-group col">
         <label for="inputName" class="invisible">Name</label> <!--Invisible label for alignment purposes-->
