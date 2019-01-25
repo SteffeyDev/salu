@@ -4,6 +4,9 @@ module.exports = function(app) {
 
   //Creates User
   app.post('/auth/create', (req,res) => {
+    if (!req.body.email || !req.body.username || !req.body.password)
+      return res.status(400).send();
+
     let user = new User(req.body);
     user.save(function (err, user) {
       if (err) {
