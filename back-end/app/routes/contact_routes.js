@@ -50,8 +50,13 @@ module.exports = function(app, dbase) {
       if (err || !user) {
         res.send({'error' : 'An error has occurred'});
       } else {
-        const contact = user.contacts.create(req.body);
-        res.send(contact);
+        user.contacts.push(req.body);
+        var contact = user.contacts[0];
+
+        parent.save(err => {
+          if (err) res.status(500).send();
+          else res.send(contact)
+        });
       }
     });
   }); 
