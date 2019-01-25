@@ -60,9 +60,8 @@ export default {
   }),
   methods: {
     logOut() {
-      alert("Log out button pressed");
       // call logout endpoint, which should remove JWT cookie
-      axios.get('http://httpstat.us/200').then(() => this.$store.commit('logout'))
+      axios.get('https://salu.pro/auth/logout').then(() => this.$store.commit('logout'))
     },
     search(value) {
       this.$store.commit('search', value)
