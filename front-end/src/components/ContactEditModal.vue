@@ -38,7 +38,7 @@
           <b-form-input type="text" id="inputCity" />
         </b-col>
         <!--State Dropdown-->
-        <b-col class="ml-2" cols="2">
+        <b-col class="ml-2" xs="4" md="4" lg="2">
           <b-row><label for="inputState">State</label></b-row>
           <b-row>
             <b-dropdown :text="state == null ? '....' : state" variant="light">
@@ -51,7 +51,7 @@
           </b-row>
         </b-col>
         <!--Zip-->
-        <b-col>
+        <b-col xs="12" md="12" lg="">
           <label for="inputCity">Zip Code</label>
           <b-form-input type="text" id="inputZip" />
         </b-col>
