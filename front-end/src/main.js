@@ -30,7 +30,7 @@ const store = new Vuex.Store({
     ],
     searchText: null,
     editContactId: null,
-    authenticated: false,
+    authenticated: true,
     user: null
   },
   getters: {

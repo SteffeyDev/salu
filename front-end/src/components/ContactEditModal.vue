@@ -1,5 +1,5 @@
 <template>
-  <b-modal v-if="contact" v-model="showModal" ok-title="Save"
+  <b-modal v-if="contact" v-model="showModal" ok-title="Save" size="lg" header-bg-variant="primary" header-text-variant="white"
            hide-header-close :title="name" @ok="saveContact" @hidden="afterHidden">
     <!--Name-->
     <b-form-group>

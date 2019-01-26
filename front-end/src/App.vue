@@ -30,8 +30,17 @@ export default {
 
 <style>
 
+  .force-full-height{
+    height: 100vh;
+  }
+
+  .jumbotron-bg{
+    width: 100vw;
+    height: 100vh;
+  }
+
   .bg-gradient-light {
-    background: linear-gradient(white, #e9ecff)
+    background: linear-gradient(white, #d8deff)
   }
 
   .vertical-center {
