@@ -5,24 +5,47 @@
       <b-button @click="logOut" variant="secondary" size="sm">Log out</b-button>
     </b-navbar>
     <div class="px-2">
-      <div class="search w-100 my-4">
+      <div class="search w-100 my-4 px-3">
         <span class="fas fa-search fa-2x"></span>
         <b-form-input size="lg" type="search" placeholder="Search your contacts" :value="searchText" @input="search" />
       </div>
-      <div v-if="layout !== 'compact'" id="list-container" style="max-width: 300px; position: absolute;">
-        <ContactList />
-      </div>
-      <div :style="layout === 'compact' ? '' : 'margin-left: 320px'">
-        <div class="d-flex justify-content-center align-items-center" v-if="noContacts">
-          <h2 class="my-4">
-            <button @click="selectTag(tag)" v-for="tag in tags" :key="tag">
-              <Tag :tag="tag" />
-            </button>
-          </h2>
+      <div v-if="layout === 'compact'">
+        <div v-if="listSlideIn" class="contact-list in">
+          <ContactList />
         </div>
-        <ContactCardCollection v-else />
+        <button v-else @click="listSlideIn = true">
+          <div class="contact-list out d-flex flex-column align-items-center pt-2">
+            <i class="fas fa-caret-square-right"></i>
+          </div>
+        </button>
+        <div class="ml-5">
+          <div class="d-flex justify-content-center align-items-center" v-if="noContacts">
+            <h2 class="my-4">
+              <button @click="selectTag(tag)" v-for="tag in tags" :key="tag">
+                <Tag :tag="tag" />
+              </button>
+            </h2>
+          </div>
+          <ContactCardCollection v-else />
+        </div>
       </div>
-      <ContactList v-if="layout === 'compact'" />
+      <div v-else class="container-fluid">
+        <div class="row">
+          <div class="col-4">
+            <ContactList />
+          </div>
+          <div class="col-8">
+            <div class="d-flex justify-content-center align-items-center" v-if="noContacts">
+              <h2 class="my-4">
+                <button @click="selectTag(tag)" v-for="tag in tags" :key="tag">
+                  <Tag :tag="tag" />
+                </button>
+              </h2>
+            </div>
+            <ContactCardCollection v-else />
+          </div>
+        </div>
+      </div>
     </div>
     <ContactEditModal />
   </div>
@@ -39,7 +62,8 @@ import axios from 'axios'
 export default {
   name: 'home',
   data: () => ({
-    windowWidth: window.innerWidth 
+    windowWidth: window.innerWidth,
+    listSlideIn: true
   }),
   computed: mapState({
     searchText: 'searchText',
@@ -64,6 +88,7 @@ export default {
       axios.get('https://salu.pro/auth/logout').then(() => this.$store.commit('logout'))
     },
     search(value) {
+      this.listSlideIn = false
       this.$store.commit('search', value)
     },
     selectTag(tag) {
@@ -93,7 +118,7 @@ export default {
 .search .fa-search {
   position: absolute;
   top: 8px;
-  left: 10px;
+  left: 25px;
 }
 
 #home {
@@ -107,5 +132,21 @@ button {
 	font: inherit;
 	cursor: pointer;
 	outline: inherit;
+}
+
+.contact-list {
+  position: absolute;
+  background-color: white;
+  top: 150px;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  box-shadow: 0 0 20px 5px;
+}
+.contact-list.in {
+  width: 90%;
+}
+.contact-list.out {
+  width: 45px;
 }
 </style>

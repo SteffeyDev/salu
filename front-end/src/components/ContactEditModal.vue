@@ -1,6 +1,6 @@
 <template>
   <b-modal v-if="contact" v-model="showModal" ok-title="Save" size="lg" header-bg-variant="primary" header-text-variant="white"
-           hide-header-close :title="name" @ok="saveContact" @hidden="afterHidden">
+           hide-header-close :title="contact.first + ' ' + contact.last" @ok="saveContact" @hidden="afterHidden">
     <!--Name-->
     <b-form-group>
       <b-form-row>
@@ -45,7 +45,7 @@
               <div class="scrollable-menu">
                 <b-dropdown-item v-on:click="state = null">Choose state...</b-dropdown-item>
                 <b-dropdown-divider></b-dropdown-divider>
-                <b-dropdown-item v-for="tempState in states" v-on:click="state = tempState">{{ tempState }}</b-dropdown-item>
+                <b-dropdown-item :key="tempState" v-for="tempState in states" @click="state = tempState">{{ tempState }}</b-dropdown-item>
               </div>
             </b-dropdown>
           </b-row>
@@ -59,8 +59,8 @@
     </b-form-group>
     <!--Memo-->
     <b-form-group>
-      <label for="inputMemo">Memo:</label>
-      <b-textarea v-model="memoText" rows="3" id="inputMemo" />
+      <label for="inputMemo">Notes</label>
+      <b-textarea v-model="contact.notes" rows="3" />
     </b-form-group>
   </b-modal>
 </template>
@@ -72,7 +72,6 @@ export default {
   data: () => ({
     showModal: false,
     contact: null,
-    memoText: '',
     state: null,
     states: ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL", "GA", "HI", "ID", "IL", "IN",
         "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH",
