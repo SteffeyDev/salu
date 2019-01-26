@@ -10,24 +10,21 @@
         <b-form-input size="lg" type="search" placeholder="Search your contacts" :value="searchText" @input="search" />
       </div>
       <div v-if="layout === 'compact'">
-        <div v-if="listSlideIn" class="contact-list in">
-          <ContactList />
-        </div>
-        <button v-else @click="listSlideIn = true">
-          <div class="contact-list out d-flex flex-column align-items-center pt-2">
-            <i class="fas fa-caret-square-right"></i>
-          </div>
-        </button>
-        <div class="ml-5">
-          <div class="d-flex justify-content-center align-items-center" v-if="noContacts">
-            <h2 class="my-4">
-              <button @click="selectTag(tag)" v-for="tag in tags" :key="tag">
-                <Tag :tag="tag" />
-              </button>
-            </h2>
-          </div>
-          <ContactCardCollection v-else />
-        </div>
+        <b-tabs pills fill>
+          <b-tab active title="Contact List">
+            <ContactList class="mt-3" />
+          </b-tab>
+          <b-tab title="Search Results">
+            <div class="d-flex justify-content-center align-items-center" v-if="noContacts">
+              <h2 class="my-4">
+                <button @click="selectTag(tag)" v-for="tag in tags" :key="tag">
+                  <Tag :tag="tag" />
+                </button>
+              </h2>
+            </div>
+            <ContactCardCollection v-else />
+          </b-tab>
+        </b-tabs>
       </div>
       <div v-else class="container-fluid">
         <div class="row">
@@ -132,21 +129,5 @@ button {
 	font: inherit;
 	cursor: pointer;
 	outline: inherit;
-}
-
-.contact-list {
-  position: absolute;
-  background-color: white;
-  top: 150px;
-  bottom: 0;
-  left: 0;
-  z-index: 100;
-  box-shadow: 0 0 20px 5px;
-}
-.contact-list.in {
-  width: 90%;
-}
-.contact-list.out {
-  width: 45px;
 }
 </style>
