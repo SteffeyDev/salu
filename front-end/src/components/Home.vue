@@ -12,7 +12,7 @@
       <div v-if="layout !== 'compact'" id="list-container" style="max-width: 300px; position: absolute;">
         <ContactList />
       </div>
-      <div :style="layout === 'compact' ? '' : 'margin-left: 300px'">
+      <div :style="layout === 'compact' ? '' : 'margin-left: 320px'">
         <div class="d-flex justify-content-center align-items-center" v-if="noContacts">
           <h2 class="my-4">
             <button @click="selectTag(tag)" v-for="tag in tags" :key="tag">
@@ -60,9 +60,8 @@ export default {
   }),
   methods: {
     logOut() {
-      alert("Log out button pressed");
       // call logout endpoint, which should remove JWT cookie
-      axios.get('http://httpstat.us/200').then(() => this.$store.commit('logout'))
+      axios.get('https://salu.pro/auth/logout').then(() => this.$store.commit('logout'))
     },
     search(value) {
       this.$store.commit('search', value)
@@ -73,6 +72,7 @@ export default {
   },
   mounted() {
     this.$nextTick(() => window.addEventListener('resize', () => { this.windowWidth = window.innerWidth }))
+    this.$store.dispatch('fetchContacts')  
   },
   components: {
     ContactList,

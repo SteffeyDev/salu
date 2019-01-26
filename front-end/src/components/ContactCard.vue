@@ -1,7 +1,7 @@
 <template>
   <b-card class="text-left">
     <div class="d-flex justify-content-between align-items-center mb-2">
-      <h5 class="card-title mb-0">{{ name }}</h5>
+      <h5 class="card-title mb-0">{{ contact.first }} {{ contact.last }}</h5>
       <button @click="editContact(contact._id)" class="btn btn-light btn-sm ml-3"><i class="fas fa-edit"></i></button>
     </div>
     <p class="mb-1" v-show="contact.email"><i class="fas fa-envelope mr-2"></i><a :href="'mailto:' + contact.email">{{ contact.email }}</a></p>
@@ -11,6 +11,7 @@
       <i class="fas fa-tags"></i>
       <Tag :tag="tag" :key="tag" v-for="tag in contact.tags" />
     </p>
+    <p class="mb-1" v-show="contact.notes"><i class="fas fa-comment mr-2"></i>{{ contact.notes }}</p>
   </b-card>
 </template>
 

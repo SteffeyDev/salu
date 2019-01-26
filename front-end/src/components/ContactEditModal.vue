@@ -67,7 +67,6 @@
 
 <script>
 import { mapState } from 'vuex'
-import axios from 'axios'
 
 export default {
   data: () => ({
@@ -82,7 +81,7 @@ export default {
   }),
   methods: {
     saveContact() {
-      axios.post('http://httpstat.us/200', this.contact).then(() => { this.showModal = false })
+      this.$store.dispatch('updateContact', this.contact)
     },
     afterHidden() {
       this.$store.commit('endEditing')

@@ -3,20 +3,19 @@ const bcrypt = require('bcryptjs');
 const personSchema = require('../schemas/UserSchema.js');
 
 personSchema.pre('save', function(next) {
-  var person = this;
-  if (!person.isModified('password')) {
+  if (!this.isModified('password'))
     return next();
-  }
-  bcrypt.genSalt(10, function(err, salt) {
-    bcrypt.hash(person.password, salt, function(err, hash) {
-      person.password = hash;
+
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(this.password, salt, (err, hash) => {
+      this.password = hash;
       next();
     });
   });
 });
 
 personSchema.methods.comparePassword = function(password, done) {
-  bcrypt.compare(password, this.password, function(err, isMatch) {
+  bcrypt.compare(password, this.password, (err, isMatch) => {
     done(err, isMatch);
   });
 };
