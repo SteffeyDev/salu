@@ -41,13 +41,7 @@
         <b-col class="ml-2" cols="2">
           <b-row><label for="inputState">State</label></b-row>
           <b-row>
-            <b-dropdown :text="state == null ? '....' : state" variant="light">
-              <div class="scrollable-menu">
-                <b-dropdown-item v-on:click="state = null">Choose state...</b-dropdown-item>
-                <b-dropdown-divider></b-dropdown-divider>
-                <b-dropdown-item :key="tempState" v-for="tempState in states" @click="state = tempState">{{ tempState }}</b-dropdown-item>
-              </div>
-            </b-dropdown>
+            <b-form-select v-model="contact.state" :options="states" />
           </b-row>
         </b-col>
         <!--Zip-->
@@ -72,7 +66,6 @@ export default {
   data: () => ({
     showModal: false,
     contact: null,
-    state: null,
     states: ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL", "GA", "HI", "ID", "IL", "IN",
         "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH",
         "NJ", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "PR", "RI", "SC", "SD", "TN", "TX", "UT",
