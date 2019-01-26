@@ -2,44 +2,66 @@
   <b-modal v-if="contact" v-model="showModal" ok-title="Save"
            hide-header-close :title="name" @ok="saveContact" @hidden="afterHidden">
     <!--Name-->
-    <div>
-      <label for="inlineFormInputName2">Name</label>
-      <b-form inline>
-        <b-input class="mr-sm-2" id="inlineFormInputName" placeholder="John Doe" />
-        <b-input class="mr-sm-2" id="inlineFormInputName" placeholder="John Doe" />
-      </b-form>
-    </div>
-    <!--Name-->
-    <div class="form-row">
-      <div class="form-group col">
-        <label for="inputName">Name</label>
-        <input type="text" class="form-control" id="inputFirstName" placeholder="First Name" :value="name">
-      </div>
-      <div class="form-group col">
-        <label for="inputName" class="invisible">Name</label> <!--Invisible label for alignment purposes-->
-        <input type="text" class="form-control" id="inputLastName" placeholder="Last Name" :value="name">
-      </div>
-    </div>
+    <b-form-group>
+      <b-form-row>
+        <b-col>
+          <label for="inlineFormInputFirstName">Name</label>
+          <b-form-input class="mr-sm-2" type="text" placeholder="First Name" />
+        </b-col>
+        <b-col>
+          <label class="invisible">Name</label> <!--Invisible text for alignment-->
+          <b-form-input class="mr-sm-2" id="inlineFormInputLastName" placeholder="Last Name" />
+        </b-col>
+      </b-form-row>
+    </b-form-group>
     <!--Email-->
-    <div class="form-group">
+    <b-form-group>
       <label for="inputEmail">Email</label>
-      <input type="email" class="form-control" id="inputEmail" placeholder="email@example.com" :value="contact.email">
-    </div>
+      <b-form-input type="email" id="inputEmail" placeholder="email@example.com" />
+    </b-form-group>
     <!--Phone-->
-    <div class="form-group">
+    <b-form-group>
       <label for="inputPhone">Phone</label>
-      <input type="tel" class="form-control" id="inputPhone" :value="contact.phone">
-    </div>
+      <b-input type="tel" id="inputPhone" placeholder="(123) 456-789" />
+    </b-form-group>
     <!--Address-->
-    <div class="form-group">
+    <b-form-group>
       <label for="inputAddress">Address</label>
-      <input type="email" class="form-control" id="inputEmail" placeholder="email@example.com" :value="contact.email">
-    </div>
+      <b-form-input type="text" id="inputAddress1" placeholder="1234 Main St" class="mb-1" />
+      <b-form-input type="text" id="inputAddress2" placeholder="Apartment, studio, floor, etc" />
+    </b-form-group>
+    <b-form-group inline>
+      <b-row>
+        <!--City-->
+        <b-col>
+          <label for="inputCity">City</label>
+          <b-form-input type="text" id="inputCity" />
+        </b-col>
+        <!--State Dropdown-->
+        <b-col class="ml-2" cols="2">
+          <b-row><label for="inputState">State</label></b-row>
+          <b-row>
+            <b-dropdown :text="state == null ? '....' : state" variant="light">
+              <div class="scrollable-menu">
+                <b-dropdown-item v-on:click="state = null">Choose state...</b-dropdown-item>
+                <b-dropdown-divider></b-dropdown-divider>
+                <b-dropdown-item v-for="tempState in states" v-on:click="state = tempState">{{ tempState }}</b-dropdown-item>
+              </div>
+            </b-dropdown>
+          </b-row>
+        </b-col>
+        <!--Zip-->
+        <b-col>
+          <label for="inputCity">Zip Code</label>
+          <b-form-input type="text" id="inputZip" />
+        </b-col>
+      </b-row>
+    </b-form-group>
     <!--Memo-->
-    <div class="form-group">
+    <b-form-group>
       <label for="inputMemo">Memo:</label>
-      <textarea class="form-control" rows="3" id="inputMemo"></textarea>
-    </div>
+      <b-textarea v-model="memoText" rows="3" id="inputMemo" />
+    </b-form-group>
   </b-modal>
 </template>
 
@@ -50,7 +72,13 @@ import axios from 'axios'
 export default {
   data: () => ({
     showModal: false,
-    contact: null
+    contact: null,
+    memoText: '',
+    state: null,
+    states: ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL", "GA", "HI", "ID", "IL", "IN",
+        "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH",
+        "NJ", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "PR", "RI", "SC", "SD", "TN", "TX", "UT",
+        "VT", "VI", "VA", "WA", "WV", "WI", "WY"]
   }),
   methods: {
     saveContact() {
@@ -64,7 +92,19 @@ export default {
     contactId: 'editContactId',
     name() {
       return this.contact.firstName + ' ' + this.contact.lastName;
-    }
+    },
+    address(choice) {
+      if (choice == 'street')
+        return this.contact.street
+      if (choice == 'city')
+        return this.contact.city
+      if (choice == 'state')
+        return this.contact.state
+      if (choice == 'zipcode')
+        return this.contact.zipcode
+      else
+        return null;
+    },
   }),
   watch: {
     contactId(id) {
@@ -78,5 +118,8 @@ export default {
 </script>
 
 <style>
-
+  .scrollable-menu {
+    max-height: 150px;
+    overflow-y: auto;
+  }
 </style>

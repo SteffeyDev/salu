@@ -30,7 +30,7 @@ const store = new Vuex.Store({
     searchText: null,
     authenticated: false,
     editContactId: null,
-    authenticated: true
+    authenticated: false
   },
   getters: {
     searchContacts: state => state.contacts.filter(contact => contact.name === state.searchText || contact.tags.indexOf(state.searchText) > -1)

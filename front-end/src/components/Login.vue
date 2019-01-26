@@ -31,7 +31,7 @@
             <!--Buttons-->
             <div class="form-row justify-content-end">
               <!--Clicking signup button changes "loginScreen" variable-->
-              <button type="button" class="col- mr-4 btn btn-primary border-secondary" v-on:click="loginScreen = false">
+              <button type="button" class="col- mr-4 btn btn-primary" v-on:click="loginScreen = false">
                 Sign Up
                 <span class="fas fa-pencil-alt"><!--Reference to icon from FontAwesome--></span>
               </button>
@@ -45,11 +45,11 @@
     <!--Signup Screen-->
     <div class="container-fluid" v-if="!loginScreen">
       <div class="row">
-        <div class="col-6 vertical-center p-5">
+        <div class="col-6 vertical-center">
           <img alt="Salu.pro logo" src="../assets/Salu-Pro-Logo.gif" class="img-fluid">
         </div>
 
-        <div class="col pl-4">
+        <div class="col">
           <!--Align all content in the center - take up 10/12ths of column-->
           <div class="row justify-content-center">
             <div class="col shadow-sm bg-light rounded">
@@ -62,20 +62,9 @@
                   Return To Login
                 </button>
               </div>
-              <div class="row justify-content-center h1">Sign Up For Salu.pro</div>
+              <div class="row justify-content-center text-center h1">Sign Up For Salu.pro</div>
 
               <form>
-                <!--Name-->
-                <div class="form-row">
-                  <div class="form-group col">
-                    <label for="inputName">Name</label>
-                    <input type="text" class="form-control" id="inputFirstName" placeholder="First Name">
-                  </div>
-                  <div class="form-group col">
-                    <label for="inputName" class="invisible">Name</label> <!--Invisible label for alignment purposes-->
-                    <input type="text" class="form-control" id="inputLastName" placeholder="Last Name">
-                  </div>
-                </div>
                 <!--Username-->
                 <div class="form-group">
                   <label for="inputUsername">Username</label>
@@ -106,7 +95,7 @@
                 <div class="form-group row justify-content-center">
                   <div class="col-1"><!--Empty column for right alignment--></div>
                   <!--Clicking signup button changes "loginScreen" variable-->
-                  <button type="submit" class="col- btn btn-primary border-secondary" v-on:click="signup">
+                  <button type="submit" class="col- btn btn-primary" v-on:click="signup">
                     Sign Up
                     <span class="fas fa-pencil-alt"><!--Reference to icon from FontAwesome--></span>
                   </button>
@@ -131,7 +120,7 @@
       signup() {
         //axios.post("https://salu.pro/auth/create", )
       }
-    }
+    },
     components: {
     }
   }
