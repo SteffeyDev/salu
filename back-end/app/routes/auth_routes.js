@@ -1,6 +1,6 @@
 const User = require('../../models/User.js');
 const passport = require("passport");
-const jwtStrategry  = require("./strategies/jwt");
+const jwtStrategry  = require("../../strategies/jwt.js");
 passport.use(jwtStrategry);
 
 module.exports = function(app) {
