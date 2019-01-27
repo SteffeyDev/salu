@@ -3,6 +3,5 @@ const authRoutes = require('./auth_routes');
 
 module.exports = function(app, db){
   contactRoutes(app, db);
-	authRoutes(app, db);
-  //other routes groups go here in the future
+  authRoutes(app, db);
 };

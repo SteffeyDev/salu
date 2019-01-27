@@ -1,9 +1,7 @@
-const ObjectID = require('mongodb').ObjectID;
 const User = require('../../models/User.js');
-const contactSchema = require('../../schemas/ContactSchema.js');
 const email = 'peter.steffey@knights.ucf.edu'
 
-module.exports = function(app, dbase) {
+module.exports = function(app) {
 
   //Searches by ID
   app.get('/contacts/:id', (req,res) => {

@@ -1,7 +1,4 @@
 const User = require('../../models/User.js');
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-const userSchema = require('../../schemas/UserSchema.js');
 const passport = require("passport");
 const jwtStrategry  = require("./strategies/jwt");
 passport.use(jwtStrategry);
