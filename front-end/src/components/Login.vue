@@ -1,20 +1,20 @@
 <template>
   <div id="login">
     <!--Gradient Background-->
-    <div class="jumbotron-bg bg-gradient-light">
+    <div class="jumbotron-bg   bg-gradient-light">
 
     <!--Login Screen-->
-      <div class="container" v-if="loginScreen">
+      <b-container v-if="loginScreen">
         <!--Logo-->
-        <div class="row justify-content-center">
-          <div class="col-2">
+        <b-row class="justify-content-center">
+          <b-col rows="2">
             <img alt="Salu.pro logo" src="../assets/saluLogo.png" class="img-fluid pt-4 pb-3">
-          </div>
-        </div>
+          </b-col>
+        </b-row>
 
         <!--Align all content in the center - take up half of screen-->
         <div class="row justify-content-center">
-          <div class="col-6 bg-light shadow-lg p-3 mb-5 rounded">
+          <div class="col-6 bg-light shadow-sm p-3 mb-5 rounded">
             <div class="row justify-content-center pb-2 h1 font-weight-normal">Salu.pro</div>
             <form>
               <!--Username-->
@@ -43,7 +43,7 @@
             </form>
           </div>
         </div>
-      </div>
+      </b-container>
 
       <!--Signup Screen-->
       <div class="container-fluid" v-if="!loginScreen">
