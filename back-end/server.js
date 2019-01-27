@@ -16,6 +16,8 @@ app.use(cookieParser(config.jwt.secret));
 passport.use('jwt', JwtStrategy);
 passport.use('local', LocalStrategy);
 
+app.use(express.static('../front-end/public'));
+
 mongoose.connect(config.MONGO_URI, { useNewUrlParser: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
