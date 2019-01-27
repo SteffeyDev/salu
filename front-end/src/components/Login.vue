@@ -8,13 +8,13 @@
         <!--Logo-->
         <div class="row justify-content-center">
           <div class="col-2">
-            <img alt="Salu.pro logo" src="../assets/Salu-Pro-Logo.gif" class="img-fluid pt-4 pb-3">
+            <img alt="Salu.pro logo" src="../assets/saluLogo.png" class="img-fluid pt-4 pb-3">
           </div>
         </div>
 
         <!--Align all content in the center - take up half of screen-->
         <div class="row justify-content-center">
-          <div class="col-6 bg-light shadow-sm p-3 mb-5 rounded">
+          <div class="col-6 bg-light shadow-lg p-3 mb-5 rounded">
             <div class="row justify-content-center pb-2 h1 font-weight-normal">Salu.pro</div>
             <form>
               <!--Username-->
@@ -38,7 +38,7 @@
                   Sign Up
                   <span class="fas fa-pencil-alt"><!--Reference to icon from FontAwesome--></span>
                 </button>
-                <button type="submit" class="col- ml-4 btn btn-dark p-xs-0 p-sm-1 p-md-2 ">Login</button>
+                <button type="submit" class="col- ml-4 btn btn-dark p-xs-0 p-sm-1 p-md-2">Login</button>
               </div>
             </form>
           </div>
@@ -49,7 +49,7 @@
       <div class="container-fluid" v-if="!loginScreen">
         <div class="row">
           <div class="col-6 vertical-center">
-            <img alt="Salu.pro logo" src="../assets/Salu-Pro-Logo.gif" class="img-fluid">
+            <img alt="Salu.pro logo" src="../assets/saluLogo.png" class="img-fluid">
           </div>
 
           <div class="col">

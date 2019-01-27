@@ -40,7 +40,7 @@ export default {
   }
 
   .bg-gradient-light {
-    background: linear-gradient(#d8deff, white)
+    background: linear-gradient(#ffc3a0, #ffafbd)
   }
 
   .vertical-center {
