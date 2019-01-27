@@ -1,11 +1,12 @@
 const User = require('../../models/User.js');
-const email = 'peter.steffey@knights.ucf.edu'
 
-module.exports = function(app) {
+module.exports = function(app, passport) {
+
+  app.use(/\/contacts.*/, passport.authenticate('jwt', { session: false }));
 
   //Searches by ID
   app.get('/contacts/:id', (req,res) => {
-    User.findOne({ email: email }, (err, user) => {
+    User.findOne({ email: req.user.email }, (err, user) => {
       const contact = user.contacts.id(req.params.id);
       if (err) {
         res.send({'error': 'An error has occurred'});
@@ -17,7 +18,7 @@ module.exports = function(app) {
 
   //Get all contacts
   app.get('/contacts', (req,res) => {
-    User.findOne({ email: email }, (err, user) => {
+    User.findOne({ email: req.user.email }, (err, user) => {
       if (err) {
         res.send({'error': 'An error has occurred'});
       } else {
@@ -28,7 +29,7 @@ module.exports = function(app) {
 
   //Deletes contacts by ID
   app.delete('/contacts/:id', (req,res) => {
-    User.findOne({ email: email }, (err, user) => {
+    User.findOne({ email: req.user.email }, (err, user) => {
       const contact = user.contacts.id(req.params.id);
       if (err) {
         res.send({'error' : 'An error has occurred'});
@@ -45,7 +46,7 @@ module.exports = function(app) {
 
   //Searches by ID and updates contact with the new info
   app.put('/contacts/:id', (req, res) => {
-    User.findOne({ email: email}, (err, user) => {
+    User.findOne({ email: req.user.email}, (err, user) => {
       const contact = user.contacts.id(req.params.id);
       if (err) {
         res.send({'error' : 'An error has occurred'});
@@ -63,7 +64,7 @@ module.exports = function(app) {
 
   //Inserts new document into collection
   app.post('/contacts', (req, res) => {
-    User.findOne({ email: email }, (err, user) => {
+    User.findOne({ email: req.user.email }, (err, user) => {
       if (err || !user) {
         res.send({'error' : 'An error has occurred'});
       } else {

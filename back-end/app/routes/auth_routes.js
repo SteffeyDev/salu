@@ -1,9 +1,8 @@
 const User = require('../../models/User.js');
-const passport = require("passport");
-const jwtStrategry  = require("../../strategies/jwt.js");
-passport.use(jwtStrategry);
+const config = require('../../config.js');
+const jwt = require('jsonwebtoken');
 
-module.exports = function(app) {
+module.exports = function(app, passport) {
 
   //Creates User
   app.post('/auth/create', (req,res) => {
@@ -23,23 +22,21 @@ module.exports = function(app) {
   });
 
   //Login User
-  app.post('/auth/login', (req,res) => {
-    // Need to select +password specifically, because by default a select will not return the password ({ select: false } in schema)
-    User.findOne({ email: req.body.email }, 'email username +password', (err, user) => {
-      if (err || !user) {
-        res.status(401).send({error: 'Username or password incorrect'});
-      } else {
-        user.comparePassword(req.body.password, (err, success) => {
-          if (success) {
-            // Set cookie with JWT token
+  app.post('/auth/login', passport.authenticate('local', { session: false }), (req,res) => {
+    jwt.sign({
+      user: req.user
+    }, config.jwt.secret, config.jwt.options, (err, token) => {
+      if (err) return res.status(500).json(err);
 
-            res.status(200).send();
-          } else {
-            res.status(401).send({error: 'Username or password incorrect'})
-          }
-        });
-      }
+      // Send the Set-Cookie header with the jwt to the client
+      res.cookie('jwt', token, config.jwt.cookie);
+
+      // Response json with the jwt
+      return res.json({
+        jwt: token
+      });
     });
+
   });
 
   app.post('/auth/logout', (req,res) => {
