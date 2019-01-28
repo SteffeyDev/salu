@@ -1,4 +1,3 @@
-const User = require('../models/User.js');
 const JwtCookieComboStrategy = require('passport-jwt-cookiecombo');
 const config = require('../config.js');
 

@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser(config.jwt.secret));
 
-passport.use('jwt', JwtStrategy);
+passport.use('jwt-cookiecombo', JwtStrategy);
 passport.use('local', LocalStrategy);
 
 app.use(express.static('../front-end/dist'));
