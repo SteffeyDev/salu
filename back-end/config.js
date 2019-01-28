@@ -12,7 +12,7 @@ module.exports = {
       domain: 'salu.pro',
       httpOnly: true,
       sameSite: true,
-      signed: true,
+      signed: false,
       secure: true
     }
   }
