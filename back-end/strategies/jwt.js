@@ -1,5 +1,4 @@
 const config = require('../config.js');
-const User = require('../models/User.js');
 const JwtStrategy = require('passport-jwt').Strategy,
   ExtractJwt = require('passport-jwt').ExtractJwt;
 
@@ -14,14 +13,9 @@ opts.issuer = config.jwt.options.issuer;
 opts.audience = config.jwt.options.audience;
 
 module.exports = new JwtStrategy(opts, function(jwt_payload, done) {
-  User.findById(jwt_payload.sub, function(err, user) {
-    if (err) {
-      return done(err, false);
-    }
-    if (user) {
-      return done(null, user);
-    } else {
-      return done(null, false);
-    }
-  });
+  if (jwt_payload.user) {
+    return done(null, jwt_payload.user);
+  } else {
+    return done('No user in token', null);
+  }
 });
