@@ -32,17 +32,17 @@
     <b-form-group inline>
       <b-row>
         <!--City-->
-        <b-col>
+        <b-col xs="8" sm="6">
           <label for="inputCity">City</label>
           <b-form-input type="text" id="inputCity" v-model="contact.city" />
         </b-col>
         <!--State Dropdown-->
-        <b-col xs="4" md="4" lg="2">
+        <b-col xs="4" sm="2">
           <label for="inputState">State</label>
           <b-form-select v-model="contact.state" :options="states" v-model="contact.state" />
         </b-col>
         <!--Zip-->
-        <b-col xs="12" md="12" lg="">
+        <b-col xs="12" sm="4">
           <label for="inputCity">Zip Code</label>
           <b-form-input type="text" id="inputZip" v-model="contact.zipcode" />
         </b-col>
