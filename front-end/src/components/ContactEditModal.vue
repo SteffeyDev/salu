@@ -6,48 +6,47 @@
       <b-form-row>
         <b-col>
           <label for="inlineFormInputFirstName">Name</label>
-          <b-form-input class="mr-sm-2" type="text" placeholder="First Name" />
+          <b-form-input class="mr-sm-2" type="text" placeholder="First Name" v-model="contact.first" />
         </b-col>
         <b-col>
           <label class="invisible">Name</label> <!--Invisible text for alignment-->
-          <b-form-input class="mr-sm-2" id="inlineFormInputLastName" placeholder="Last Name" />
+          <b-form-input class="mr-sm-2" id="inlineFormInputLastName" placeholder="Last Name" v-model="contact.last" />
         </b-col>
       </b-form-row>
     </b-form-group>
     <!--Email-->
     <b-form-group>
       <label for="inputEmail">Email</label>
-      <b-form-input type="email" id="inputEmail" placeholder="email@example.com" />
+      <b-form-input type="email" id="inputEmail" placeholder="email@example.com" v-model="contact.email" />
     </b-form-group>
     <!--Phone-->
     <b-form-group>
       <label for="inputPhone">Phone</label>
-      <b-input type="tel" id="inputPhone" placeholder="(123) 456-789" />
+      <b-input type="tel" id="inputPhone" placeholder="(123) 456-789" v-model="contact.phone" />
     </b-form-group>
     <!--Address-->
     <b-form-group>
       <label for="inputAddress">Address</label>
-      <b-form-input type="text" id="inputAddress1" placeholder="1234 Main St" class="mb-1" />
-      <b-form-input type="text" id="inputAddress2" placeholder="Apartment, studio, floor, etc" />
+      <b-form-input type="text" id="inputAddress1" placeholder="1234 Main St" class="mb-1" v-model="contact.street" />
     </b-form-group>
     <b-form-group inline>
       <b-row>
         <!--City-->
         <b-col>
           <label for="inputCity">City</label>
-          <b-form-input type="text" id="inputCity" />
+          <b-form-input type="text" id="inputCity" v-model="contact.city" />
         </b-col>
         <!--State Dropdown-->
         <b-col class="ml-2" xs="4" md="4" lg="2">
           <b-row><label for="inputState">State</label></b-row>
           <b-row>
-            <b-form-select v-model="contact.state" :options="states" />
+            <b-form-select v-model="contact.state" :options="states" v-model="contact.state" />
           </b-row>
         </b-col>
         <!--Zip-->
         <b-col xs="12" md="12" lg="">
           <label for="inputCity">Zip Code</label>
-          <b-form-input type="text" id="inputZip" />
+          <b-form-input type="text" id="inputZip" v-model="contact.zipcode" />
         </b-col>
       </b-row>
     </b-form-group>
