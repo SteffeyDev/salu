@@ -59,12 +59,10 @@ module.exports = function(app, passport) {
       if (err) {
         res.send({'error' : 'An error has occurred'});
       } else {
-        user.contacts.update(contact, req.body);
-        var newContact = user.contacts[0];
-
+        contact.set(req.body);
         user.save(err => {
           if (err) res.status(400).send({error: err});
-          else res.send(newContact)
+          else res.send(contact)
         });
       }
     });
