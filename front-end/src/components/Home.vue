@@ -10,7 +10,7 @@
         <b-form-input size="lg" type="search" placeholder="Search your contacts" :value="searchText" @input="search" />
       </div>
       <div v-if="layout === 'compact'">
-        <b-tabs pills fill>
+        <b-tabs pills fill v-model="tabIndex">
           <b-tab active title="Contact List">
             <ContactList class="mt-3" />
           </b-tab>
@@ -55,12 +55,13 @@ import ContactEditModal from './ContactEditModal.vue'
 import Tag from './Tag.vue'
 import { mapState } from 'vuex'
 import axios from 'axios'
+import { api } from '../config.js'
 
 export default {
   name: 'home',
   data: () => ({
     windowWidth: window.innerWidth,
-    listSlideIn: true
+    tabIndex: 0
   }),
   computed: mapState({
     searchText: 'searchText',
@@ -79,10 +80,15 @@ export default {
       return this.$store.getters.searchContacts.length === 0
     }
   }),
+  watch: {
+    searchText() {
+      this.tabIndex = 1
+    }
+  },
   methods: {
     logOut() {
       // call logout endpoint, which should remove JWT cookie
-      axios.get('https://salu.pro/auth/logout').then(() => this.$store.commit('logout'))
+      axios.get(api + '/auth/logout').then(() => this.$store.commit('logout'))
     },
     search(value) {
       this.listSlideIn = false

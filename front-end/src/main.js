@@ -5,6 +5,7 @@ import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import axios from 'axios'
+import { api } from './config.js'
 
 Vue.use(BootstrapVue);
 Vue.use(Vuex);
@@ -30,7 +31,7 @@ const store = new Vuex.Store({
     ],
     searchText: null,
     editContactId: null,
-    authenticated: true,
+    authenticated: false,
     user: null
   },
   getters: {
@@ -55,7 +56,7 @@ const store = new Vuex.Store({
   actions: {
     fetchContacts({ commit }) {
       return new Promise((resolve, reject) => {
-        axios.get("https://salu.pro/contacts")
+        axios.get(api + "/contacts")
         .then((response) => {
           commit("setContacts", response.body)
           resolve()
@@ -67,13 +68,13 @@ const store = new Vuex.Store({
     },
     updateContact({ commit }, contact) {
       if (contact._id)
-        axios.put("https://salu.pro/contacts/" + contact._id, contact).then(() => {
+        axios.put(api + "/contacts/" + contact._id, contact).then(() => {
           commit('updateContact', contact)
         }).catch(err => {
           alert('Error saving contact: ' + JSON.stringify(err))
         })
       else
-        axios.post("https://salu.pro/contacts", contact).then(() => {
+        axios.post(api + "/contacts", contact).then(() => {
           commit('addContact', contact)
         }).catch(err => {
           alert('Error saving contact: ' + JSON.stringify(err))
