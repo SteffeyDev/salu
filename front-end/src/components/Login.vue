@@ -140,7 +140,7 @@
             email: this.email,
             username: this.username,
             password: this.password
-          }).then(userDetails => this.$store.commit('login', userDetails))
+          }, {withCredentials: true}).then(userDetails => this.$store.commit('login', userDetails))
             .catch(() => alert("Error creating account"))
         } else {
           alert("Passwords do not match")
@@ -151,7 +151,7 @@
         axios.post(api + "/auth/login", {
           username: this.username,
           password: this.password
-        }).then(userDetails => this.$store.commit('login', userDetails))
+        }, {withCredentials: true}).then(userDetails => this.$store.commit('login', userDetails))
           .catch(() => alert("Error logging in"))
       }
     },
