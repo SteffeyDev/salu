@@ -2,7 +2,7 @@ const User = require('../models/User.js');
 
 module.exports = function(app, passport) {
 
-  app.use(/\/contacts.*/, passport.authenticate('jwt-cookiecombo', { session: false }));
+  app.use(/\/contacts.*/, passport.authenticate('jwt', { session: false }));
 
   //Searches by ID
   app.get('/contacts/:id', (req,res) => {
