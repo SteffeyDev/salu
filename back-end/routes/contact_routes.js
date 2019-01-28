@@ -22,6 +22,10 @@ module.exports = function(app, passport) {
       if (err) {
         res.send({'error': 'An error has occurred'});
       } else {
+
+        // remove this line, just temp to get it working
+        return res.send(user.contacts)
+
         // /contacts?search="<search>"
         const search = req.query.search;
         res.send(user.contacts.find({ $or: [
