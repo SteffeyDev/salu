@@ -1,5 +1,5 @@
-const User = require('../../models/User.js');
-const config = require('../../config.js');
+const User = require('../models/User.js');
+const config = require('../config.js');
 const jwt = require('jsonwebtoken');
 
 module.exports = function(app, passport) {
