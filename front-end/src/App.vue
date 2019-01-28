@@ -21,6 +21,9 @@ export default {
   computed: mapState({
     authenticated: state => state.authenticated
   }),
+  mounted() {
+    axios.get(api + '/auth/autologin').then(({ data }) => this.$store.commit('login', data))
+  },
   components: {
     Login,
     Home

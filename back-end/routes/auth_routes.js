@@ -44,4 +44,7 @@ module.exports = function(app, passport) {
     res.status(200).send();
   });
 
+  app.get('/auth/autologin', passport.authenticate('jwt', { session: false }), (req,res) => {
+    res.json(req.user);
+  });
 };

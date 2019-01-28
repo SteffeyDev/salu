@@ -37,11 +37,9 @@
           <b-form-input type="text" id="inputCity" v-model="contact.city" />
         </b-col>
         <!--State Dropdown-->
-        <b-col class="ml-2" xs="4" md="4" lg="2">
-          <b-row><label for="inputState">State</label></b-row>
-          <b-row>
-            <b-form-select v-model="contact.state" :options="states" v-model="contact.state" />
-          </b-row>
+        <b-col xs="4" md="4" lg="2">
+          <label for="inputState">State</label>
+          <b-form-select v-model="contact.state" :options="states" v-model="contact.state" />
         </b-col>
         <!--Zip-->
         <b-col xs="12" md="12" lg="">
