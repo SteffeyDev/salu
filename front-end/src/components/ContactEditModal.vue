@@ -6,7 +6,7 @@
       <b-form-row>
         <b-col>
           <label for="inlineFormInputFirstName">Name</label>
-          <b-form-input class="mr-sm-2" type="text" placeholder="First Name" v-model="contact.first" />
+          <b-form-input class="mr-sm-2" type="text" placeholder="First Name" v-model="contact.first" id="inlineFormInputFirstName" />
         </b-col>
         <b-col>
           <label class="invisible">Name</label> <!--Invisible text for alignment-->
@@ -27,31 +27,29 @@
     <!--Address-->
     <b-form-group>
       <label for="inputAddress">Address</label>
-      <b-form-input type="text" id="inputAddress1" placeholder="1234 Main St" class="mb-1" v-model="contact.street" />
+      <b-form-input type="text" id="inputAddress" placeholder="1234 Main St" class="mb-1" v-model="contact.street" />
     </b-form-group>
-    <b-form-group inline>
-      <b-row>
-        <!--City-->
-        <b-col xs="8" sm="6">
-          <label for="inputCity">City</label>
-          <b-form-input type="text" id="inputCity" v-model="contact.city" />
-        </b-col>
-        <!--State Dropdown-->
-        <b-col xs="4" sm="2">
-          <label for="inputState">State</label>
-          <b-form-select v-model="contact.state" :options="states" v-model="contact.state" />
-        </b-col>
-        <!--Zip-->
-        <b-col xs="12" sm="4">
-          <label for="inputCity">Zip Code</label>
-          <b-form-input type="text" id="inputZip" v-model="contact.zipcode" />
-        </b-col>
-      </b-row>
-    </b-form-group>
+    <b-form-row>
+      <!--City-->
+      <b-col cols="12" sm="6">
+        <label for="inputCity">City</label>
+        <b-form-input type="text" id="inputCity" v-model="contact.city" />
+      </b-col>
+      <!--State Dropdown-->
+      <b-col cols="6" sm="2">
+        <label for="inputState">State</label>
+        <b-form-select size v-model="contact.state" :options="states" v-model="contact.state" />
+      </b-col>
+      <!--Zip-->
+      <b-col cols="6" sm="4">
+        <label for="inputCity">Zip Code</label>
+        <b-form-input type="text" id="inputZip" v-model="contact.zipcode" />
+      </b-col>
+    </b-row>
     <!--Memo-->
     <b-form-group>
       <label for="inputMemo">Notes</label>
-      <b-textarea v-model="contact.notes" rows="3" />
+      <b-textarea v-model="contact.notes" rows="3" id="inputMemo" />
     </b-form-group>
   </b-modal>
 </template>
