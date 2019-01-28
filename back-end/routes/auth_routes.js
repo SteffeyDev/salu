@@ -44,7 +44,8 @@ module.exports = function(app, passport) {
     res.status(200).send();
   });
 
+  //Auto-login users if they still have a valid jwt
   app.get('/auth/autologin', passport.authenticate('jwt', { session: false }), (req,res) => {
-    res.json(req.user);
+    sendJwt(req.user, res);
   });
 };
