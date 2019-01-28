@@ -122,6 +122,7 @@
 
 <script>
   import axios from 'axios'
+  import { api } from '../config.js'
 
   export default {
     name: 'login',
@@ -133,7 +134,7 @@
     }),
     methods: {
       signup() {
-        axios.post("https://salu.pro/auth/create", {
+        axios.post(api + "/auth/create", {
           email: this.email,
           username: this.username,
           password: this.password
