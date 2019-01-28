@@ -46,7 +46,7 @@
                   Sign Up
                   <span class="fas fa-pencil-alt"><!--Reference to icon from FontAwesome--></span>
                 </b-button>
-                <b-button type="submit" variant="dark" class="col- ml-4 p-xs-0 p-sm-1 p-md-2">Login</b-button>
+                <b-button type="submit" variant="dark" class="ml-4 p-xs-0 p-sm-1 p-md-2" v-on:click="login">Login</b-button>
               </b-form-row>
             </b-form>
           </b-col>
@@ -81,12 +81,12 @@
                   <!--Username-->
                   <b-form-group>
                     <label for="inputUsername">Username</label>
-                    <b-input type="text" id="inputUsername" />
+                    <b-input type="text" id="inputUsername" v-model="username" />
                   </b-form-group>
                   <!--Password-->
                   <b-form-group>
                     <label for="inputPassword">Password</label>
-                    <b-input type="password" id="inputPassword" />
+                    <b-input type="password" id="inputPassword" v-model="password" />
                   </b-form-group>
                   <!--Confirm Password-->
                   <b-form-group>
@@ -128,9 +128,10 @@
     name: 'login',
     data: () => ({
       loginScreen: true,
+      username: '',
+      password: '',
       email: '',
       // Add the rest of the fields, and hook them up to the inputs using v-model (see https://vuejs.org/v2/guide/forms.html#Text)
-      // Don't forget to change first/last name to just username
     }),
     methods: {
       signup() {
@@ -142,7 +143,12 @@
           .catch(() => alert("Error creating account"))
       },
       login() {
-        // Make this just like signup, but send to salu.pro/auth/login, only send username & password, and hook it up to the appropriate button
+        // Like signup, but send to salu.pro/auth/login, only send username & password, and hook it up to the appropriate button
+        axios.post(api + "/auth/login", {
+          username: this.username,
+          password: this.password
+        }).then(userDetails => this.$store.commit('login', userDetails))
+          .catch(() => alert("Error logging in"))
       }
     },
     components: {
