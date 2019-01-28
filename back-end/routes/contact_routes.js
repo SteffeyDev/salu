@@ -16,25 +16,17 @@ module.exports = function(app, passport) {
     });
   });
 
-  //Gets all contacts that match query
-  app.get('/contacts', (req, res) => {
-    User.findOne({ email: req.user.email }, (err, user) => {
-      const searchQuery = req.body;
-      if (err) {
-        res.send({'error': 'An error has occurred'});
-      } else {
-        res.send(user.contacts.find(searchQuery));
-      }
-    });
-  });
-
   //Get all contacts
   app.get('/contacts', (req,res) => {
     User.findOne({ email: req.user.email }, (err, user) => {
       if (err) {
         res.send({'error': 'An error has occurred'});
       } else {
-        res.send(user.contacts.find(req.body));
+        // /contacts?search="<search>"
+        const search = req.query.search;
+        res.send(user.contacts.find({ $or: [
+          { first: new RegExp(search, 'i') }
+        ] }));
       }
     });
   });
