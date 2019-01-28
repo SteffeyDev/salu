@@ -57,8 +57,8 @@ const store = new Vuex.Store({
     fetchContacts({ commit }) {
       return new Promise((resolve, reject) => {
         axios.get(api + "/contacts")
-        .then((response) => {
-          commit("setContacts", response.body)
+        .then(({ data }) => {
+          commit("setContacts", data)
           resolve()
         })
         .catch((error => {
