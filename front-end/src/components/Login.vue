@@ -21,10 +21,10 @@
               <b-form-group>
                 <b-row>
                   <b-col cols="2">
-                    <label for="inputUsername">Username</label>
+                    <label for="inputUsername">Username or Email</label>
                   </b-col>
                   <b-col>
-                    <b-input type="text" id="inputUsername" />
+                    <b-input type="text" id="inputUsername" v-model="username" />
                   </b-col>
                 </b-row>
               </b-form-group>
@@ -35,7 +35,7 @@
                     <label for="inputPassword">Password</label>
                   </b-col>
                   <b-col>
-                    <b-input type="password" id="inputPassword" />
+                    <b-input type="password" id="inputPassword" v-model="password" />
                   </b-col>
                 </b-row>  
               </b-form-group>
@@ -91,7 +91,7 @@
                   <!--Confirm Password-->
                   <b-form-group>
                     <label for="inputPassword2">Confirm Password</label>
-                    <b-input type="password" id="inputPassword" />
+                    <b-input type="password" id="inputPassword2" v-model="password2" />
                   </b-form-group>
                   <!--Email-->
                   <b-form-group>
@@ -130,17 +130,21 @@
       loginScreen: true,
       username: '',
       password: '',
+      password2: '',
       email: '',
-      // Add the rest of the fields, and hook them up to the inputs using v-model (see https://vuejs.org/v2/guide/forms.html#Text)
     }),
     methods: {
       signup() {
-        axios.post(api + "/auth/create", {
-          email: this.email,
-          username: this.username,
-          password: this.password
-        }).then(userDetails => this.$store.commit('login', userDetails))
-          .catch(() => alert("Error creating account"))
+        if (this.password === this.password2) {
+          axios.post(api + "/auth/create", {
+            email: this.email,
+            username: this.username,
+            password: this.password
+          }).then(userDetails => this.$store.commit('login', userDetails))
+            .catch(() => alert("Error creating account"))
+        } else {
+          alert("Passwords do not match")
+        }
       },
       login() {
         // Like signup, but send to salu.pro/auth/login, only send username & password, and hook it up to the appropriate button
