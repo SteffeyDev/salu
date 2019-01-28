@@ -14,6 +14,7 @@ import Login from './components/Login.vue'
 import Home from './components/Home.vue'
 import { mapState } from 'vuex'
 import axios from 'axios'
+import { api } from './config.js'
 
 export default {
   name: 'app',
