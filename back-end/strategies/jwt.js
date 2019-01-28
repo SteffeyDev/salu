@@ -14,7 +14,6 @@ opts.issuer = config.jwt.options.issuer;
 opts.audience = config.jwt.options.audience;
 
 module.exports = new JwtStrategy(opts, function(jwt_payload, done) {
-  console.log(JSON.stringify(jwt_payload));
   User.findById(jwt_payload.sub, function(err, user) {
     if (err) {
       return done(err, false);
