@@ -41,10 +41,9 @@ module.exports = function(app, passport) {
       if (err) {
         res.send({'error' : 'An error has occurred'});
       } else {
-        const contact = user.contacts.id(req.params.id);
-        contact.remove();
+        const contact = user.contacts.id(req.params.id).remove();
 
-        contact.save(err => {
+        user.save(err => {
           if (err) res.status(400).send({error: err});
           else res.send(contact.id + ' has been removed.');
         });
