@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import { api } from './config.js'
 import axios from 'axios'
 
-export default new Vuex.Store({
+export default () => new Vuex.Store({
   state: {
     contacts: [
     {
