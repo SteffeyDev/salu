@@ -49,7 +49,6 @@ export default () => new Vuex.Store({
       return new Promise((resolve, reject) => {
         axios.get(api + "/contacts")
         .then(({ data }) => {
-          alert(JSON.stringify(data))
           commit("setContacts", data)
           resolve()
         })
