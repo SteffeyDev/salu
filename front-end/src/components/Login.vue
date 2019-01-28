@@ -46,7 +46,7 @@
                   Sign Up
                   <span class="fas fa-pencil-alt"><!--Reference to icon from FontAwesome--></span>
                 </b-button>
-                <b-button type="submit" variant="dark" class="ml-4 p-xs-0 p-sm-1 p-md-2" v-on:click="login">Login</b-button>
+                <b-button type="button" variant="dark" class="ml-4 p-xs-0 p-sm-1 p-md-2" v-on:click="login">Login</b-button>
               </b-form-row>
             </b-form>
           </b-col>
@@ -104,7 +104,7 @@
                     <b-row class="justify-content-center">
                       <b-col cols="1"><!--Empty column for right alignment--></b-col>
                       <!--Clicking signup button changes "loginScreen" variable-->
-                      <b-button type="submit" variant="primary" class="p-xs-0 p-sm-1 p-md-2" v-on:click="signup">
+                      <b-button type="button" variant="primary" class="p-xs-0 p-sm-1 p-md-2" v-on:click="signup">
                         Sign Up
                         <span class="fas fa-pencil-alt"><!--Reference to icon from FontAwesome--></span>
                       </b-button>
