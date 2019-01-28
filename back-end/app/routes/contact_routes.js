@@ -17,17 +17,16 @@ module.exports = function(app, passport) {
   });
 
   //Gets all contacts that match query
-  app.get('/contacts'', (req, res) => {
-    User.findOne({ email: email }, (err, user) => {
+  app.get('/contacts', (req, res) => {
+    User.findOne({ email: req.user.email }, (err, user) => {
       const searchQuery = req.body;
       if (err) {
         res.send({'error': 'An error has occurred'});
       } else {
         res.send(user.contacts.find(searchQuery));
       }
-      }
     });
-});
+  });
 
   //Get all contacts
   app.get('/contacts', (req,res) => {
@@ -35,7 +34,7 @@ module.exports = function(app, passport) {
       if (err) {
         res.send({'error': 'An error has occurred'});
       } else {
-        res.send(user.contacts);
+        res.send(user.contacts.find(req.body));
       }
     });
   });
