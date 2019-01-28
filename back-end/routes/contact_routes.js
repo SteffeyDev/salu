@@ -38,15 +38,15 @@ module.exports = function(app, passport) {
   //Deletes contacts by ID
   app.delete('/contacts/:id', (req,res) => {
     User.findOne({ email: req.user.email }, (err, user) => {
-      const contact = user.contacts.id(req.params.id);
       if (err) {
         res.send({'error' : 'An error has occurred'});
       } else {
-        user.contacts.deleteOne(contact);
+        const contact = user.contacts.id(req.params.id);
+        contact.remove();
 
-        user.save(err => {
+        contact.save(err => {
           if (err) res.status(400).send({error: err});
-          else res.send(contact + ' has been removed.');
+          else res.send(contact.id + ' has been removed.');
         });
       }
     });
