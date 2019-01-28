@@ -29,7 +29,7 @@
       <label for="inputAddress">Address</label>
       <b-form-input type="text" id="inputAddress" placeholder="1234 Main St" class="mb-1" v-model="contact.street" />
     </b-form-group>
-    <b-form-row>
+    <b-form-row class="mb-3">
       <!--City-->
       <b-col cols="12" sm="6">
         <label for="inputCity">City</label>
