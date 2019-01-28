@@ -45,7 +45,7 @@
         <label for="inputCity">Zip Code</label>
         <b-form-input type="text" id="inputZip" v-model="contact.zipcode" />
       </b-col>
-    </b-row>
+    </b-form-row>
     <!--Memo-->
     <b-form-group>
       <label for="inputMemo">Notes</label>
