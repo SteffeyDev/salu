@@ -22,7 +22,7 @@ export default () => new Vuex.Store({
     ],
     searchText: null,
     editContactId: null,
-    authenticated: false,
+    authenticated: true,
     user: null
   },
   getters: {
@@ -35,6 +35,7 @@ export default () => new Vuex.Store({
       let index = state.contacts.findIndex(c => c._id === contact._id)
       Vue.set(state.contacts, index, contact)
     },
+    deleteContact: (state, id) => state.contacts.splice(state.contacts.findIndex(c => c._id === id), 1),
     search: (state, text) => { state.searchText = text },
     logout: (state) => { state.authenticated = false },
     login: (state, user) => {
@@ -70,6 +71,13 @@ export default () => new Vuex.Store({
         }).catch(err => {
           alert('Error saving contact: ' + JSON.stringify(err))
         })
+    },
+    deleteContact({ commit }, id) {
+      axios.delete(api + "/contacts/" + id).then(() => {
+        commit('deleteContact', id)
+      }).catch(err => {
+        alert('Error deleting contact: ' + JSON.stringify(err))
+      })
     }
   }
 })
