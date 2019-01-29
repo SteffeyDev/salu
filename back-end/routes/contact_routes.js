@@ -1,4 +1,4 @@
-const User = require('../../models/User.js');
+const User = require('../models/User.js');
 
 module.exports = function(app, passport) {
 
@@ -16,26 +16,30 @@ module.exports = function(app, passport) {
     });
   });
 
-  //Gets all contacts that match query
-  app.get('/contacts'', (req, res) => {
-    User.findOne({ email: email }, (err, user) => {
-      const searchQuery = req.body;
-      if (err) {
-        res.send({'error': 'An error has occurred'});
-      } else {
-        res.send(user.contacts.find(searchQuery));
-      }
-      }
-    });
-});
-
   //Get all contacts
   app.get('/contacts', (req,res) => {
     User.findOne({ email: req.user.email }, (err, user) => {
       if (err) {
         res.send({'error': 'An error has occurred'});
       } else {
-        res.send(user.contacts);
+
+        // remove this line, just temp to get it working
+        return res.send(user.contacts)
+
+        // /contacts?search="<search>"
+        const search = req.query.search;
+        res.send(user.contacts.find({ $or: [
+          { first:   new RegExp(search, 'i'),
+            last:    new RegExp(search, 'i'),
+            email:   new RegExp(search, 'i'),
+            phone:   new RegExp(search, 'i'),
+            street:  new RegExp(search, 'i'),
+            city:    new RegExp(search, 'i'),
+            state:   new RegExp(search, 'i'),
+            zipcode: new RegExp(search, 'i'),
+            tags:    new RegExp(search, 'i'),
+            notes:   new RegExp(search, 'i'),}
+        ] }));
       }
     });
   });
@@ -43,15 +47,14 @@ module.exports = function(app, passport) {
   //Deletes contacts by ID
   app.delete('/contacts/:id', (req,res) => {
     User.findOne({ email: req.user.email }, (err, user) => {
-      const contact = user.contacts.id(req.params.id);
       if (err) {
         res.send({'error' : 'An error has occurred'});
       } else {
-        user.contacts.deleteOne(contact);
+        const contact = user.contacts.id(req.params.id).remove();
 
         user.save(err => {
           if (err) res.status(400).send({error: err});
-          else res.send(contact + ' has been removed.');
+          else res.send(contact.id + ' has been removed.');
         });
       }
     });
@@ -64,12 +67,10 @@ module.exports = function(app, passport) {
       if (err) {
         res.send({'error' : 'An error has occurred'});
       } else {
-        user.contacts.update(contact, req.body);
-        var newContact = user.contacts[0];
-
+        contact.set(req.body);
         user.save(err => {
           if (err) res.status(400).send({error: err});
-          else res.send(newContact)
+          else res.send(contact)
         });
       }
     });

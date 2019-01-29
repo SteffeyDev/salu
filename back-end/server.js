@@ -22,7 +22,7 @@ mongoose.connect(config.MONGO_URI, { useNewUrlParser: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
-  require('./app/routes')(app, passport);
+  require('./routes')(app, passport);
 
   app.listen(config.LISTEN_PORT, () => {
     console.log('The API is live on ' + config.LISTEN_PORT);

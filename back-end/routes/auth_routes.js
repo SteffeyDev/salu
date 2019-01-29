@@ -1,5 +1,5 @@
-const User = require('../../models/User.js');
-const config = require('../../config.js');
+const User = require('../models/User.js');
+const config = require('../config.js');
 const jwt = require('jsonwebtoken');
 
 module.exports = function(app, passport) {
@@ -44,4 +44,8 @@ module.exports = function(app, passport) {
     res.status(200).send();
   });
 
+  //Auto-login users if they still have a valid jwt
+  app.get('/auth/autologin', passport.authenticate('jwt', { session: false }), (req,res) => {
+    sendJwt(req.user, res);
+  });
 };

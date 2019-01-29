@@ -13,6 +13,8 @@
 import Login from './components/Login.vue'
 import Home from './components/Home.vue'
 import { mapState } from 'vuex'
+import axios from 'axios'
+import { api } from './config.js'
 
 export default {
   name: 'app',
@@ -21,6 +23,9 @@ export default {
   computed: mapState({
     authenticated: state => state.authenticated
   }),
+  mounted() {
+    axios.get(api + '/auth/autologin').then(({ data }) => this.$store.commit('login', data))
+  },
   components: {
     Login,
     Home

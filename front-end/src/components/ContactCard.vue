@@ -2,7 +2,10 @@
   <b-card class="text-left">
     <div class="d-flex justify-content-between align-items-center mb-2">
       <h5 class="card-title mb-0">{{ contact.first }} {{ contact.last }}</h5>
-      <button @click="editContact(contact._id)" class="btn btn-light btn-sm ml-3"><i class="fas fa-edit"></i></button>
+      <div class="ml-3">
+        <b-button @click="editContact(contact._id)" variant="light" size="sm"><i class="fas fa-edit"></i></b-button>
+        <b-button @click="deleteContact(contact._id)" variant="danger" size="sm" class="ml-1"><i class="fas fa-trash"></i></b-button>
+      </div>
     </div>
     <p class="mb-1" v-show="contact.email"><i class="fas fa-envelope mr-2"></i><a :href="'mailto:' + contact.email">{{ contact.email }}</a></p>
     <p class="mb-1" v-show="contact.phone"><i class="fas fa-phone mr-2"></i><a :href="'tel:' + contact.phone">{{ contact.phone }}</a></p>
@@ -26,6 +29,9 @@ export default {
   methods: {
     editContact(id) {
       this.$store.commit('editContact', id)
+    },
+    deleteContact(id) {
+      this.$store.dispatch('deleteContact', id)
     }
   },
   computed: mapState({

@@ -9,10 +9,11 @@ module.exports = {
       issuer: 'salu.pro'
     },
     cookie: {
+      domain: '.salu.pro',
       httpOnly: true,
       sameSite: true,
       signed: true,
-      secure: true
+      secure: false
     }
   }
 };
