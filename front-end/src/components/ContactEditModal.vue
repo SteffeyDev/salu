@@ -38,7 +38,7 @@
       <!--State Dropdown-->
       <b-col cols="6" sm="2">
         <label for="inputState">State</label>
-        <b-form-select size v-model="contact.state" :options="states" v-model="contact.state" />
+        <b-form-select size :options="states" v-model="contact.state" />
       </b-col>
       <!--Zip-->
       <b-col cols="6" sm="4">
