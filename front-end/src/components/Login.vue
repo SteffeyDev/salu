@@ -8,7 +8,7 @@
         <!--Logo-->
         <b-row class="justify-content-center">
           <b-col cols="2">
-            <img alt="Salu.pro logo" src="../assets/saluLogo.png" class="img-fluid pt-4 pb-3">
+            <img alt="Salu.pro logo" src="../assets/saluLogo2.png" class="img-fluid pt-4 pb-3">
           </b-col>
         </b-row>
 
@@ -19,7 +19,7 @@
             <b-form>
               <!--Username-->
               <b-form-group>
-                <b-row>
+                <b-row align-v="center">
                   <b-col cols="2">
                     <label for="inputUsername">Username</label>
                   </b-col>
@@ -30,7 +30,7 @@
               </b-form-group>
               <!--Password-->
               <b-form-group>
-                <b-row>
+                <b-row align-v="center">
                   <b-col cols="2">
                     <label for="inputPassword">Password</label>
                   </b-col>
@@ -57,7 +57,7 @@
       <b-container fluid v-if="!loginScreen">
         <b-row>
           <b-col cols="6" class="vertical-center">
-            <img alt="Salu.pro logo" src="../assets/saluLogo.png" class="img-fluid">
+            <img alt="Salu.pro logo" src="../assets/saluLogo2.png" class="img-fluid">
           </b-col>
 
           <b-col>
