@@ -112,13 +112,13 @@ export default {
             first: '',
             last: '',
             email: '',
-            phone: '',
-            street: '',
-            city: '',
-            state: '',
-            zipcode: '',
+            phone: null,
+            street: null,
+            city: null,
+            state: null,
+            zipcode: null,
             tags: [],
-            notes: ''
+            notes: null 
           }
         } else {
           this.contact = Object.assign({}, this.$store.state.contacts.filter(c => c._id === id)[0])
