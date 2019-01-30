@@ -13,7 +13,6 @@
         </b-row>
 
         <!--Align all content in the center - take up half of container-->
-        <b-row align-h="center">
         <b-row class="justify-content-center">
           <b-col cols="11" sm="8" md="6" lg="5" class="bg-light shadow-sm p-3 mb-5 rounded">
             <b-row class="justify-content-center pb-2 h1 font-weight-normal">Salu.pro</b-row>
@@ -73,12 +72,13 @@
                         <img alt="Salu.pro logo" src="../assets/saluLogo.png" height="80px">
                       </b-row>
                     </b-col>
-                  <b-row class="justify-content-start pl-2 pt-2">
-                    <!--Clicking return button changes "loginScreen" variable-->
-                    <b-button type="button" variant="light" v-on:click="loginScreen = true">
-                      <span class="far fa-arrow-alt-circle-left"><!--Reference to icon from FontAwesome--></span>
-                      Return To Login
-                    </b-button>
+                    <b-row class="justify-content-start pl-2 pt-2">
+                      <!--Clicking return button changes "loginScreen" variable-->
+                      <b-button type="button" variant="light" v-on:click="loginScreen = true">
+                        <span class="far fa-arrow-alt-circle-left"><!--Reference to icon from FontAwesome--></span>
+                        Return To Login
+                      </b-button>
+                    </b-row>
                   </b-row>
                 </b-form-group>
                 <b-row align-h="center">
