@@ -3,7 +3,7 @@
     <div class="d-flex justify-content-between align-items-center mb-2">
       <h5 class="card-title mb-0">{{ contact.first }} {{ contact.last }}</h5>
       <div class="ml-3">
-        <b-button @click="editContact(contact._id)" variant="light" size="sm"><i class="fas fa-edit"></i></b-button>
+        <b-button @click="editContact(contact._id)" variant="secondary" size="sm"><i class="fas fa-edit"></i></b-button>
         <b-button @click="deleteContact(contact._id)" variant="danger" size="sm" class="ml-1"><i class="fas fa-trash"></i></b-button>
       </div>
     </div>

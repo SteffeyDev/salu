@@ -7,14 +7,14 @@
       <b-container fluid v-if="loginScreen">
         <!--Logo-->
         <b-row class="justify-content-center">
-          <b-col cols="2">
+          <b-col cols="4" sm="3" md="2">
             <img alt="Salu.pro logo" src="../assets/saluLogo.png" class="img-fluid pt-4 pb-3">
           </b-col>
         </b-row>
 
         <!--Align all content in the center - take up half of container-->
         <b-row class="justify-content-center">
-          <b-col cols="6" class="bg-light shadow-sm p-3 mb-5 rounded">
+          <b-col cols="11" sm="8" md="6" lg="5" class="bg-light shadow-sm p-3 mb-5 rounded">
             <b-row class="justify-content-center pb-2 h1 font-weight-normal">Salu.pro</b-row>
             <b-form>
               <!--Username-->
@@ -40,14 +40,11 @@
                 </b-row>  
               </b-form-group>
               <!--Buttons-->
-              <b-form-row class="justify-content-end">
+              <div class="d-flex justify-content-end">
                 <!--Clicking signup button changes "loginScreen" variable-->
-                <b-button variant="info" class="mr-4 p-xs-0 p-sm-1 p-md-2" v-on:click="loginScreen = false">
-                  Sign Up
-                  <span class="fas fa-pencil-alt"><!--Reference to icon from FontAwesome--></span>
-                </b-button>
-                <b-button type="button" variant="dark" class="ml-4 p-xs-0 p-sm-1 p-md-2" v-on:click="login">Login</b-button>
-              </b-form-row>
+                <b-button variant="info" class="mr-1" v-on:click="loginScreen = false"><i class="fas fa-pencil-alt"></i> Sign Up</b-button>
+                <b-button type="button" variant="dark" class="ml-1" v-on:click="login"><i class="fas fa-sign-in-alt"></i> Login</b-button>
+              </div>
             </b-form>
           </b-col>
         </b-row>
@@ -67,7 +64,7 @@
 
                 <!--Return Button-->
                 <b-form-group>
-                  <b-row class="justify-content-end pr-2 pt-2">
+                  <b-row class="justify-content-start pl-2 pt-2">
                     <!--Clicking return button changes "loginScreen" variable-->
                     <b-button type="button" variant="light" v-on:click="loginScreen = true">
                       <span class="far fa-arrow-alt-circle-left"><!--Reference to icon from FontAwesome--></span>

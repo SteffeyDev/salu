@@ -31,7 +31,8 @@ export default {
 </script>
 
 <style lang="scss">
-$info: orange;
+$info: #F19D39;
+$primary: #39ADAF;
 @import "~bootstrap/scss/bootstrap.scss";
 @import '~bootstrap-vue/dist/bootstrap-vue.css';
 
