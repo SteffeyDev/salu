@@ -26,18 +26,17 @@ module.exports = function(app, passport) {
         // /contacts?search="<search>"
         const search = req.query.search;
         if (search && search.length) {
-          res.send(user.contacts.find({ $or: [
-            { first:   new RegExp(search, 'i'),
-              last:    new RegExp(search, 'i'),
-              email:   new RegExp(search, 'i'),
-              phone:   new RegExp(search, 'i'),
-              street:  new RegExp(search, 'i'),
-              city:    new RegExp(search, 'i'),
-              state:   new RegExp(search, 'i'),
-              zipcode: new RegExp(search, 'i'),
-              tags:    new RegExp(search, 'i'),
-              notes:   new RegExp(search, 'i'),}
-          ] }));
+          res.send(user.contacts.filter(contact =>
+            contact.first.indexOf(search) > -1 ||
+            contact.last.indexOf(search) > -1 ||
+            contact.email.indexOf(search) > -1 ||
+            contact.phone.indexOf(search) > -1 ||
+            contact.street.indexOf(search) > -1 ||
+            contact.city.indexOf(search) > -1 ||
+            contact.state.indexOf(search) > -1 ||
+            contact.zipcode.indexOf(search) > -1 ||
+            contact.notes.indexOf(search) > -1 ||
+            contact.tags.filter(tag => tag.indexOf(search) > -1).length > 0));
         } else {
           return res.send(user.contacts);
         }
