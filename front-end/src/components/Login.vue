@@ -1,7 +1,7 @@
 <template>
   <div id="login">
     <!--Gradient Background-->
-    <div class="jumbotron-bg   bg-gradient-light">
+    <div class="jumbotron-bg bg-gradient-light">
 
     <!--Login Screen-->
       <b-container fluid v-if="loginScreen">
@@ -42,7 +42,7 @@
               <!--Buttons-->
               <b-form-row class="justify-content-end">
                 <!--Clicking signup button changes "loginScreen" variable-->
-                <b-button variant="primary" class="mr-4 p-xs-0 p-sm-1 p-md-2" v-on:click="loginScreen = false">
+                <b-button variant="info" class="mr-4 p-xs-0 p-sm-1 p-md-2" v-on:click="loginScreen = false">
                   Sign Up
                   <span class="fas fa-pencil-alt"><!--Reference to icon from FontAwesome--></span>
                 </b-button>
@@ -104,7 +104,7 @@
                     <b-row class="justify-content-center">
                       <b-col cols="1"><!--Empty column for right alignment--></b-col>
                       <!--Clicking signup button changes "loginScreen" variable-->
-                      <b-button type="button" variant="primary" class="p-xs-0 p-sm-1 p-md-2" v-on:click="signup">
+                      <b-button type="button" variant="info" class="p-xs-0 p-sm-1 p-md-2" v-on:click="signup">
                         Sign Up
                         <span class="fas fa-pencil-alt"><!--Reference to icon from FontAwesome--></span>
                       </b-button>
@@ -161,5 +161,19 @@
 </script>
 
 <style>
-  
+.force-full-height {
+  height: 100vh;
+}
+
+.jumbotron-bg {
+  width: 100vw;
+  height: 100vh;
+}
+
+.vertical-center {
+  min-height: 100%; /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+  display: flex;
+  align-items: center;
+}
 </style>

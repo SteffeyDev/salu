@@ -30,25 +30,18 @@ export default {
 }
 </script>
 
+<style lang="scss">
+$info: orange;
+@import "~bootstrap/scss/bootstrap.scss";
+@import '~bootstrap-vue/dist/bootstrap-vue.css';
+
+.btn-info {
+  color: white !important;
+}
+</style>
+
 <style>
-
-  .force-full-height{
-    height: 100vh;
-  }
-
-  .jumbotron-bg{
-    width: 100vw;
-    height: 100vh;
-  }
-
-  .bg-gradient-light {
-    background: linear-gradient(to bottom right, #185a9d, #43cea2)
-  }
-
-  .vertical-center {
-    min-height: 100%; /* Fallback for browsers do NOT support vh unit */
-    min-height: 100vh; /* These two lines are counted as one :-)       */
-    display: flex;
-    align-items: center;
-  }
+.bg-gradient-light {
+  background: linear-gradient(to bottom right, #185a9d, #43cea2)
+}
 </style>
