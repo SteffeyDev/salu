@@ -5,9 +5,17 @@
       <b-button @click="logOut" variant="secondary" size="sm">Log out</b-button>
     </b-navbar>
     <div class="px-2">
-      <div class="search w-100 my-4 px-3">
-        <span class="fas fa-search fa-2x"></span>
-        <b-form-input size="lg" type="search" placeholder="Search your contacts" :value="searchText" @input="search" />
+      <div class="d-flex flex-row">
+        <button @click="newContact">
+          <span class="fa-layers fa-fw fa-3x">
+            <i class="fas fa-circle text-primary"></i>
+            <i class="fa-inverse fas fa-plus" data-fa-transform="shrink-6"></i>
+          </span>
+        </button>
+        <div class="search flex-fill my-4 px-3">
+          <span class="fas fa-search fa-2x"></span>
+          <b-form-input size="lg" type="search" placeholder="Search your contacts" :value="searchText" @input="search" />
+        </div>
       </div>
       <div v-if="layout === 'compact'">
         <b-tabs pills fill v-model="tabIndex">
@@ -96,6 +104,9 @@ export default {
     },
     selectTag(tag) {
       this.$store.commit('search', tag)
+    },
+    newContact() {
+      this.$store.commit('newContact')
     }
   },
   mounted() {

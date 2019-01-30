@@ -22,7 +22,7 @@ export default () => new Vuex.Store({
     ],
     searchText: null,
     editContactId: null,
-    authenticated: false,
+    authenticated: true,
     user: null
   },
   getters: {
@@ -43,6 +43,7 @@ export default () => new Vuex.Store({
       state.user = (({ username, email }) => ({ username, email }))(user) // Only store the username and email
     },
     editContact: (state, id) => { state.editContactId = id },
+    newContact: (state) => { state.editContactId = 'new' },
     endEditing: (state) => { state.editContactId = null }
   },
   actions: {
