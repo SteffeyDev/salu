@@ -1,1 +1,3 @@
-sudo node back-end/server.js
+echo "Loading..."
+cd back-end
+sudo node server.js
