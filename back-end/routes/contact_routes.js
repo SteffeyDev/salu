@@ -30,16 +30,13 @@ module.exports = function(app, passport) {
         // /contacts?search="<search>"
         const search = req.query.search;
         if (search && search.length) {
-          const s = search.toLowerCase();
+          const s = search.toLowerCase().replace(' ', '');
           res.send(user.contacts.filter(contact =>
-            match(contact.first, s) ||
+            match(contact.first + contact.last, s) ||
             match(contact.last, s) ||
             match(contact.email, s) ||
             match(contact.phone, s) ||
-            match(contact.street, s) ||
-            match(contact.city, s) ||
-            match(contact.state, s) ||
-            match(contact.zipcode, s) ||
+            match(contact.street + contact.city + contact.state + contact.zipcode, s) ||
             match(contact.notes, s) ||
             contact.tags.filter(tag => match(tag, s)).length > 0));
         } else {
