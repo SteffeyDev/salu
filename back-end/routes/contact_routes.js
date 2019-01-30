@@ -16,6 +16,10 @@ module.exports = function(app, passport) {
     });
   });
 
+  function match(field, search) {
+    return field && search && field.toLowerCase().indexOf(search) > -1;
+  }
+
   //Get all contacts
   app.get('/contacts', (req,res) => {
     User.findOne({ email: req.user.email }, (err, user) => {
@@ -26,17 +30,18 @@ module.exports = function(app, passport) {
         // /contacts?search="<search>"
         const search = req.query.search;
         if (search && search.length) {
+          const s = search.toLowerCase();
           res.send(user.contacts.filter(contact =>
-            contact.first.indexOf(search) > -1 ||
-            contact.last.indexOf(search) > -1 ||
-            contact.email.indexOf(search) > -1 ||
-            contact.phone.indexOf(search) > -1 ||
-            contact.street.indexOf(search) > -1 ||
-            contact.city.indexOf(search) > -1 ||
-            contact.state.indexOf(search) > -1 ||
-            contact.zipcode.indexOf(search) > -1 ||
-            contact.notes.indexOf(search) > -1 ||
-            contact.tags.filter(tag => tag.indexOf(search) > -1).length > 0));
+            match(contact.first, s) ||
+            match(contact.last, s) ||
+            match(contact.email, s) ||
+            match(contact.phone, s) ||
+            match(contact.street, s) ||
+            match(contact.city, s) ||
+            match(contact.state, s) ||
+            match(contact.zipcode, s) ||
+            match(contact.notes, s) ||
+            contact.tags.filter(tag => match(tag, s)).length > 0));
         } else {
           return res.send(user.contacts);
         }
