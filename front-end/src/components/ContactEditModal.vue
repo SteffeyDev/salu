@@ -1,6 +1,6 @@
 <template>
   <b-modal v-if="contact" v-model="showModal" ok-title="Save" size="lg" header-bg-variant="primary" header-text-variant="white"
-           hide-header-close :title="contact.first + ' ' + contact.last" @ok="saveContact" @hidden="afterHidden">
+           hide-header-close :title="cardTitle" @ok="saveContact" @hidden="afterHidden">
     <!--Name-->
     <b-form-group>
       <b-form-row>
@@ -79,6 +79,18 @@ export default {
     name() {
       return this.contact.firstName + ' ' + this.contact.lastName;
     },
+    cardTitle() {
+      if (this.contactId === 'new')
+        return 'New Contact'
+      else if (this.contact.first && this.contact.first.length > 0 && this.contact.last && this.contact.last.length)
+        return this.contact.first + ' ' + this.contact.last
+      else if (this.contact.first && this.contact.first.length > 0)
+        return this.contact.first
+      else if (this.contact.last && this.contact.first.last > 0)
+        return this.contact.last
+      else
+        return 'Edit Contact'
+    },
     address(choice) {
       if (choice == 'street')
         return this.contact.street
@@ -95,7 +107,22 @@ export default {
   watch: {
     contactId(id) {
       if (id) {
-        this.contact = Object.assign({}, this.$store.state.contacts.filter(c => c._id === id)[0])
+        if (id === 'new') {
+          this.contact = {
+            first: '',
+            last: '',
+            email: '',
+            phone: null,
+            street: null,
+            city: null,
+            state: null,
+            zipcode: null,
+            tags: [],
+            notes: null 
+          }
+        } else {
+          this.contact = Object.assign({}, this.$store.state.contacts.filter(c => c._id === id)[0])
+        }
         this.showModal = true
       }
     }

@@ -10,9 +10,7 @@ import { mapState } from 'vuex'
 
 export default {
   computed: mapState({
-    contacts() {
-      return this.$store.getters.searchContacts
-    }
+    contacts: 'searchContacts'
   }),
   components: {
     ContactCard

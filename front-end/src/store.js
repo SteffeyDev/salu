@@ -21,12 +21,10 @@ export default () => new Vuex.Store({
     }
     ],
     searchText: null,
+    searchContacts: [],
     editContactId: null,
     authenticated: false,
     user: null
-  },
-  getters: {
-    searchContacts: state => state.contacts.filter(contact => state.searchText ? state.searchText.indexOf(contact.first) > -1 || state.searchText.indexOf(contact.last) > -1 || contact.tags.indexOf(state.searchText) > -1 : true)
   },
   mutations: {
     setContacts: (state, contacts) => { state.contacts = contacts },
@@ -36,13 +34,21 @@ export default () => new Vuex.Store({
       Vue.set(state.contacts, index, contact)
     },
     deleteContact: (state, id) => state.contacts.splice(state.contacts.findIndex(c => c._id === id), 1),
-    search: (state, text) => { state.searchText = text },
+    search: (state, text) => {
+      if (text && text.length) {
+        state.searchText = text
+        axios.get(api + '/contacts?search=' + encodeURIComponent(text)).then(({ data }) => { state.searchContacts = data })
+      } else {
+        state.searchContacts = []
+      }
+    },
     logout: (state) => { state.authenticated = false },
     login: (state, user) => {
       state.authenticated = true
       state.user = (({ username, email }) => ({ username, email }))(user) // Only store the username and email
     },
     editContact: (state, id) => { state.editContactId = id },
+    newContact: (state) => { state.editContactId = 'new' },
     endEditing: (state) => { state.editContactId = null }
   },
   actions: {

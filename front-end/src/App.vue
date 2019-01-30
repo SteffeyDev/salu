@@ -1,9 +1,6 @@
 <template>
   <div id="app">
     <!--FontAwesome stylesheet reference-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
-          crossorigin="anonymous">
     <Home v-if="authenticated" />
     <Login v-else />
   </div>
@@ -34,27 +31,36 @@ export default {
 </script>
 
 <style>
+  .vertical-center {
+    min-height: 100%; /* Fallback for browsers do NOT support vh unit */
+    min-height: 100vh; /* These two lines are counted as one :-)       */
+    display: flex;
+    align-items: center;
+  }
 
   .force-full-height{
     min-height: 100%;
     min-height: 100vh;
   }
 
-    .jumbotron-bg {
-      width: 100vw;
-      min-height: 100%;
-      min-height: 100vh;
-      margin: 0 0 0 0;
-    }
+  .jumbotron-bg {
+    width: 100vw;
+    min-height: 100%;
+    min-height: 100vh;
+  }
 
   .bg-gradient-light {
     background: linear-gradient(to bottom right, #185a9d, #43cea2);
   }
+</style>
 
-  .vertical-center {
-    min-height: 100%; /* Fallback for browsers do NOT support vh unit */
-    min-height: 100vh; /* These two lines are counted as one :-)       */
-    display: flex;
-    align-items: center;
+<style lang="scss">
+  $info: #F19D39;
+  $primary: #39ADAF;
+  @import "~bootstrap/scss/bootstrap.scss";
+  @import '~bootstrap-vue/dist/bootstrap-vue.css';
+
+  .btn-info {
+    color: white !important;
   }
 </style>

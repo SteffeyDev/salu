@@ -1,0 +1,3 @@
+echo "Loading..."
+cd back-end
+sudo node server.js

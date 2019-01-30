@@ -1,13 +1,24 @@
 <template>
   <div id="home">
-    <b-navbar type="light">
-      <a class="navbar-brand" href="#"><img alt="Vue logo" src="../assets/Salu-Pro-Logo.gif" width="30px"> Salu.pro</a>
-      <b-button @click="logOut" variant="secondary" size="sm">Log out</b-button>
+    <b-navbar type="light" class="bg-gradient-light">
+      <a class="navbar-brand text-white d-flex" href="#"><img class="mr-1" alt="Vue logo" src="../assets/saluLogo.png" width="30px" height="30px"> <h4 class="m-0">Salu.pro</h4></a>
+      <div class="d-flex flex-row align-items-center">
+      <span v-if="user" class="mr-4 d-none d-sm-block text-white"><i class="fas fa-user"></i> {{ user.username }}</span>
+      <b-button @click="logOut" variant="info" size="sm"><i class="fas fa-sign-out-alt"></i> Log out</b-button>
+      </div>
     </b-navbar>
     <div class="px-2">
-      <div class="search w-100 my-4 px-3">
-        <span class="fas fa-search fa-2x"></span>
-        <b-form-input size="lg" type="search" placeholder="Search your contacts" :value="searchText" @input="search" />
+      <div class="d-flex flex-row">
+        <button @click="newContact">
+          <span class="fa-layers fa-fw fa-3x">
+            <i class="fas fa-circle text-primary"></i>
+            <i class="fa-inverse fas fa-plus" data-fa-transform="shrink-6"></i>
+          </span>
+        </button>
+        <div class="search flex-fill my-4 px-3">
+          <span class="fas fa-search fa-2x"></span>
+          <b-form-input size="lg" type="search" placeholder="Search your contacts" :value="searchText" @input="search" />
+        </div>
       </div>
       <div v-if="layout === 'compact'">
         <b-tabs pills fill v-model="tabIndex">
@@ -65,6 +76,7 @@ export default {
   }),
   computed: mapState({
     searchText: 'searchText',
+    user: 'user',
     layout() {
       if (this.windowWidth < 600)
         return 'compact'
@@ -76,8 +88,8 @@ export default {
         return allTags
       }, new Set()))
     },
-    noContacts() {
-      return this.$store.getters.searchContacts.length === 0
+    noContacts(state) {
+      return state.searchContacts.length === 0
     }
   }),
   watch: {
@@ -96,6 +108,9 @@ export default {
     },
     selectTag(tag) {
       this.$store.commit('search', tag)
+    },
+    newContact() {
+      this.$store.commit('newContact')
     }
   },
   mounted() {
