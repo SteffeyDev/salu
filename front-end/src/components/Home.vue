@@ -4,7 +4,7 @@
       <a class="navbar-brand text-white d-flex" href="#"><img class="mr-1" alt="Vue logo" src="../assets/saluLogo.png" width="30px" height="30px"> <h4 class="m-0">Salu.pro</h4></a>
       <div class="d-flex flex-row align-items-center">
       <span v-if="user" class="mr-4 d-none d-sm-block text-white"><i class="fas fa-user"></i> {{ user.username }}</span>
-      <b-button @click="logOut" variant="info" size="sm">Log out</b-button>
+      <b-button @click="logOut" variant="info" size="sm"><i class="fas fa-sign-out-alt"></i> Log out</b-button>
       </div>
     </b-navbar>
     <div class="px-2">
