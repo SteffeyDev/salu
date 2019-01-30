@@ -1,9 +1,9 @@
 <template>
   <div id="login">
     <!--Gradient Background-->
-    <div class="jumbotron-bg   bg-gradient-light">
+    <div class="bg-gradient-light jumbotron-bg">
 
-    <!--Login Screen-->
+      <!--Login Screen-->
       <b-container fluid v-if="loginScreen">
         <!--Logo-->
         <b-row class="justify-content-center">
@@ -13,31 +13,31 @@
         </b-row>
 
         <!--Align all content in the center - take up half of container-->
-        <b-row class="justify-content-center">
+        <b-row align-h="center">
           <b-col cols="6" class="bg-light shadow-sm p-3 mb-5 rounded">
             <b-row class="justify-content-center pb-2 h1 font-weight-normal">Salu.pro</b-row>
             <b-form>
               <!--Username-->
               <b-form-group>
-                <b-row align-v="center">
-                  <b-col cols="2">
-                    <label for="inputUsername">Username or Email</label>
+                <b-form-row class="text-right">
+                  <b-col cols="2" align-self="center" class="mr-2">
+                    <label for="inputUsername">Username<br>or Email</label>
                   </b-col>
-                  <b-col>
-                    <b-input type="text" id="inputUsername" v-model="username" />
+                  <b-col align-self="center">
+                    <b-input type="text" id="inputUsername" v-mo del="username" />
                   </b-col>
-                </b-row>
+                </b-form-row>
               </b-form-group>
               <!--Password-->
               <b-form-group>
-                <b-row align-v="center">
-                  <b-col cols="2">
+                <b-form-row class="text-right">
+                  <b-col cols="2" align-self="center" class="mr-2">
                     <label for="inputPassword">Password</label>
                   </b-col>
-                  <b-col>
+                  <b-col align-self="center">
                     <b-input type="password" id="inputPassword" v-model="password" />
                   </b-col>
-                </b-row>  
+                </b-form-row>
               </b-form-group>
               <!--Buttons-->
               <b-form-row class="justify-content-end">
@@ -56,18 +56,25 @@
       <!--Signup Screen-->
       <b-container fluid v-if="!loginScreen">
         <b-row>
-          <b-col cols="6" class="vertical-center">
-            <img alt="Salu.pro logo" src="../assets/saluLogo.png" class="img-fluid">
+          <b-col md="6" align-self="center" class="d-none d-md-block">
+            <b-row align-h="center"><img alt="Salu.pro logo" src="../assets/saluLogo.png"></b-row>
           </b-col>
 
           <b-col>
-            <!--Align all content in the center - take up 10/12ths of column-->
-            <b-row class="justify-content-center">
+            <!--Align all content in the center-->
+            <b-row align-h="center">
               <b-col class="shadow-sm bg-light force-full-height">
 
-                <!--Return Button-->
+                <!--Logo and Return Button-->
                 <b-form-group>
-                  <b-row class="justify-content-end pr-2 pt-2">
+                  <b-row align-h="between" class="pr-2 pt-2">
+                    <b-col cols="2"></b-col>
+                    <!--Hidden medium size devices and up-->
+                    <b-col cols="2">
+                      <b-row align-h="center" class="d-md-none">
+                        <img alt="Salu.pro logo" src="../assets/saluLogo.png" height="80px">
+                      </b-row>
+                    </b-col>
                     <!--Clicking return button changes "loginScreen" variable-->
                     <b-button type="button" variant="light" v-on:click="loginScreen = true">
                       <span class="far fa-arrow-alt-circle-left"><!--Reference to icon from FontAwesome--></span>
@@ -75,7 +82,11 @@
                     </b-button>
                   </b-row>
                 </b-form-group>
-                <b-row class="justify-content-center text-center h1">Sign Up For Salu.pro</b-row>
+                <b-row align-h="center">
+                  <div class="text-center h1">
+                    Sign Up For Salu.pro
+                  </div>
+                </b-row>
 
                 <b-form>
                   <!--Username-->
@@ -99,9 +110,9 @@
                     <b-input type="email" id="inputEmail" placeholder="email@example.com" v-model="email" />
                     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                   </b-form-group>
-                  <!--Sign-up-->
+                  <!--Sign-up Button-->
                   <b-form-group>
-                    <b-row class="justify-content-center">
+                    <b-row align-h="center">
                       <b-col cols="1"><!--Empty column for right alignment--></b-col>
                       <!--Clicking signup button changes "loginScreen" variable-->
                       <b-button type="button" variant="primary" class="p-xs-0 p-sm-1 p-md-2" v-on:click="signup">
@@ -140,7 +151,7 @@
             email: this.email,
             username: this.username,
             password: this.password
-          }, {withCredentials: true}).then(({ data }) => this.$store.commit('login', data))
+          }, { withCredentials: true }).then(({ data }) => this.$store.commit('login', data))
             .catch(() => alert("Error creating account"))
         } else {
           alert("Passwords do not match")
@@ -151,7 +162,7 @@
         axios.post(api + "/auth/login", {
           username: this.username,
           password: this.password
-        }, {withCredentials: true}).then(({ data }) => this.$store.commit('login', data))
+        }, { withCredentials: true }).then(({ data }) => this.$store.commit('login', data))
           .catch(() => alert("Error logging in"))
       }
     },
@@ -161,5 +172,4 @@
 </script>
 
 <style>
-  
 </style>

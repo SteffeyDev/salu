@@ -36,16 +36,19 @@ export default {
 <style>
 
   .force-full-height{
-    height: 100vh;
+    min-height: 100%;
+    min-height: 100vh;
   }
 
-  .jumbotron-bg{
-    width: 100vw;
-    height: 100vh;
-  }
+    .jumbotron-bg {
+      width: 100vw;
+      min-height: 100%;
+      min-height: 100vh;
+      margin: 0 0 0 0;
+    }
 
   .bg-gradient-light {
-    background: linear-gradient(to bottom right, #185a9d, #43cea2)
+    background: linear-gradient(to bottom right, #185a9d, #43cea2);
   }
 
   .vertical-center {
