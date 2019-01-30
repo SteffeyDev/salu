@@ -88,8 +88,8 @@ export default {
         return allTags
       }, new Set()))
     },
-    noContacts() {
-      return this.$store.getters.searchContacts.length === 0
+    noContacts(state) {
+      return state.searchContacts.length === 0
     }
   }),
   watch: {

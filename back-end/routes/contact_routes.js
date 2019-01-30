@@ -23,23 +23,24 @@ module.exports = function(app, passport) {
         res.send({'error': 'An error has occurred'});
       } else {
 
-        // remove this line, just temp to get it working
-        return res.send(user.contacts)
-
         // /contacts?search="<search>"
         const search = req.query.search;
-        res.send(user.contacts.find({ $or: [
-          { first:   new RegExp(search, 'i'),
-            last:    new RegExp(search, 'i'),
-            email:   new RegExp(search, 'i'),
-            phone:   new RegExp(search, 'i'),
-            street:  new RegExp(search, 'i'),
-            city:    new RegExp(search, 'i'),
-            state:   new RegExp(search, 'i'),
-            zipcode: new RegExp(search, 'i'),
-            tags:    new RegExp(search, 'i'),
-            notes:   new RegExp(search, 'i'),}
-        ] }));
+        if (search && search.length) {
+          res.send(user.contacts.find({ $or: [
+            { first:   new RegExp(search, 'i'),
+              last:    new RegExp(search, 'i'),
+              email:   new RegExp(search, 'i'),
+              phone:   new RegExp(search, 'i'),
+              street:  new RegExp(search, 'i'),
+              city:    new RegExp(search, 'i'),
+              state:   new RegExp(search, 'i'),
+              zipcode: new RegExp(search, 'i'),
+              tags:    new RegExp(search, 'i'),
+              notes:   new RegExp(search, 'i'),}
+          ] }));
+        } else {
+          return res.send(user.contacts);
+        }
       }
     });
   });
