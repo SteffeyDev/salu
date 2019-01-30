@@ -23,7 +23,7 @@ export default () => new Vuex.Store({
     searchText: null,
     searchContacts: [],
     editContactId: null,
-    authenticated: true,
+    authenticated: false,
     user: null
   },
   mutations: {

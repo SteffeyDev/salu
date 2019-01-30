@@ -59,8 +59,8 @@
 
           <b-col>
             <!--Align all content in the center - take up 10/12ths of column-->
-            <b-row class="justify-content-center">
-              <b-col class="shadow-sm bg-light force-full-height">
+            <b-row class="justify-content-center h-100">
+              <b-col class="shadow-sm bg-light h-100">
 
                 <!--Return Button-->
                 <b-form-group>
@@ -158,13 +158,9 @@
 </script>
 
 <style>
-.force-full-height {
-  height: 100vh;
-}
-
 .jumbotron-bg {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .vertical-center {
