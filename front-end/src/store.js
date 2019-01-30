@@ -35,8 +35,12 @@ export default () => new Vuex.Store({
     },
     deleteContact: (state, id) => state.contacts.splice(state.contacts.findIndex(c => c._id === id), 1),
     search: (state, text) => {
-      state.searchText = text
-      axios.get(api + '/contacts?search=' + encodeURIComponent(text)).then(({ data }) => { state.searchContacts = data })
+      if (text && text.length) {
+        state.searchText = text
+        axios.get(api + '/contacts?search=' + encodeURIComponent(text)).then(({ data }) => { state.searchContacts = data })
+      } else {
+        state.searchContacts = []
+      }
     },
     logout: (state) => { state.authenticated = false },
     login: (state, user) => {
