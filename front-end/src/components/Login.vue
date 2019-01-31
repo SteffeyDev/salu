@@ -8,36 +8,47 @@
         <!--Logo-->
         <b-row align-h="center">
           <b-col cols="4" sm="3" md="2">
-            <img alt="Salu.pro logo" src="../assets/saluLogo.png" class="img-fluid pt-4 pb-3">
+            <img alt="Salu.pro logo" src="../assets/saluLogo.png" class="img-fluid pt-4 pb-2">
           </b-col>
         </b-row>
+        <center class="text-white">
+          <h1 class="mb-1">Salu.pro</h1>
+          <p>Professional Contact Manager</p>
+        </center>
 
         <!--Align all content in the center - take up half of container-->
         <b-row align-h="center">
           <b-col cols="11" sm="8" md="6" lg="5" class="bg-light shadow-sm p-3 mb-5 rounded">
-            <b-row align-h="center" class="pb-2 h1 font-weight-normal">Salu.pro</b-row>
             <b-form>
               <!--Username-->
-              <b-form-group>
+              <b-form-group class="d-none d-md-block">
                 <b-form-row class="text-right">
-                  <b-col cols="2" align-self="center" class="mr-2 ml-n2">
-                    <label for="inputUsername">Username<br>or Email</label>
+                  <b-col cols="3" align-self="center" class="mr-2 ml-n2">
+                    <label class="m-0" for="inputUsername">Username<br>or Email</label>
                   </b-col>
                   <b-col align-self="center">
-                    <b-input type="text" id="inputUsername" v-mo del="username" />
+                    <b-input type="text" id="inputUsername" v-model="username" />
                   </b-col>
                 </b-form-row>
               </b-form-group>
+              <b-form-group class="d-block d-md-none">
+                <label for="inputUsername2">Username or Email</label>
+                <b-input type="text" id="inputUsername2" v-model="username" />
+              </b-form-group>
               <!--Password-->
-              <b-form-group>
+              <b-form-group class="d-none d-md-block">
                 <b-form-row class="text-right">
-                  <b-col cols="2" align-self="center" class="mr-2 ml-n2">
-                    <label for="inputPassword">Password</label>
+                  <b-col cols="3" align-self="center" class="mr-2 ml-n2">
+                    <label class="m-0" for="inputPassword">Password</label>
                   </b-col>
                   <b-col align-self="center">
                     <b-input type="password" id="inputPassword" v-model="password" />
                   </b-col>
                 </b-form-row>
+              </b-form-group>
+              <b-form-group class="d-block d-md-none">
+                <label for="inputPassword2">Password</label>
+                <b-input type="password" id="inputPassword2" v-model="password" />
               </b-form-group>
               <!--Buttons-->
               <div class="d-flex justify-content-end">
@@ -53,8 +64,12 @@
       <!--Signup Screen-->
       <b-container fluid v-if="!loginScreen">
         <b-row class="force-full-height">
-          <b-col md="6" align-self="center" class="d-none d-md-block">
-            <b-row align-h="center"><img alt="Salu.pro logo" src="../assets/saluLogo.png"></b-row>
+          <b-col sm="6" align-self="center" class="d-none d-sm-block">
+            <center class="text-white">
+              <img alt="Salu.pro logo" src="../assets/saluLogo.png" style="width: 70%">
+              <h1 class="mb-1">Salu.pro</h1>
+              <p>Professional Contact Manager</p>
+            </center>
           </b-col>
 
           <b-col>
@@ -63,7 +78,7 @@
               <b-col class="shadow-sm bg-light h-100">
 
                 <!--Return Button-->
-                <b-row class="pt-1">
+                <b-row class="pt-1 mb-2">
                   <b-col>
                     <!--Clicking return button changes "loginScreen" variable-->
                     <b-button type="button" variant="light" v-on:click="loginScreen = true">
@@ -73,7 +88,7 @@
                   </b-col>
                 </b-row>
                 <!--Logo-->
-                <b-row align-h="center"  class="d-md-none">
+                <b-row align-h="center"  class="d-sm-none">
                   <!--Hidden medium size devices and up-->
                   <b-row>
                     <img alt="Salu.pro logo" src="../assets/saluLogo.png" height="80px">
@@ -81,12 +96,16 @@
                 </b-row>
                 <!--Header-->
                 <b-row align-h="center">
-                  <div class="text-center h1">
-                    Sign Up For Salu.pro
-                  </div>
+                  <h3>Sign Up</h3>
                 </b-row>
 
                 <b-form>
+                  <!--Email-->
+                  <b-form-group>
+                    <label for="inputEmail">Email</label>
+                    <b-input type="email" id="inputEmail" placeholder="email@example.com" v-model="email" />
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                  </b-form-group>
                   <!--Username-->
                   <b-form-group>
                     <label for="inputUsername">Username</label>
@@ -102,18 +121,12 @@
                     <label for="inputPassword2">Confirm Password</label>
                     <b-input type="password" id="inputPassword2" v-model="password2" />
                   </b-form-group>
-                  <!--Email-->
-                  <b-form-group>
-                    <label for="inputEmail">Email</label>
-                    <b-input type="email" id="inputEmail" placeholder="email@example.com" v-model="email" />
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                  </b-form-group>
                   <!--Sign-up Button-->
                   <b-form-group>
                     <b-row align-h="center">
                       <b-col cols="1"><!--Empty column for right alignment--></b-col>
                       <!--Clicking signup button changes "loginScreen" variable-->
-                      <b-button type="button" variant="info" class="p-xs-0 p-sm-1 p-md-2" v-on:click="signup">
+                      <b-button type="button" variant="info" v-on:click="signup">
                         <span class="fas fa-pencil-alt"><!--Reference to icon from FontAwesome--></span>
                         Sign Up
                       </b-button>
