@@ -33,7 +33,10 @@ export default () => new Vuex.Store({
       let index = state.contacts.findIndex(c => c._id === contact._id)
       Vue.set(state.contacts, index, contact)
     },
-    deleteContact: (state, id) => state.contacts.splice(state.contacts.findIndex(c => c._id === id), 1),
+    deleteContact: (state, id) => {
+      state.contacts.splice(state.contacts.findIndex(c => c._id === id), 1)
+      state.searchContacts.splice(state.contacts.findIndex(c => c._id === id), 1)
+    },
     search: (state, text) => {
       if (text && text.length) {
         state.searchText = text
@@ -69,20 +72,20 @@ export default () => new Vuex.Store({
         axios.put(api + "/contacts/" + contact._id, contact).then(() => {
           commit('updateContact', contact)
         }).catch(err => {
-          alert('Error saving contact: ' + JSON.stringify(err))
+          alert('Error saving contact: ' + JSON.stringify(err.response.data.error))
         })
       else
-        axios.post(api + "/contacts", contact).then(() => {
-          commit('addContact', contact)
+        axios.post(api + "/contacts", contact).then(({ data }) => {
+          commit('addContact', data)
         }).catch(err => {
-          alert('Error saving contact: ' + JSON.stringify(err))
+          alert('Error saving contact: ' + JSON.stringify(err.response.data.error))
         })
     },
     deleteContact({ commit }, id) {
       axios.delete(api + "/contacts/" + id).then(() => {
         commit('deleteContact', id)
       }).catch(err => {
-        alert('Error deleting contact: ' + JSON.stringify(err))
+        alert('Error deleting contact: ' + JSON.stringify(err.response.data.error))
       })
     }
   }
