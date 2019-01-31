@@ -62,6 +62,25 @@ module.exports = function(app, passport) {
     });
   });
 
+  function fix_contact_fields(contact) {
+    if (contact.first)
+      contact.first = contact.first.strip();
+    if (contact.last)
+      contact.last = contact.last.strip();
+    if (contact.email)
+      contact.email = contact.email.strip();
+    if (contact.phone)
+      contact.phone = contact.phone.strip();
+    if (contact.street)
+      contact.street = contact.street.strip();
+    if (contact.city)
+      contact.city = contact.city.strip();
+    if (contact.zipcode)
+      contact.zipcode = contact.zipcode.strip();
+    if (contact.notes)
+      contact.notes = contact.notes.strip();
+  }
+
   //Searches by ID and updates contact with the new info
   app.put('/contacts/:id', (req, res) => {
     User.findOne({ email: req.user.email}, (err, user) => {
@@ -69,7 +88,7 @@ module.exports = function(app, passport) {
       if (err) {
         res.send({'error' : 'An error has occurred'});
       } else {
-        contact.set(req.body);
+        contact.set(fix_contact_fields(req.body));
         user.save(err => {
           if (err) res.status(400).send({error: err});
           else res.send(contact)
@@ -84,7 +103,7 @@ module.exports = function(app, passport) {
       if (err || !user) {
         res.send({'error' : 'An error has occurred'});
       } else {
-        user.contacts.push(req.body);
+        user.contacts.push(fix_contact_fields(req.body));
         var contact = user.contacts[0];
 
         user.save(err => {
