@@ -28,7 +28,7 @@
           <b-tab title="Search Results">
             <div class="d-flex justify-content-center align-items-center" v-if="noContacts">
               <h2 class="my-4">
-                <button @click="selectTag(tag)" v-for="tag in tags" :key="tag">
+                <button @click="search(tag)" v-for="tag in tags" :key="tag">
                   <Tag :tag="tag" />
                 </button>
               </h2>
@@ -45,7 +45,7 @@
           <div class="col-8">
             <div class="d-flex justify-content-center align-items-center" v-if="noContacts">
               <h2 class="my-4">
-                <button @click="selectTag(tag)" v-for="tag in tags" :key="tag">
+                <button @click="search(tag)" v-for="tag in tags" :key="tag">
                   <Tag :tag="tag" />
                 </button>
               </h2>
@@ -103,11 +103,8 @@ export default {
       axios.post(api + '/auth/logout').then(() => this.$store.commit('logout'))
     },
     search(value) {
-      this.listSlideIn = false
       this.$store.commit('search', value)
-    },
-    selectTag(tag) {
-      this.$store.commit('search', tag)
+      this.tabIndex = 1
     },
     newContact() {
       this.$store.commit('newContact')

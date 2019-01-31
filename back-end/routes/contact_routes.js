@@ -104,7 +104,7 @@ module.exports = function(app, passport) {
       if (err || !user) {
         res.send({'error' : 'An error has occurred'});
       } else {
-        user.contacts.push(fix_contact_fields(req.body));
+        user.contacts.unshift(fix_contact_fields(req.body));
         var contact = user.contacts[0];
 
         user.save(err => {

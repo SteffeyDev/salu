@@ -3,6 +3,11 @@ import Vuex from 'vuex'
 import { api } from './config.js'
 import axios from 'axios'
 
+function alertErrors(str, err) {
+  const errorsObj = err.response.data.error
+  alert(str + ': ' + Object.values(errorsObj).map(err => err.message).join(', '))
+}
+
 export default () => new Vuex.Store({
   state: {
     contacts: [
@@ -72,20 +77,20 @@ export default () => new Vuex.Store({
         axios.put(api + "/contacts/" + contact._id, contact).then(() => {
           commit('updateContact', contact)
         }).catch(err => {
-          alert('Error saving contact: ' + JSON.stringify(err.response.data.error))
+          alertErrors('Error saving contact', err)
         })
       else
         axios.post(api + "/contacts", contact).then(({ data }) => {
           commit('addContact', data)
         }).catch(err => {
-          alert('Error saving contact: ' + JSON.stringify(err.response.data.error))
+          alertErrors('Error saving contact', err)
         })
     },
     deleteContact({ commit }, id) {
       axios.delete(api + "/contacts/" + id).then(() => {
         commit('deleteContact', id)
       }).catch(err => {
-        alert('Error deleting contact: ' + JSON.stringify(err.response.data.error))
+        alertErrors('Error deleting contact', err)
       })
     }
   }
