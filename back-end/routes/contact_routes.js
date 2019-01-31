@@ -64,21 +64,21 @@ module.exports = function(app, passport) {
 
   function fix_contact_fields(contact) {
     if (contact.first)
-      contact.first = contact.first.strip();
+      contact.first = contact.first.trim();
     if (contact.last)
-      contact.last = contact.last.strip();
+      contact.last = contact.last.trim();
     if (contact.email)
-      contact.email = contact.email.strip();
+      contact.email = contact.email.trim();
     if (contact.phone)
-      contact.phone = contact.phone.strip();
+      contact.phone = contact.phone.trim();
     if (contact.street)
-      contact.street = contact.street.strip();
+      contact.street = contact.street.trim();
     if (contact.city)
-      contact.city = contact.city.strip();
+      contact.city = contact.city.trim();
     if (contact.zipcode)
-      contact.zipcode = contact.zipcode.strip();
+      contact.zipcode = contact.zipcode.trim();
     if (contact.notes)
-      contact.notes = contact.notes.strip();
+      contact.notes = contact.notes.trim();
   }
 
   //Searches by ID and updates contact with the new info
