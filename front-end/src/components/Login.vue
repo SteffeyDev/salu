@@ -15,12 +15,12 @@
         <!--Align all content in the center - take up half of container-->
         <b-row align-h="center">
           <b-col cols="11" sm="8" md="6" lg="5" class="bg-light shadow-sm p-3 mb-5 rounded">
-            <b-row align-h="center" class="pb-2 h1 font-weight-normal">Alu.pro</b-row>
+            <b-row align-h="center" class="pb-2 h1 font-weight-normal">Salu.pro</b-row>
             <b-form>
               <!--Username-->
               <b-form-group>
                 <b-form-row class="text-right">
-                  <b-col cols="2" align-self="center" class="mr-2">
+                  <b-col cols="2" align-self="center" class="mr-2 ml-n2">
                     <label for="inputUsername">Username<br>or Email</label>
                   </b-col>
                   <b-col align-self="center">
@@ -31,7 +31,7 @@
               <!--Password-->
               <b-form-group>
                 <b-form-row class="text-right">
-                  <b-col cols="2" align-self="center" class="mr-2">
+                  <b-col cols="2" align-self="center" class="mr-2 ml-n2">
                     <label for="inputPassword">Password</label>
                   </b-col>
                   <b-col align-self="center">
@@ -63,7 +63,7 @@
               <b-col class="shadow-sm bg-light h-100">
 
                 <!--Return Button-->
-                <b-row class="pt-2">
+                <b-row class="pt-1">
                   <b-col>
                     <!--Clicking return button changes "loginScreen" variable-->
                     <b-button type="button" variant="light" v-on:click="loginScreen = true">
@@ -73,9 +73,9 @@
                   </b-col>
                 </b-row>
                 <!--Logo-->
-                <b-row cols="2" align-h="center"  class="d-md-none">
+                <b-row align-h="center"  class="d-md-none">
                   <!--Hidden medium size devices and up-->
-                  <b-row align-h="center">
+                  <b-row>
                     <img alt="Salu.pro logo" src="../assets/saluLogo.png" height="80px">
                   </b-row>
                 </b-row>
