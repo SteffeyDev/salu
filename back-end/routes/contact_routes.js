@@ -79,6 +79,7 @@ module.exports = function(app, passport) {
       contact.zipcode = contact.zipcode.trim();
     if (contact.notes)
       contact.notes = contact.notes.trim();
+    return contact;
   }
 
   //Searches by ID and updates contact with the new info
