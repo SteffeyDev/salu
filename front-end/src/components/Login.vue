@@ -62,25 +62,24 @@
             <b-row class="justify-content-center h-100">
               <b-col class="shadow-sm bg-light h-100">
 
-                <!--Logo and Return Button-->
-                <b-form-group>
-                  <b-row align-h="between" class="pr-2 pt-2">
-                    <b-col cols="2"><!--Empty Column for alignment--></b-col>
-                    <!--Hidden medium size devices and up-->
-                    <b-col cols="2">
-                      <b-row align-h="center" class="d-md-none">
-                        <img alt="Salu.pro logo" src="../assets/saluLogo.png" height="80px">
-                      </b-row>
-                    </b-col>
-                    <b-row class="justify-content-start pl-2 pt-2">
-                      <!--Clicking return button changes "loginScreen" variable-->
-                      <b-button type="button" variant="light" v-on:click="loginScreen = true">
-                        <span class="far fa-arrow-alt-circle-left"><!--Reference to icon from FontAwesome--></span>
-                        Return To Login
-                      </b-button>
-                    </b-row>
+                <!--Return Button-->
+                <b-row class="pt-2">
+                  <b-col>
+                    <!--Clicking return button changes "loginScreen" variable-->
+                    <b-button type="button" variant="light" v-on:click="loginScreen = true">
+                      <span class="far fa-arrow-alt-circle-left"><!--Reference to icon from FontAwesome--></span>
+                      Return To Login
+                    </b-button>
+                  </b-col>
+                </b-row>
+                <!--Logo-->
+                <b-row cols="2" align-h="center"  class="d-md-none">
+                  <!--Hidden medium size devices and up-->
+                  <b-row align-h="center">
+                    <img alt="Salu.pro logo" src="../assets/saluLogo.png" height="80px">
                   </b-row>
-                </b-form-group>
+                </b-row>
+                <!--Header-->
                 <b-row align-h="center">
                   <div class="text-center h1">
                     Sign Up For Salu.pro
