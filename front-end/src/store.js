@@ -4,7 +4,7 @@ import { api } from './config.js'
 import axios from 'axios'
 
 function alertErrors(str, err) {
-  const errorsObj = err.response.data.error
+  const errorsObj = err.response.data.error.errors
   alert(str + ': ' + Object.values(errorsObj).map(err => err.message).join(', '))
 }
 

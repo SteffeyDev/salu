@@ -104,7 +104,6 @@ export default {
     },
     search(value) {
       this.$store.commit('search', value)
-      this.tabIndex = 1
     },
     newContact() {
       this.$store.commit('newContact')
