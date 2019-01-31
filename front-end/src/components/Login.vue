@@ -15,7 +15,7 @@
         <!--Align all content in the center - take up half of container-->
         <b-row align-h="center">
           <b-col cols="11" sm="8" md="6" lg="5" class="bg-light shadow-sm p-3 mb-5 rounded">
-            <b-row align-h="center" class="pb-2 h1 font-weight-normal">Salu.pro</b-row>
+            <b-row align-h="center" class="pb-2 h1 font-weight-normal">Alu.pro</b-row>
             <b-form>
               <!--Username-->
               <b-form-group>
