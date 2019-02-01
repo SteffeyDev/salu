@@ -79,7 +79,7 @@
                   <h3>Sign Up</h3>
                 </b-row>
 
-                <b-form @submit.prevent="signup" style="max-width: 300px" class="d-flex flex-column align-items-stretch m-auto">
+                <b-form @submit.prevent="signup" style="max-width: 450px" class="d-flex flex-column align-items-stretch m-auto">
                   <!--Email-->
                   <b-form-group>
                     <label for="inputEmail">Email</label>
