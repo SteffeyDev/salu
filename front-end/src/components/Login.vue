@@ -18,43 +18,23 @@
 
         <!--Align all content in the center - take up half of container-->
         <b-row align-h="center">
-          <b-col cols="11" sm="8" md="6" lg="5" class="bg-light shadow-sm p-3 mb-5 rounded">
-            <b-form>
+          <b-col cols="10" sm="7" md="5" lg="4" class="bg-light shadow-sm p-3 mb-5 rounded">
+            <b-form @submit.prevent="login">
               <!--Username-->
-              <b-form-group class="d-none d-md-block">
-                <b-form-row class="text-right">
-                  <b-col cols="2" align-self="center" class="mr-3 ml-n2">
-                    <label class="m-0" for="inputUsername">Username<br>or Email</label>
-                  </b-col>
-                  <b-col align-self="center">
-                    <b-input type="text" id="inputUsername" v-model="username" />
-                  </b-col>
-                </b-form-row>
-              </b-form-group>
-              <b-form-group class="d-block d-md-none">
-                <label for="inputUsername2">Username or Email</label>
-                <b-input type="text" id="inputUsername2" v-model="username" />
+              <b-form-group>
+                <label class="d-none" for="inputUsername2">Username or Email</label>
+                <b-input type="text" id="inputUsername2" v-model="username" placeholder="Username or email" required />
               </b-form-group>
               <!--Password-->
-              <b-form-group class="d-none d-md-block">
-                <b-form-row class="text-right">
-                  <b-col cols="2" align-self="center" class="mr-3 ml-n2">
-                    <label class="m-0" for="inputPassword">Password</label>
-                  </b-col>
-                  <b-col align-self="center">
-                    <b-input type="password" id="inputPassword" v-model="password" />
-                  </b-col>
-                </b-form-row>
-              </b-form-group>
-              <b-form-group class="d-block d-md-none">
-                <label for="inputPassword2">Password</label>
-                <b-input type="password" id="inputPassword2" v-model="password" />
+              <b-form-group>
+                <label class="d-none" for="inputPassword2">Password</label>
+                <b-input type="password" id="inputPassword2" v-model="password" placeholder="Password" required />
               </b-form-group>
               <!--Buttons-->
               <div class="d-flex justify-content-end">
                 <!--Clicking signup button changes "loginScreen" variable-->
                 <b-button variant="info" class="mr-2" v-on:click="loginScreen = false"><i class="fas fa-pencil-alt"></i> Sign Up</b-button>
-                <b-button type="button" variant="dark" class="ml-1" v-on:click="login"><i class="fas fa-sign-in-alt"></i> Login</b-button>
+                <b-button type="submit" variant="dark" class="ml-1"><i class="fas fa-sign-in-alt"></i> Login</b-button>
               </div>
             </b-form>
           </b-col>
@@ -66,7 +46,7 @@
         <b-row class="force-full-height">
           <b-col sm="6" align-self="center" class="d-none d-sm-block">
             <center class="text-white">
-              <img alt="Salu.pro logo" src="../assets/saluLogo.png" style="width: 70%">
+              <img alt="Salu.pro logo" src="../assets/saluLogo.png" style="width: 70%; max-width: 300px;">
               <h1 class="mb-1">Salu.pro</h1>
               <p>Professional Contact Manager</p>
             </center>
@@ -99,34 +79,34 @@
                   <h3>Sign Up</h3>
                 </b-row>
 
-                <b-form>
+                <b-form @submit.prevent="signup" style="max-width: 300px" class="d-flex flex-column align-items-stretch m-auto">
                   <!--Email-->
                   <b-form-group>
                     <label for="inputEmail">Email</label>
-                    <b-input type="email" id="inputEmail" placeholder="email@example.com" v-model="email" />
+                    <b-input type="email" id="inputEmail" placeholder="email@example.com" v-model="email" required />
                     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                   </b-form-group>
                   <!--Username-->
                   <b-form-group>
                     <label for="inputUsername">Username</label>
-                    <b-input type="text" id="inputUsername" v-model="username" />
+                    <b-input type="text" id="inputUsername" v-model="username" required />
                   </b-form-group>
                   <!--Password-->
                   <b-form-group>
                     <label for="inputPassword">Password</label>
-                    <b-input type="password" id="inputPassword" v-model="password" />
+                    <b-input type="password" id="inputPassword" v-model="password" required />
                   </b-form-group>
                   <!--Confirm Password-->
                   <b-form-group>
                     <label for="inputPassword2">Confirm Password</label>
-                    <b-input type="password" id="inputPassword2" v-model="password2" />
+                    <b-input type="password" id="inputPassword2" v-model="password2" required />
                   </b-form-group>
                   <!--Sign-up Button-->
                   <b-form-group>
                     <b-row align-h="center">
                       <b-col cols="1"><!--Empty column for right alignment--></b-col>
                       <!--Clicking signup button changes "loginScreen" variable-->
-                      <b-button type="button" variant="info" v-on:click="signup">
+                      <b-button type="submit" variant="info">
                         <span class="fas fa-pencil-alt"><!--Reference to icon from FontAwesome--></span>
                         Sign Up
                       </b-button>

@@ -21,6 +21,7 @@ export default {
   }),
   methods: {
     selectContact(contact) {
+      this.$store.commit('search', null)
       this.$store.commit('search', contact.first + ' ' + contact.last)
     }
   },
