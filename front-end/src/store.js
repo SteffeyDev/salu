@@ -72,12 +72,12 @@ export default () => new Vuex.Store({
         }));
       });
     },
-    updateContact({ commit }, contact) {
+    updateContact({ commit, state }, contact) {
       if (contact._id)
         axios.put(api + "/contacts/" + contact._id, contact).then(() => {
           commit('updateContact', contact)
           commit('endEditing')
-          commit('search', this.searchText)
+          commit('search', state.searchText)
         }).catch(err => {
           alertErrors('Error saving contact', err)
         })
@@ -85,12 +85,12 @@ export default () => new Vuex.Store({
         axios.post(api + "/contacts", contact).then(({ data }) => {
           commit('addContact', data)
           commit('endEditing')
-          commit('search', this.searchText)
+          commit('search', state.searchText)
         }).catch(err => {
           alertErrors('Error saving contact', err)
         })
     },
-    deleteContact({ commit }, id) {
+    deleteContact({ commit, state }, id) {
       axios.delete(api + "/contacts/" + id).then(() => {
         commit('deleteContact', id)
       }).catch(err => {
