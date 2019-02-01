@@ -23,7 +23,7 @@
               <!--Username-->
               <b-form-group class="d-none d-md-block">
                 <b-form-row class="text-right">
-                  <b-col cols="3" align-self="center" class="mr-2 ml-n2">
+                  <b-col cols="2" align-self="center" class="mr-3 ml-n2">
                     <label class="m-0" for="inputUsername">Username<br>or Email</label>
                   </b-col>
                   <b-col align-self="center">
@@ -38,7 +38,7 @@
               <!--Password-->
               <b-form-group class="d-none d-md-block">
                 <b-form-row class="text-right">
-                  <b-col cols="3" align-self="center" class="mr-2 ml-n2">
+                  <b-col cols="2" align-self="center" class="mr-3 ml-n2">
                     <label class="m-0" for="inputPassword">Password</label>
                   </b-col>
                   <b-col align-self="center">
