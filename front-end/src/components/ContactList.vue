@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="contact-list" v-bind-to-height>
     <div class="d-flex flex-row flex-wrap justify-content-between hover-row border-top px-3 py-1" @click="selectContact(contact)" :key="contact._id" v-for="contact in contacts">
       <span>{{ contact.first }} {{ contact.last }}</span>
       <div>
@@ -31,10 +31,13 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .hover-row:hover {
   background-color: lightgray;
   cursor: pointer;
 }
 
+#contact-list {
+  padding-bottom: 30px;
+}
 </style>

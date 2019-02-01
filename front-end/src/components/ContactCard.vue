@@ -36,7 +36,7 @@ export default {
   },
   computed: mapState({
     contact(state) {
-      return state.contacts.filter(c => c._id === this.contactId)[0]
+      return state.searchContacts.filter(c => c._id === this.contactId)[0]
     },
     address() {
       let address = ''

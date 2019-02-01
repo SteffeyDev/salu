@@ -10,6 +10,14 @@ const store = createStore();
 
 Vue.config.productionTip = false
 
+Vue.directive('bind-to-height', {
+  inserted: function(el) {
+    el.style['max-height'] = window.innerHeight - (el.offsetTop || el.offsetParent.offsetTop) + 'px'
+    el.style['overflow-y'] = 'auto'
+    window.addEventListener('resize', () => { el.style['max-height'] = window.innerHeight - (el.offsetTop || el.offsetParent.offsetTop) + 'px' })
+  }
+})
+
 new Vue({
     store,
     render: h => h(App),

@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex flex-wrap">
+  <div id="contact-collection" v-bind-to-height class="d-flex flex-wrap justify-content-center">
     <ContactCard :key="contact._id" :contact-id="contact._id" class="m-1" v-for="contact in contacts" />
   </div>
 </template>
@@ -18,6 +18,6 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 
 </style>
