@@ -35,7 +35,7 @@ export default () => new Vuex.Store({
     setContacts: (state, contacts) => { state.contacts = contacts },
     addContact: (state, contact) => state.contacts.push(contact),
     updateContact: (state, contact) => {
-      let index = state.contacts.findIndex(c => c._id === contact._id)
+      const index = state.contacts.findIndex(c => c._id === contact._id)
       Vue.set(state.contacts, index, contact)
     },
     deleteContact: (state, id) => {
@@ -76,12 +76,16 @@ export default () => new Vuex.Store({
       if (contact._id)
         axios.put(api + "/contacts/" + contact._id, contact).then(() => {
           commit('updateContact', contact)
+          commit('endEditing')
+          commit('search', this.searchText)
         }).catch(err => {
           alertErrors('Error saving contact', err)
         })
       else
         axios.post(api + "/contacts", contact).then(({ data }) => {
           commit('addContact', data)
+          commit('endEditing')
+          commit('search', this.searchText)
         }).catch(err => {
           alertErrors('Error saving contact', err)
         })

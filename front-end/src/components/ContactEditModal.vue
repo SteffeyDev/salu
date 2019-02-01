@@ -67,8 +67,9 @@ export default {
         "VT", "VI", "VA", "WA", "WV", "WI", "WY"]
   }),
   methods: {
-    saveContact() {
+    saveContact(evt) {
       this.$store.dispatch('updateContact', this.contact)
+      evt.preventDefault()
     },
     afterHidden() {
       this.$store.commit('endEditing')
@@ -124,6 +125,8 @@ export default {
           this.contact = Object.assign({}, this.$store.state.contacts.filter(c => c._id === id)[0])
         }
         this.showModal = true
+      } else {
+        this.showModal = false
       }
     }
   }
