@@ -52,12 +52,17 @@ module.exports = function(app, passport) {
       if (err) {
         res.send({'error' : 'An error has occurred'});
       } else {
-        const contact = user.contacts.id(req.params.id).remove();
+        const contact = user.contacts.id(req.params.id)
+        if (contact) {
+          contact.remove();
 
-        user.save(err => {
-          if (err) res.status(400).send({error: err});
-          else res.send(contact.id + ' has been removed.');
-        });
+          user.save(err => {
+            if (err) res.status(400).send({error: err});
+            else res.send(contact.id + ' has been removed.');
+          });
+        } else {
+          res.status(404).send("Contact does not exist");
+        }
       }
     });
   });
