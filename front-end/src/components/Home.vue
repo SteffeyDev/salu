@@ -28,7 +28,7 @@
           <b-tab title="Search Results">
             <div class="d-flex justify-content-center align-items-center" v-if="noContacts">
               <h2 class="my-4">
-                <button @click="search(tag)" v-for="tag in tags" :key="tag">
+                <button @click="search = tag" v-for="tag in tags" :key="tag">
                   <Tag :tag="tag" />
                 </button>
               </h2>
