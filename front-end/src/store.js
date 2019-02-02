@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import { api } from './config.js'
 import axios from 'axios'
 import contacts_sample_data from '../../scripts/MOCK_DATA.json'
+const CancelToken = axios.CancelToken;
 
 function alertErrors(str, err) {
   const errorsObj = err.response.data.error.errors
@@ -15,8 +16,9 @@ export default () => new Vuex.Store({
     searchText: null,
     searchContacts: [],
     editContactId: null,
-    authenticated: false,
-    user: null
+    authenticated: true,
+    user: null,
+    searchCancelToken: null
   },
   mutations: {
     setContacts: (state, contacts) => { state.contacts = contacts },
@@ -32,7 +34,12 @@ export default () => new Vuex.Store({
     search: (state, text) => {
       if (text && text.length) {
         state.searchText = text
-        axios.get(api + '/contacts?search=' + encodeURIComponent(text)).then(({ data }) => { state.searchContacts = data })
+        if (state.searchCancelToken)
+          state.searchCancelToken.cancel("Search canceled")
+        state.searchCancelToken = CancelToken.source()
+        axios.get(api + '/contacts?search=' + encodeURIComponent(text), {
+          cancelToken: state.searchCancelToken.token
+        }).then(({ data }) => { state.searchContacts = data })
       } else {
         state.searchContacts = []
       }

@@ -17,7 +17,7 @@
         </button>
         <div class="search flex-fill my-4 px-3">
           <span class="fas fa-search fa-2x"></span>
-          <b-form-input size="lg" type="search" placeholder="Search your contacts" :value="searchText" @input="search" />
+          <b-form-input size="lg" type="search" placeholder="Search your contacts" v-model="search" />
         </div>
       </div>
       <div v-if="layout === 'compact'">
@@ -72,7 +72,8 @@ export default {
   name: 'home',
   data: () => ({
     windowWidth: window.innerWidth,
-    tabIndex: 0
+    tabIndex: 0,
+    search: null
   }),
   computed: mapState({
     searchText: 'searchText',
@@ -95,15 +96,17 @@ export default {
   watch: {
     searchText() {
       this.tabIndex = 1
+      this.search = this.searchText
+    },
+    search() {
+      if (this.search !== this.searchText)
+        this.$store.commit('search', this.search)
     }
   },
   methods: {
     logOut() {
       // call logout endpoint, which should remove JWT cookie
       axios.post(api + '/auth/logout').then(() => this.$store.commit('logout'))
-    },
-    search(value) {
-      this.$store.commit('search', value)
     },
     newContact() {
       this.$store.commit('newContact')
