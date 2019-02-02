@@ -10,11 +10,24 @@ const store = createStore();
 
 Vue.config.productionTip = false
 
+function getPosition(element) {
+    var xPosition = 0;
+    var yPosition = 0;
+
+    while(element) {
+        xPosition += (element.offsetLeft - element.scrollLeft + element.clientLeft);
+        yPosition += (element.offsetTop - element.scrollTop + element.clientTop);
+        element = element.offsetParent;
+    }
+
+    return { x: xPosition, y: yPosition };
+}
+
 Vue.directive('bind-to-height', {
   inserted: function(el) {
-    el.style['max-height'] = window.innerHeight - (el.offsetTop || el.offsetParent.offsetTop) + 'px'
+    el.style['max-height'] = window.innerHeight - getPosition(el).y + 'px'
     el.style['overflow-y'] = 'auto'
-    window.addEventListener('resize', () => { el.style['max-height'] = window.innerHeight - (el.offsetTop || el.offsetParent.offsetTop) + 'px' })
+    window.addEventListener('resize', () => { el.style['max-height'] = window.innerHeight - getPosition(el).y + 'px' })
   }
 })
 

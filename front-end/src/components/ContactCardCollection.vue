@@ -19,5 +19,8 @@ export default {
 </script>
 
 <style lang="scss">
+#contact-collection {
+  padding-bottom: 30px;
+}
 
 </style>
