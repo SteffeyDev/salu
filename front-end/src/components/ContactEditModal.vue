@@ -51,6 +51,12 @@
       <label for="inputMemo">Notes</label>
       <b-textarea v-model="contact.notes" rows="3" id="inputMemo" />
     </b-form-group>
+    <!--Tags-->
+    <b-input-group prepend="Tags">
+        <b-form-input type="text" id="inputTag" v-model="contact.tags"/>
+        <b-btn @click="addTag(contact.tags)" variant="info" size="sm">Add tag</b-btn>
+        <b-btn @click="deleteTag(contact.tags)" variant="primary" size="sm">Delete tag</b-btn>
+    </b-input-group>
   </b-modal>
 </template>
 
@@ -73,7 +79,18 @@ export default {
     },
     afterHidden() {
       this.$store.commit('endEditing')
-    }
+    },
+    deleteTag: function(tag) {
+      var i;
+      for (i = 0; i < this.contact.tags.length; i++)
+      {
+        if (this.contacts.tags[i] == tag)
+          this.contact.tags.splice(i, 1);
+      }
+    },
+    addTag: function(tag) {
+      this.contact.tags.push(tag);
+    },
   },
   computed: mapState({
     contactId: 'editContactId',
