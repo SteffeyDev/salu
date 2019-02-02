@@ -84,7 +84,7 @@ export default {
     },
     tags(state) {
       return Array.from(state.contacts.reduce((allTags, contact) => {
-        contact.tags.forEach(tag => allTags.add(tag))
+        contact.tags && contact.tags.forEach(tag => allTags.add(tag))
         return allTags
       }, new Set()))
     },

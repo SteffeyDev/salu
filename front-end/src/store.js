@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { api } from './config.js'
 import axios from 'axios'
+import contacts_sample_data from '../../scripts/MOCK_DATA.json'
 
 function alertErrors(str, err) {
   const errorsObj = err.response.data.error.errors
@@ -10,21 +11,7 @@ function alertErrors(str, err) {
 
 export default () => new Vuex.Store({
   state: {
-    contacts: [
-    {
-      _id: '12345',
-      first: 'Peter',
-      last: 'Steffey',
-      email: 'peter.steffey@knights.ucf.edu',
-      phone: '123-456-7890',
-      tags: ['UCF', 'CCO', 'Hack@UCF']
-    }, {
-      _id: '54345',
-      first: 'Michael',
-      last: 'Ibeh',
-      tags: ['Human', 'UCF', 'Hack@UCF']
-    }
-    ],
+    contacts: contacts_sample_data,
     searchText: null,
     searchContacts: [],
     editContactId: null,
@@ -90,7 +77,7 @@ export default () => new Vuex.Store({
           alertErrors('Error saving contact', err)
         })
     },
-    deleteContact({ commit, state }, id) {
+    deleteContact({ commit }, id) {
       axios.delete(api + "/contacts/" + id).then(() => {
         commit('deleteContact', id)
       }).catch(err => {
