@@ -1,4 +1,4 @@
-#!/usr/bin/env
+#!/usr/bin/env node
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -35,9 +35,13 @@ const credentials = {
 };
 
 // Starting both http & https servers
-const httpServer = http.createServer(app);
+const httpServer = http.createServer();
 const httpsServer = https.createServer(credentials, app);
 
+// set up a route to redirect http to https
+httpServer.get('*', function(req, res) {
+  res.redirect('https://salu.pro' + req.url);
+})
 
 mongoose.connect(config.MONGO_URI, { useNewUrlParser: true });
 const db = mongoose.connection;

@@ -1,1 +1,1 @@
-export let api = "http://salu.pro"
+export let api = "https://salu.pro"
