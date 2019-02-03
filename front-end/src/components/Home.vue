@@ -83,11 +83,8 @@ export default {
         return 'compact'
       return 'wide'
     },
-    tags(state) {
-      return Array.from(state.contacts.reduce((allTags, contact) => {
-        contact.tags && contact.tags.forEach(tag => allTags.add(tag))
-        return allTags
-      }, new Set()))
+    tags() {
+      return this.$store.getters.allTags
     },
     noContacts(state) {
       return state.searchContacts.length === 0

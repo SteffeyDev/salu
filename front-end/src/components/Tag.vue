@@ -18,10 +18,10 @@ export default {
   },
   computed: mapState({
     textColor(state) {
-      return yiq(state.colorMap[this.tag])
+      return yiq(state.colorMap[this.tag] || '#d3d3d3')
     },
     tagColor(state) {
-      return state.colorMap[this.tag]
+      return state.colorMap[this.tag] || 'lightgray'
     }
   })
 }

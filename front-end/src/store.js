@@ -34,6 +34,15 @@ function getRandomColor() {
   }
 }
 
+function tagsFromArray(arr) {
+  return Array.from(arr
+    .filter(c => c.tags && c.tags.length)
+    .reduce((set, c) => {
+      c.tags && c.tags.forEach(tag => set.add(tag))
+      return set
+    }, new Set()))
+}
+
 export default () => new Vuex.Store({
   state: {
     contacts: [],
@@ -47,18 +56,13 @@ export default () => new Vuex.Store({
   },
   getters: {
     allTags(state) {
-      return Array.from(state.contacts
-        .filter(c => c.tags && c.tags.length)
-        .reduce((set, c) => {
-          c.tags.forEach(tag => set.add(tag))
-          return set
-        }, new Set()))
+      return tagsFromArray(state.contacts)
     }
   },
   mutations: {
     setContacts: (state, contacts) => {
       state.contacts = contacts
-      state.colorMap = this.getters.allTags.reduce((colorMap, tag) => {
+      state.colorMap = tagsFromArray(contacts).reduce((colorMap, tag) => {
           colorMap[tag] = getRandomColor()
           return colorMap
         }, {})
