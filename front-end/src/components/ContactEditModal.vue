@@ -54,11 +54,15 @@
     <!--Tags-->
     <b-form-group>
       <label for="inputTags">Tags</label>
-      <b-form-input type="text" id="inputTag" v-model="newTag"/>
-       <b-btn @click="addTag()" variant="info" size="sm" class="mt-1 : mr-2">Add tag</b-btn>
-      <p style="font-size:14pt">
+      <p style="font-size: 16pt">
         <Tag :tag="tag" :key="tag" allow-delete @remove="deleteTag" v-for="tag in contact.tags" />
       </p> 
+      <b-input-group>
+        <b-form-input type="text" id="inputTag" v-model="newTag"/>
+        <b-input-group-append>
+          <b-btn @click="addTag" variant="info">Add tag</b-btn>
+        </b-input-group-append>
+      </b-input-group>
     </b-form-group>
   </b-modal>
 </template>
@@ -75,7 +79,7 @@ export default {
         "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH",
         "NJ", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "PR", "RI", "SC", "SD", "TN", "TX", "UT",
         "VT", "VI", "VA", "WA", "WV", "WI", "WY"],
-    newTag: "",
+    newTag: ""
   }),
   methods: {
     saveContact(evt) {
@@ -89,12 +93,15 @@ export default {
       this.$delete(this.contact.tags, this.contact.tags.indexOf(tag))
     },
     addTag: function() {
-        this.contact.tags.push(this.newTag)
-        this.newTag = ""
+      if (!this.tagColorMap.hasOwnProperty(this.newTag))
+        this.$store.commit('addTagToColorMap', this.newTag)
+      this.contact.tags.push(this.newTag)
+      this.newTag = ""
     },
   },
   computed: mapState({
     contactId: 'editContactId',
+    tagColorMap: 'colorMap',
     name() {
       return this.contact.firstName + ' ' + this.contact.lastName;
     },
@@ -140,7 +147,8 @@ export default {
             notes: null 
           }
         } else {
-          this.contact = Object.assign({tags:[]}, this.$store.state.contacts.filter(c => c._id === id)[0])
+          // JSON parse/stringify is fun trick allowing for deep cloning of objects
+          this.contact = Object.assign({ tags: [] }, JSON.parse(JSON.stringify(this.$store.state.contacts.filter(c => c._id === id)[0])))
         }
         this.showModal = true
       } else {

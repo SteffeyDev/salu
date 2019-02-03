@@ -2,26 +2,68 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { api } from './config.js'
 import axios from 'axios'
-import contacts_sample_data from '../../scripts/MOCK_DATA.json'
 const CancelToken = axios.CancelToken;
+
+const colorList = ['#ff0000', '#f58231', '#ffe119', '#bcf60c', '#3cbb44b', '#46f0f0', '#4363d8', '#911eb4', '#f032e9', '#000075', '#aaffc3', '#e6beff', '#8b0000', '#ff0033', '#4b0082', '#5c4033', '#ff69b4']
+
+//import contacts_sample_data from '../../scripts/MOCK_DATA.json'
+//const sample_data = contacts_sample_data.map((c, i) => Object.assign({_id:i, tags: ['hello']}, c))
+//const sample_color_map = Array.from(sample_data
+//        .filter(c => c.tags && c.tags.length)
+//        .reduce((set, c) => {
+//          c.tags.forEach(tag => set.add(tag))
+//          return set
+//        }, new Set()))
+//        .reduce((colorMap, tag) => {
+//          let randomIndex = Math.floor(Math.random()*colorList.length)
+//          colorMap[tag] = colorList.splice(randomIndex, 1)[0]
+//          return colorMap
+//        }, {})
 
 function alertErrors(str, err) {
   const errorsObj = err.response.data.error.errors
   alert(str + ': ' + Object.values(errorsObj).map(err => err.message).join(', '))
 }
 
+function getRandomColor() {
+  if (colorList.length > 0) {
+    let randomIndex = Math.floor(Math.random() * colorList.length)
+    return colorList.splice(randomIndex, 1)[0]
+  } else {
+    return '#d3d3d3'
+  }
+}
+
 export default () => new Vuex.Store({
   state: {
-    contacts: contacts_sample_data,
+    contacts: [],
     searchText: null,
-    searchContacts: [],
+    searchContacts: [], 
     editContactId: null,
-    authenticated: true,
+    authenticated: false,
     user: null,
-    searchCancelToken: null
+    searchCancelToken: null,
+    colorMap: {} 
+  },
+  getters: {
+    allTags(state) {
+      return Array.from(state.contacts
+        .filter(c => c.tags && c.tags.length)
+        .reduce((set, c) => {
+          c.tags.forEach(tag => set.add(tag))
+          return set
+        }, new Set()))
+    }
   },
   mutations: {
-    setContacts: (state, contacts) => { state.contacts = contacts },
+    setContacts: (state, contacts) => {
+      state.contacts = contacts
+      state.colorMap = this.getters.allTags.reduce((colorMap, tag) => {
+          colorMap[tag] = getRandomColor()
+          return colorMap
+        }, {})
+    },
+    addTagToColorMap: (state, tag) => { state.colorMap[tag] = getRandomColor() },
     addContact: (state, contact) => state.contacts.push(contact),
     updateContact: (state, contact) => {
       const index = state.contacts.findIndex(c => c._id === contact._id)
