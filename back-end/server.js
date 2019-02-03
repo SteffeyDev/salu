@@ -35,13 +35,12 @@ const credentials = {
 };
 
 // Starting both http & https servers
-const httpServer = http.createServer();
+const httpServer = http.createServer(function (req, res) {
+  // Redirect to HTTPS
+  res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
+  res.end();
+});
 const httpsServer = https.createServer(credentials, app);
-
-// set up a route to redirect http to https
-httpServer.get('*', function(req, res) {
-  res.redirect('https://salu.pro' + req.url);
-})
 
 mongoose.connect(config.MONGO_URI, { useNewUrlParser: true });
 const db = mongoose.connection;
