@@ -80,8 +80,8 @@ export default () => new Vuex.Store({
       state.searchContacts.splice(state.contacts.findIndex(c => c._id === id), 1)
     },
     search: (state, text) => {
+      state.searchText = text
       if (text && text.length) {
-        state.searchText = text
         if (state.searchCancelToken)
           state.searchCancelToken.cancel("Search canceled")
         state.searchCancelToken = CancelToken.source()
