@@ -88,7 +88,7 @@ export default {
       return this.$store.getters.allTags
     },
     showTags(state) {
-      return state.searchContacts.length === 0 && state.searchText.length === 0 && !state.loadingSearch
+      return state.searchContacts.length === 0 && (!state.searchText || state.searchText.length === 0) && !state.loadingSearch
     }
   }),
   watch: {
