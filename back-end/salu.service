@@ -1,0 +1,15 @@
+[Unit]
+Description=Salu Contact Manager
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/node /opt/salu/back-end/server.js
+Restart=always
+User=nobody
+Group=nogroup
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+WorkingDirectory=/opt/salu/back-end
+
+[Install]
+WantedBy=multi-user.target
