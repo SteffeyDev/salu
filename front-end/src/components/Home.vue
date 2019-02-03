@@ -21,7 +21,7 @@
         </div>
       </div>
       <div v-if="layout === 'compact'">
-        <b-tabs pills fill v-model="tabIndex">
+        <b-tabs pills fill v-model="tabIndex" nav-class="mb-1">
           <b-tab active title="Contact List">
             <ContactList class="mt-3" />
           </b-tab>
@@ -45,7 +45,7 @@
           <div class="col-8">
             <div class="d-flex justify-content-center align-items-center" v-if="noContacts">
               <h2 class="my-4">
-                <button @click="search(tag)" v-for="tag in tags" :key="tag">
+                <button @click="search = tag" v-for="tag in tags" :key="tag">
                   <Tag :tag="tag" />
                 </button>
               </h2>
