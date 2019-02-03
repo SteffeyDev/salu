@@ -114,7 +114,6 @@ export default {
   },
   mounted() {
     this.$nextTick(() => window.addEventListener('resize', () => { this.windowWidth = window.innerWidth }))
-    this.$store.dispatch('fetchContacts')  
   },
   components: {
     ContactList,

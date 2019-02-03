@@ -21,7 +21,7 @@ export default {
     authenticated: state => state.authenticated
   }),
   mounted() {
-    axios.get(api + '/auth/autologin').then(({ data }) => this.$store.commit('login', data))
+    axios.get(api + '/auth/autologin').then(({ data }) => this.$store.commit('login', data)).then(() => this.$store.dispatch('fetchContacts'))
   },
   components: {
     Login,

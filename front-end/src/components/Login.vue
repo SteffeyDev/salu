@@ -154,6 +154,7 @@
           username: this.username,
           password: this.password
         }, { withCredentials: true }).then(({ data }) => this.$store.commit('login', data))
+          .then(() => this.$store.dispatch('fetchContacts'))
           .catch(() => alert("Error logging in"))
       }
     },
