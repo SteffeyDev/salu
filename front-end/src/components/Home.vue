@@ -26,7 +26,7 @@
             <ContactList class="mt-3" />
           </b-tab>
           <b-tab title="Search Results">
-            <div class="d-flex justify-content-center align-items-center" v-if="noContacts">
+            <div class="d-flex justify-content-center align-items-center" v-if="showTags">
               <h2 class="my-4">
                 <button @click="search = tag" v-for="tag in tags" :key="tag">
                   <Tag :tag="tag" />
@@ -43,7 +43,7 @@
             <ContactList />
           </div>
           <div class="col-8">
-            <div class="d-flex justify-content-center align-items-center" v-if="noContacts">
+            <div class="d-flex justify-content-center align-items-center" v-if="showTags">
               <h2 class="my-4">
                 <button @click="search = tag" v-for="tag in tags" :key="tag">
                   <Tag :tag="tag" />
@@ -78,6 +78,7 @@ export default {
   computed: mapState({
     searchText: 'searchText',
     user: 'user',
+    loadingSearch: 'loadingSearch',
     layout() {
       if (this.windowWidth < 600)
         return 'compact'
@@ -86,8 +87,8 @@ export default {
     tags() {
       return this.$store.getters.allTags
     },
-    noContacts(state) {
-      return state.searchContacts.length === 0
+    showTags(state) {
+      return state.searchContacts.length === 0 && state.searchText.length === 0 && !state.loadingSearch
     }
   }),
   watch: {

@@ -1,5 +1,6 @@
 <template>
   <div id="contact-collection" v-bind-to-height class="d-flex flex-wrap">
+    <center><p v-if="contacts.length === 0" class="text-muted">No contacts match your search</p></center>
     <ContactCard :key="contact._id" :contact-id="contact._id" class="m-1" v-for="contact in contacts" />
   </div>
 </template>

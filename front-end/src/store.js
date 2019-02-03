@@ -50,7 +50,8 @@ const initialState = {
   authenticated: false,
   user: null,
   searchCancelToken: null,
-  colorMap: {} 
+  colorMap: {},
+  loadingSearch: false
 }
 
 export default () => new Vuex.Store({
@@ -84,9 +85,13 @@ export default () => new Vuex.Store({
         if (state.searchCancelToken)
           state.searchCancelToken.cancel("Search canceled")
         state.searchCancelToken = CancelToken.source()
+        state.loadingSearch = true
         axios.get(api + '/contacts?search=' + encodeURIComponent(text), {
           cancelToken: state.searchCancelToken.token
-        }).then(({ data }) => { state.searchContacts = data })
+        }).then(({ data }) => {
+          state.searchContacts = data
+          state.loadingSearch = false
+        })
       } else {
         state.searchContacts = []
       }
