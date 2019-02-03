@@ -52,16 +52,27 @@
       <b-textarea v-model="contact.notes" rows="3" id="inputMemo" />
     </b-form-group>
     <!--Tags-->
-    <b-input-group prepend="Tags">
-        <b-form-input type="text" id="inputTag" v-model="contact.tags"/>
-        <b-btn @click="addTag(contact.tags)" variant="info" size="sm">Add tag</b-btn>
-        <b-btn @click="deleteTag(contact.tags)" variant="primary" size="sm">Delete tag</b-btn>
+    <!-- <b-input-group prepend="Tags">
+        <b-form-input type="text" id="inputTag" v-model="newTag"/>
+        <b-btn @click="addTag()" variant="info" size="sm">Add tag</b-btn>
     </b-input-group>
+    <p style="font-size:14pt">
+    <Tag :tag="tag" :key="tag" allow-delete @remove="deleteTag" v-for="tag in contact.tags" />
+    </p> -->
+    <b-form-group>
+      <label for="inputTags">Tags</label>
+      <b-form-input type="text" id="inputTag" v-model="newTag"/>
+       <b-btn @click="addTag()" variant="info" size="sm" class="mt-1 : mr-2">Add tag</b-btn>
+      <p style="font-size:14pt">
+        <Tag :tag="tag" :key="tag" allow-delete @remove="deleteTag" v-for="tag in contact.tags" />
+      </p> 
+    </b-form-group>
   </b-modal>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import Tag from './Tag.vue'
 
 export default {
   data: () => ({
@@ -70,7 +81,8 @@ export default {
     states: ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL", "GA", "HI", "ID", "IL", "IN",
         "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH",
         "NJ", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "PR", "RI", "SC", "SD", "TN", "TX", "UT",
-        "VT", "VI", "VA", "WA", "WV", "WI", "WY"]
+        "VT", "VI", "VA", "WA", "WV", "WI", "WY"],
+    newTag: "",
   }),
   methods: {
     saveContact(evt) {
@@ -81,15 +93,11 @@ export default {
       this.$store.commit('endEditing')
     },
     deleteTag: function(tag) {
-      var i;
-      for (i = 0; i < this.contact.tags.length; i++)
-      {
-        if (this.contacts.tags[i] == tag)
-          this.contact.tags.splice(i, 1);
-      }
+      this.$delete(this.contact.tags, this.contact.tags.indexOf(tag))
     },
-    addTag: function(tag) {
-      this.contact.tags.push(tag);
+    addTag: function() {
+        this.contact.tags.push(this.newTag)
+        this.newTag = ""
     },
   },
   computed: mapState({
@@ -139,14 +147,15 @@ export default {
             notes: null 
           }
         } else {
-          this.contact = Object.assign({}, this.$store.state.contacts.filter(c => c._id === id)[0])
+          this.contact = Object.assign({tags:[]}, this.$store.state.contacts.filter(c => c._id === id)[0])
         }
         this.showModal = true
       } else {
         this.showModal = false
       }
     }
-  }
+  },
+  components: {Tag}
 }
 </script>
 

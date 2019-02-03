@@ -1,5 +1,11 @@
 <template>
-  <span class="badge badge-pill mx-1" :style="{ backgroundColor: tagColor, color: textColor }">{{ tag }}</span>
+  <span class="badge badge-pill mx-1" :style="{ backgroundColor: tagColor, color: textColor }">
+   {{ tag }}
+   <button v-if="allowDelete" @click="$emit('remove', tag)">
+     <i class ="fas fa-times-circle">
+     </i>
+   </button>
+  </span>
 </template>
 
 <script>
@@ -36,7 +42,8 @@ function getHsp(color) {
 
 export default {
   props: {
-    tag: String
+    tag: String,
+    allowDelete: Boolean
   },
   computed: {
     textColor() {
