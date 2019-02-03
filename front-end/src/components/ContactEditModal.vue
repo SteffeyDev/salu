@@ -109,7 +109,7 @@ export default {
       return this.contact.firstName + ' ' + this.contact.lastName;
     },
     tagSuggestions() {
-      return this.$store.getters.allTags.filter(tag => contact.tags.indexOf(tag) === -1)
+      return this.$store.getters.allTags.filter(tag => this.contact.tags.indexOf(tag) === -1)
     },
     cardTitle() {
       if (this.contactId === 'new')
