@@ -52,13 +52,6 @@
       <b-textarea v-model="contact.notes" rows="3" id="inputMemo" />
     </b-form-group>
     <!--Tags-->
-    <!-- <b-input-group prepend="Tags">
-        <b-form-input type="text" id="inputTag" v-model="newTag"/>
-        <b-btn @click="addTag()" variant="info" size="sm">Add tag</b-btn>
-    </b-input-group>
-    <p style="font-size:14pt">
-    <Tag :tag="tag" :key="tag" allow-delete @remove="deleteTag" v-for="tag in contact.tags" />
-    </p> -->
     <b-form-group>
       <label for="inputTags">Tags</label>
       <b-form-input type="text" id="inputTag" v-model="newTag"/>
