@@ -64,7 +64,7 @@
         </b-input-group-append>
       </b-input-group>
       <datalist id="tag-list">
-        <option :value="tag" v-for="tag in $store.getters.allTags">
+        <option :value="tag" v-for="tag in tagSuggestions">
       </datalist>
     </b-form-group>
   </b-modal>
@@ -107,6 +107,9 @@ export default {
     tagColorMap: 'colorMap',
     name() {
       return this.contact.firstName + ' ' + this.contact.lastName;
+    },
+    tagSuggestions() {
+      return this.$store.getters.allTags.filter(tag => contact.tags.indexOf(tag) === -1)
     },
     cardTitle() {
       if (this.contactId === 'new')

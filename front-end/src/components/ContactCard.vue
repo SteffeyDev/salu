@@ -42,16 +42,16 @@ export default {
       return state.searchContacts.filter(c => c._id === this.contactId)[0]
     },
     address() {
-      let address = ''
+      let components = []
       if (this.contact.street)
-        address += this.contact.street
+        components.push(this.contact.street)
       if (this.contact.city)
-        address += ', ' + this.contact.city
-      if (this.contact.state)
-        address += ', ' + this.contact.state
-      if (this.contact.zipcode)
-        address += ' ' + this.contact.zipcode
-      return address.length ? address : null
+        components.push(this.contact.city)
+      if (this.contact.state && this.contact.zipcode)
+        components.push(this.contact.state + ' ' + this.contact.zipcode)
+      else if (this.contact.state || this.contact.zipcode)
+        components.push(this.contact.state || this.contact.zipcode)
+      return components.length > 0 ? components.join(', ') : null
     }
   }),
   components: {
