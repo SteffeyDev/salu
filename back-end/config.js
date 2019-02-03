@@ -13,7 +13,7 @@ module.exports = {
       httpOnly: true,
       sameSite: true,
       signed: true,
-      secure: false
+      secure: true
     }
   }
 };
