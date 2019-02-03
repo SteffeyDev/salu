@@ -4,7 +4,8 @@ import { api } from './config.js'
 import axios from 'axios'
 const CancelToken = axios.CancelToken;
 
-const colorList = ['#ff0000', '#f58231', '#ffe119', '#bcf60c', '#3cb44b', '#46f0f0', '#4363d8', '#911eb4', '#f032e9', '#000075', '#aaffc3', '#e6beff', '#8b0000', '#ff0033', '#4b0082', '#5c4033', '#ff69b4']
+const sourceColorList = ['#ff0000', '#f58231', '#ffe119', '#bcf60c', '#3cb44b', '#46f0f0', '#4363d8', '#911eb4', '#f032e9', '#000075', '#aaffc3', '#e6beff', '#8b0000', '#ff0033', '#4b0082', '#5c4033', '#ff69b4']
+let workingColorList = JSON.parse(JSON.stringify(sourceColorList))
 
 //import contacts_sample_data from '../../scripts/MOCK_DATA.json'
 //const sample_data = contacts_sample_data.map((c, i) => Object.assign({_id:i, tags: ['hello']}, c))
@@ -26,12 +27,10 @@ function alertErrors(str, err) {
 }
 
 function getRandomColor() {
-  if (colorList.length > 0) {
-    let randomIndex = Math.floor(Math.random() * colorList.length)
-    return colorList.splice(randomIndex, 1)[0]
-  } else {
-    return '#d3d3d3'
-  }
+  if (workingColorList.length === 0)
+    workingColorList = JSON.parse(JSON.stringify(sourceColorList))
+  let randomIndex = Math.floor(Math.random() * workingColorList.length)
+  return workingColorList.splice(randomIndex, 1)[0]
 }
 
 function tagsFromArray(arr) {
@@ -43,17 +42,19 @@ function tagsFromArray(arr) {
     }, new Set()))
 }
 
+const initialState = {
+  contacts: [],
+  searchText: null,
+  searchContacts: [], 
+  editContactId: null,
+  authenticated: false,
+  user: null,
+  searchCancelToken: null,
+  colorMap: {} 
+}
+
 export default () => new Vuex.Store({
-  state: {
-    contacts: [],
-    searchText: null,
-    searchContacts: [], 
-    editContactId: null,
-    authenticated: false,
-    user: null,
-    searchCancelToken: null,
-    colorMap: {} 
-  },
+  state: Vue.util.extend({}, initialState),
   getters: {
     allTags(state) {
       return tagsFromArray(state.contacts)
@@ -90,7 +91,12 @@ export default () => new Vuex.Store({
         state.searchContacts = []
       }
     },
-    logout: (state) => { state.authenticated = false },
+    logout: (state) => {
+      for (let f in state) {
+        Vue.set(state, f, initialState[f])
+      }
+      workingColorList = JSON.parse(JSON.stringify(sourceColorList))
+    },
     login: (state, user) => {
       state.authenticated = true
       state.user = (({ username, email }) => ({ username, email }))(user) // Only store the username and email

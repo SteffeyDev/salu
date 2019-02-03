@@ -9,10 +9,10 @@
     </div>
     <p class="mb-1" v-show="contact.email"><i class="fas fa-envelope mr-2"></i><a :href="'mailto:' + contact.email">{{ contact.email }}</a></p>
     <p class="mb-1" v-show="contact.phone"><i class="fas fa-phone mr-2"></i><a :href="'tel:' + contact.phone">{{ contact.phone }}</a></p>
-    <p class="mb-1" v-show="address"><i class="fas fa-map-marker-alt mr-2"></i>{{ address }}</p>
+    <p class="mb-1" v-show="address"><i class="fas fa-map-marker-alt mr-2"></i><a target="_blank" :href="'https://www.google.com/maps/search/?api=v1&query=' + encodeURIComponent(address)">{{ address }}</a></p>
     <p class="mb-1 d-flex align-items-center" v-show="contact.tags && contact.tags.length > 0">
       <i class="fas fa-tags"></i>
-      <Tag :tag="tag" :key="tag" v-for="tag in contact.tags" />
+      <button @click="search(tag)" :key="tag" v-for="tag in contact.tags"><Tag :tag="tag" /></button>
     </p>
     <p class="mb-1" v-show="contact.notes"><i class="fas fa-comment mr-2"></i>{{ contact.notes }}</p>
   </b-card>
@@ -32,6 +32,9 @@ export default {
     },
     deleteContact(id) {
       this.$store.dispatch('deleteContact', id)
+    },
+    search(text) {
+      this.$store.commit('search', text)
     }
   },
   computed: mapState({
