@@ -58,11 +58,14 @@
         <Tag :tag="tag" :key="tag" allow-delete @remove="deleteTag" v-for="tag in contact.tags" />
       </p> 
       <b-input-group>
-        <b-form-input type="text" id="inputTag" v-model="newTag"/>
+        <b-form-input type="text" id="inputTag" v-model="newTag" list="tag-list" />
         <b-input-group-append>
           <b-btn @click="addTag" variant="info">Add tag</b-btn>
         </b-input-group-append>
       </b-input-group>
+      <datalist id="tag-list">
+        <option :value="tag" v-for="tag in $store.getters.allTags">
+      </datalist>
     </b-form-group>
   </b-modal>
 </template>
