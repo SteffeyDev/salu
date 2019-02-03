@@ -4,7 +4,7 @@ import { api } from './config.js'
 import axios from 'axios'
 const CancelToken = axios.CancelToken;
 
-const colorList = ['#ff0000', '#f58231', '#ffe119', '#bcf60c', '#3cbb44b', '#46f0f0', '#4363d8', '#911eb4', '#f032e9', '#000075', '#aaffc3', '#e6beff', '#8b0000', '#ff0033', '#4b0082', '#5c4033', '#ff69b4']
+const colorList = ['#ff0000', '#f58231', '#ffe119', '#bcf60c', '#3cb44b', '#46f0f0', '#4363d8', '#911eb4', '#f032e9', '#000075', '#aaffc3', '#e6beff', '#8b0000', '#ff0033', '#4b0082', '#5c4033', '#ff69b4']
 
 //import contacts_sample_data from '../../scripts/MOCK_DATA.json'
 //const sample_data = contacts_sample_data.map((c, i) => Object.assign({_id:i, tags: ['hello']}, c))

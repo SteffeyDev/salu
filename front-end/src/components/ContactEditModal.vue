@@ -54,7 +54,7 @@
     <!--Tags-->
     <b-form-group>
       <label for="inputTags">Tags</label>
-      <p style="font-size: 16pt">
+      <p style="font-size: 16pt" v-if="contact.tags.length > 0">
         <Tag :tag="tag" :key="tag" allow-delete @remove="deleteTag" v-for="tag in contact.tags" />
       </p> 
       <b-input-group>

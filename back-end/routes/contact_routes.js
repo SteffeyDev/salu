@@ -38,7 +38,7 @@ module.exports = function(app, passport) {
             match(contact.phone, s) ||
             match(contact.street + contact.city + contact.state + contact.zipcode, s) ||
             match(contact.notes, s) ||
-            contact.tags.filter(tag => match(tag, s)).length > 0));
+            contact.tags.filter(tag => match(tag.replace(' ', ''), s)).length > 0));
         } else {
           return res.send(user.contacts);
         }
