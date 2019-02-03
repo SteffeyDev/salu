@@ -1,5 +1,5 @@
 <template>
-  <span class="badge badge-pill mx-1" :class="{ 'pr-1': allowDelete }" :style="{ backgroundColor: tagColor, color: textColor }">
+  <span class="badge badge-pill ml-1" :class="{ 'pr-1': allowDelete }" :style="{ backgroundColor: tagColor, color: textColor }">
    {{ tag }}
    <button class="ml-1" v-if="allowDelete" @click="$emit('remove', tag)" title="Remove Tag">
      <i class ="fas fa-times-circle"></i>

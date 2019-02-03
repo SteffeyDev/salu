@@ -1,5 +1,5 @@
 <template>
-  <div id="contact-collection" v-bind-to-height class="d-flex flex-wrap justify-content-center">
+  <div id="contact-collection" v-bind-to-height class="d-flex flex-wrap">
     <ContactCard :key="contact._id" :contact-id="contact._id" class="m-1" v-for="contact in contacts" />
   </div>
 </template>

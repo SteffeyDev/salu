@@ -9,13 +9,13 @@
     </b-navbar>
     <div class="px-2">
       <div class="d-flex flex-row">
-        <button @click="newContact">
+        <button @click="newContact" class="ml-2">
           <span class="fa-layers fa-fw fa-3x">
             <i class="fas fa-circle text-primary"></i>
             <i class="fa-inverse fas fa-plus" data-fa-transform="shrink-6"></i>
           </span>
         </button>
-        <div class="search flex-fill my-4 px-3">
+        <div class="search flex-fill my-4 pl-1 pr-3">
           <span class="fas fa-search fa-2x"></span>
           <b-form-input size="lg" type="search" placeholder="Search your contacts" v-model="search" />
         </div>
@@ -131,7 +131,7 @@ export default {
 .search .fa-search {
   position: absolute;
   top: 8px;
-  left: 25px;
+  left: 14px;
 }
 
 #home {
