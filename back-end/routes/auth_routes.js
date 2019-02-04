@@ -40,7 +40,7 @@ module.exports = function(app, passport) {
 
   //Logout User
   app.post('/auth/logout', (req,res) => {
-    res.clearCookie('jwt');
+    res.clearCookie('jwt', config.jwt.cookie);
     res.status(200).send();
   });
 
