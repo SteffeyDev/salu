@@ -7,6 +7,7 @@ const CancelToken = axios.CancelToken;
 const sourceColorList = ['#ff0000', '#f58231', '#ffe119', '#bcf60c', '#3cb44b', '#46f0f0', '#4363d8', '#911eb4', '#f032e9', '#000075', '#aaffc3', '#e6beff', '#8b0000', '#ff0033', '#4b0082', '#5c4033', '#ff69b4']
 let workingColorList = JSON.parse(JSON.stringify(sourceColorList))
 
+// this was used for testing locally with large number of contacts
 //import contacts_sample_data from '../../scripts/MOCK_DATA.json'
 //const sample_data = contacts_sample_data.map((c, i) => Object.assign({_id:i, tags: ['hello']}, c))
 //const sample_color_map = Array.from(sample_data

@@ -10,7 +10,7 @@
     <p class="mb-1" v-show="contact.email"><i class="fas fa-envelope mr-2"></i><a :href="'mailto:' + contact.email">{{ contact.email }}</a></p>
     <p class="mb-1" v-show="contact.phone"><i class="fas fa-phone mr-2"></i><a :href="'tel:' + contact.phone">{{ contact.phone }}</a></p>
     <p class="mb-1" v-show="address"><i class="fas fa-map-marker-alt mr-2"></i><a target="_blank" :href="'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(address)">{{ address }}</a></p>
-    <p class="mb-1 d-flex align-items-center" v-show="contact.tags && contact.tags.length > 0">
+    <p class="mb-1 d-flex align-items-center" v-if="contact.tags && contact.tags.length > 0">
       <i class="fas fa-tags"></i>
       <button @click="search(tag)" :key="tag" v-for="tag in contact.tags"><Tag :tag="tag" /></button>
     </p>

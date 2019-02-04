@@ -104,7 +104,7 @@ export default {
   methods: {
     logOut() {
       // call logout endpoint, which should remove JWT cookie
-      axios.post(api + '/auth/logout').then(() => this.$store.commit('logout'))
+      axios.post(api + '/auth/logout', { withCredentials: true }).then(() => this.$store.commit('logout'))
     },
     newContact() {
       this.$store.commit('newContact')
