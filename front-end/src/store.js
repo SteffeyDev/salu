@@ -78,7 +78,7 @@ export default () => new Vuex.Store({
     },
     deleteContact: (state, id) => {
       state.contacts.splice(state.contacts.findIndex(c => c._id === id), 1)
-      state.searchContacts.splice(state.contacts.findIndex(c => c._id === id), 1)
+      state.searchContacts.splice(state.searchContacts.findIndex(c => c._id === id), 1)
     },
     search: (state, text) => {
       state.searchText = text
