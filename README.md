@@ -1,5 +1,9 @@
 # Salu Contact Manager
 
+Completed website: [Salu.pro](https://salu.pro)
+
+This is a project built for a Processes of Object Oriented Software Development course in the spring of 2019.  It was completed as part of an assignment and is now no longer under active development.  The website will remain functional until at least January 2020, at which point the domain may or may not be renewed.  If not renewed, this site may remain available as a subdomain of another domain.
+
 ## Front-end (Vue.js)
 
 ### Setting up Development Environment
@@ -40,7 +44,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ### Starting the Server
 
  ```
- node server.js
+ ./run_server
  ```
 
 ### Testing API Endpoint
